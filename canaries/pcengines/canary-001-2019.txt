@@ -9,16 +9,19 @@ state the following:
 
 1. The date of issue of this canary is March  XX, 2019.
 
-2. The PC Engines Open Source Firmware Release 4.9 Signing Key
-fingerprint is:
+2. The 3mdeb Master Signing Key fingerprint is:
 
     F78F 1CBC 2193 38BB 0340  08D7 BCBD 680B 6634 6D19
 
-3. No warrants have ever been served to us with regard to the PC Engines
+3. PC Engines Open Source Firmware Release 4.9 Signing Key is signed
+by 3mdeb Open Source Firmware Master Key, which is signed by 3mdeb
+Master Key.
+
+4. No warrants have ever been served to us with regard to the PC Engines
 firmware (e.g. to hand out the private signing keys or to introduce
 backdoors).
 
-4. We plan to publish the next of these canary statements in the first
+5. We plan to publish the next of these canary statements in the first
 two weeks of August 2019. Special note should be taken if no new canary
 is published by that time or if the list of statements changes without
 plausible explanation.
@@ -53,28 +56,48 @@ Proof of freshness
 
 $ date -R -u
 
-TBD
+Mon, 25 Mar 2019 14:33:01 +0000
 
 $ feedstail -1 -n5 -f '{title}' -u https://www.spiegel.de/international/index.rss
 
-TBD
+Brexit Chaos: Theresa May's Days Are Numbered. Now What?
+The Emergence of Homo Sapiens: 'Those Who Obeyed the Rules Were Favored by Evolution'
+An Epidemic and a War: Doctors Face Two Enemies in Fight Against Ebola
+Cursed and Sold: Voodoo Spells and Forced Prostitution in Germany
+The Climate Activist vs. the Economics Minister: 'My Generation Has Been Fooled'
+
 
 $ feedstail -1 -n5 -f '{title}' -u https://rss.nytimes.com/services/xml/rss/nyt/World.xml
 
-TBD
+This Chinese Christian Was Charged With Trying to Subvert the State
+Rocket From Gaza Hits Israel, Prompting Netanyahu to Curtail U.S. Trip
+As Thai Pro-Military Party Celebrates Election Lead, So Do Its Opponents
+Adventurous. Alone. Attacked.
+Hamas Crackdown on Gaza Protests Instills Fear
+
 
 $ feedstail -1 -n5 -f '{title}' -u https://feeds.bbci.co.uk/news/world/rss.xml
 
-TBD
+Mueller report: Trump triumphant after being cleared of collusion
+Thailand election: Rival camps woo allies amid confusion over results
+Seven injured as Gaza rocket hits home in central Israel
+Venezuela crisis: Russian military planes land near Caracas
+Greek PM says Turkish jets 'harassed' his helicopter
+
 
 $ feedstail -1 -n5 -f '{title}' -u http://feeds.reuters.com/reuters/worldnews
 
-TBD
+White House defers on release of Mueller's report, Kremlin warms
+U.S. top court rebuffs mystery company in Mueller subpoena fight
+'Time's up, Theresa'? May battles to keep control of Brexit
+DUP leader told May nothing has changed on Brexit stance: spokesman
+Heavy weapons fire rocks Yemen's Hodeidah as U.N. pushes to clinch troop pullout
+
 
 $ curl -s 'https://blockchain.info/blocks/?format=json' |\
   python3 -c 'import sys, json; print(json.load(sys.stdin)['\''blocks'\''][10]['\''hash'\''])'
 
-TBD
+00000000000000000023228f8fec82fb8a3662ef2e30a8bb71bc6dbde93ad392
 
 Footnotes
 ----------
