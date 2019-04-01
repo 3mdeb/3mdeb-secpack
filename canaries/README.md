@@ -4,5 +4,5 @@ Most used commands
 # Generate signature
 
 ```
-gpg -k <my_key> --sign --armor --detach-sig foo.txt --output foo.txt.sig.<id>
+gpg --default-key <my_key> --armor --output foo.txt.sig.<id> --sign --detach-sign foo.txt
 ```
