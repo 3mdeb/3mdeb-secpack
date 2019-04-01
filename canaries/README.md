@@ -11,18 +11,11 @@ Or by using script:
 
 ```
 cd canaries/pcengines
-../../scripts/sign.sh <canary_file> <key_id> <id>
-```
-
-Or:
-
-```
-cd canaries/pcengines
-../../scripts/sign.sh <canary_file>
+../../scripts/sign.sh <canary_file> <tag_suffix>
 ```
 
 This command will automatically generate signatures of Piotr Król and Michał
-Żygowski.
+Żygowski and a signed tag with <tag_suffix> added to the tag name.
 
 # Proof of freshness
 
