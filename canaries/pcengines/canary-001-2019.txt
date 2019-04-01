@@ -56,44 +56,28 @@ Proof of freshness
 
 $ date -R -u
 
-Mon, 01 Apr 2019 09:19:29 +0000
+Mon, 01 Apr 2019 13:23:57 +0000
 
 $ feedstail -1 -n5 -f '{title}' -u https://www.spiegel.de/international/index.rss
 
-France's Golden Boy Learns How to Fight: Macron Debates His Way Out of The Yellow-Vest Crisis
-Corrupt Egyptair Deal: Suspicions of Bribery Cast Shadow Over Airbus
-From the Web to Real Life: The Growing Threat of Online-Bred Right-Wing Extremism
-The Caliphate's Kids: Sick Children Bear the Brunt of Post-IS Chaos
-Women's Rights: Trial Casts Light on Hardline Approach in Saudi Arabia
+'I'm Just Being Me': British House Speaker Bercow on His Brexit Role France's Golden Boy Learns How to Fight: Macron Debates His Way Out of The Yellow-Vest Crisis Corrupt Egyptair Deal: Suspicions of Bribery Cast Shadow Over Airbus From the Web to Real Life: The Growing Threat of Online-Bred Right-Wing Extremism The Caliphate's Kids: Sick Children Bear the Brunt of Post-IS Chaos
 
 $ feedstail -1 -n5 -f '{title}' -u https://rss.nytimes.com/services/xml/rss/nyt/World.xml
 
-Twitter Network Uses Fake Accounts to Promote Netanyahu, Watchdog Finds
-Erdogan Appears to Suffer Major Defeats in Turkey�s Two Biggest Cities
-No Joke: Ukraine TV Comedian Wins Election�s First Round
-Pope Francis Warns Trump About Walls After Morocco Visit
-Afghan Vice President Survives Attack on Convoy
+Twitter Network Uses Fake Accounts to Promote Netanyahu, Israel Watchdog Finds Erdogan Appears to Suffer Major Defeats in Turkey’s Two Biggest Cities Chinese Dissidents Feel Heat of Beijing’s Wrath. Even in Canada. Japan’s New Era Gets a Name, but No One Can Agree What It Means China Bans All Types of Fentanyl, Fulfilling Pledge to Trump
 
 $ feedstail -1 -n5 -f '{title}' -u https://feeds.bbci.co.uk/news/world/rss.xml
 
-Turkey local elections: Setback for Erdogan as his party loses capital
-Kim Jong-nam murder: Vietnamese woman pleads guilty to lesser charge
-Nipsey Hussle: Tributes to rapper shot dead in Los Angeles
-Joe Biden denies Lisa Flores's misconduct allegations
-Japan reveals name of new imperial era will be 'Reiwa'
+Turkey local elections: Setback for Erdogan in big cities Kim Jong-nam murder: Vietnamese woman pleads guilty to lesser charge Nipsey Hussle: Tributes to rapper shot dead in Los Angeles Joe Biden denies Lisa Flores's misconduct allegations Ukraine election: Comedian leads presidential contest
 
 $ feedstail -1 -n5 -f '{title}' -u http://feeds.reuters.com/reuters/worldnews
 
-Erdogan suffers major setbacks in local elections in Turkey's big cities
-At least 20 killed after bus in Peru catches fire at banned bustop
-Moon hopes North Korea responds positively to U.S.-South Korea efforts
-Facebook says removed pages linked to India's Congress party ahead of polls
-New Japanese imperial era 'Reiwa' takes name from ancient poetry
+North Korea says embassy raid in Spain was a 'grave terrorist attack' Israeli researchers - hundreds of fake Twitter accounts boost Netanyahu Severe thunderstorm in Nepal leaves 25 dead, hundreds injured Facebook removes many accounts in India, Pakistan for 'inauthentic' behavior Brexit in disarray: May under pressure to go for soft Brexit
 
 $ curl -s 'https://blockchain.info/blocks/?format=json' |\
   python3 -c 'import sys, json; print(json.load(sys.stdin)['\''blocks'\''][10]['\''hash'\''])'
 
-0000000000000000002706d85962538c303f7bb0ba8bd419e46da1266170edaa
+0000000000000000000c8ea877a5c18c1549fae0d4ae96b5b8ac383efb1fedfc
 
 Footnotes
 ----------
