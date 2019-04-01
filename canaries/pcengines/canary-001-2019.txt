@@ -56,48 +56,44 @@ Proof of freshness
 
 $ date -R -u
 
-Mon, 25 Mar 2019 14:33:01 +0000
+Mon, 01 Apr 2019 09:19:29 +0000
 
 $ feedstail -1 -n5 -f '{title}' -u https://www.spiegel.de/international/index.rss
 
-Brexit Chaos: Theresa May's Days Are Numbered. Now What?
-The EmergenceÂ of Homo Sapiens: 'Those Who Obeyed the Rules Were Favored by Evolution'
-An Epidemic and a War: Doctors Face Two Enemies in Fight Against Ebola
-Cursed and Sold: Voodoo Spells and Forced Prostitution in Germany
-The Climate Activist vs. the Economics Minister: 'My Generation Has Been Fooled'
-
+France's Golden Boy Learns How to Fight: Macron Debates His Way Out of The Yellow-Vest Crisis
+Corrupt Egyptair Deal: Suspicions of Bribery Cast Shadow Over Airbus
+From the Web to Real Life: The Growing Threat of Online-Bred Right-Wing Extremism
+The Caliphate's Kids: Sick Children Bear the Brunt of Post-IS Chaos
+Women's Rights: Trial Casts Light on Hardline Approach in Saudi Arabia
 
 $ feedstail -1 -n5 -f '{title}' -u https://rss.nytimes.com/services/xml/rss/nyt/World.xml
 
-This Chinese Christian Was Charged With Trying to Subvert the State
-Rocket From Gaza Hits Israel, Prompting Netanyahu to Curtail U.S. Trip
-As Thai Pro-Military Party Celebrates Election Lead, So Do Its Opponents
-Adventurous. Alone. Attacked.
-Hamas Crackdown on Gaza Protests Instills Fear
-
+Twitter Network Uses Fake Accounts to Promote Netanyahu, Watchdog Finds
+Erdogan Appears to Suffer Major Defeats in Turkey’s Two Biggest Cities
+No Joke: Ukraine TV Comedian Wins Election’s First Round
+Pope Francis Warns Trump About Walls After Morocco Visit
+Afghan Vice President Survives Attack on Convoy
 
 $ feedstail -1 -n5 -f '{title}' -u https://feeds.bbci.co.uk/news/world/rss.xml
 
-Mueller report: Trump triumphant after being cleared of collusion
-Thailand election: Rival camps woo allies amid confusion over results
-Seven injured as Gaza rocket hits home in central Israel
-Venezuela crisis: Russian military planes land near Caracas
-Greek PM says Turkish jets 'harassed' his helicopter
-
+Turkey local elections: Setback for Erdogan as his party loses capital
+Kim Jong-nam murder: Vietnamese woman pleads guilty to lesser charge
+Nipsey Hussle: Tributes to rapper shot dead in Los Angeles
+Joe Biden denies Lisa Flores's misconduct allegations
+Japan reveals name of new imperial era will be 'Reiwa'
 
 $ feedstail -1 -n5 -f '{title}' -u http://feeds.reuters.com/reuters/worldnews
 
-White House defers on release of Mueller's report, Kremlin warms
-U.S. top court rebuffs mystery company in Mueller subpoena fight
-'Time's up, Theresa'? May battles to keep control of Brexit
-DUP leader told May nothing has changed on Brexit stance: spokesman
-Heavy weapons fire rocks Yemen's Hodeidah as U.N. pushes to clinch troop pullout
-
+Erdogan suffers major setbacks in local elections in Turkey's big cities
+At least 20 killed after bus in Peru catches fire at banned bustop
+Moon hopes North Korea responds positively to U.S.-South Korea efforts
+Facebook says removed pages linked to India's Congress party ahead of polls
+New Japanese imperial era 'Reiwa' takes name from ancient poetry
 
 $ curl -s 'https://blockchain.info/blocks/?format=json' |\
   python3 -c 'import sys, json; print(json.load(sys.stdin)['\''blocks'\''][10]['\''hash'\''])'
 
-00000000000000000023228f8fec82fb8a3662ef2e30a8bb71bc6dbde93ad392
+0000000000000000002706d85962538c303f7bb0ba8bd419e46da1266170edaa
 
 Footnotes
 ----------
