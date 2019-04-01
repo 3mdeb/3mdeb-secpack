@@ -52,8 +52,8 @@ function commit_changes {
 	git add $file.sig.piotr-krol
 	git commit --author="Piotr Król <piotr.krol@3mdeb.com>" -m "Canary #$number: sign"
 	git_hash=$(git log --pretty=format:'%h' -n 1)
-	git tag -s -a $suffix_sec_$git_hash -m ""
-	git tag -v $suffix_sec_$git_hash
+	git tag -s -a ${suffix}_sec_${git_hash} -m ""
+	git tag -v ${suffix}_sec_${git_hash}
 }
 
 function error_check {
