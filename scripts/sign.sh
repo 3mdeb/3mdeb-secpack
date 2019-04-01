@@ -2,12 +2,9 @@
 
 function usage {
     echo -e "Usage:"
-    echo -e "$0 FILE KEY_ID ID_SUFFIX"
+    echo -e "$0 FILE TAG_PREFIX"
     echo -e "\tFILE - file name and path to be signed"
-    echo -e "\tKEY_ID - short key fingerprint to be used by GPG"
-    echo -e "\tID_SUFFIX - ID suffix of the signer appended to .sig file name"
-    echo -e "If no KEY_ID and ID_SUFFIX provided, script performs quick signing"
-    echo -e "with MichaÅ‚ Å»ygowski and Piotr KrÃ³l keys"
+    echo -e "\TAG_PREFFIX - prefix of the signer added to git tag"
     exit 1
 }
 
@@ -34,34 +31,59 @@ function proof_of_freshness {
   python3 -c 'import sys, json; print(json.load(sys.stdin)['\''blocks'\''][10]['\''hash'\''])')/g"  $file
 }
 
+function sign_canary {
+	gpg --default-key D21FCEB2 --armor --output $file.sig.miczyg --sign --detach-sign $file
+	error_check "Signing by Micha? ?ygowski failed"
+	gpg --verify $file.sig.miczyg $file
+	error_check "Verifying Micha? ?ygowski signature failed"
+	#gpg --default-key 67AA9E4C --armor --output $file.sig.piotr-krol --sign --detach-sign $file
+	#error_check "Signing by Piotr Król failed"
+	#gpg --verify $file.sig.piotr-krol $file
+	#error_check "Verifying Piotr Król signature failed"
+}
+
+function commit_changes {
+	getnumber=(${file//-/ })
+	number=(${getnumber[1]//0/})
+	git add $file
+	git commit -m "Canary #$number"
+	git add $file.sig.miczyg
+	git commit -m "Canary #$number: sign"
+	#git add $file.sig.piotr-krol
+	#git commit --author="Piotr Król <piotr.krol@3mdeb.com>" -m "Canary #$number: sign"
+	git_hash=$(git log --pretty=format:'%h' -n 1)
+	git tag -s -a $suffix_sec_$git_hash -m ""
+	git tag -v $suffix_sec_$git_hash
+}
+
+function error_check {
+    ERROR_CODE="$?"
+    if [ "$ERROR_CODE" -ne 0 ]; then
+        echo "$1 ($ERROR_CODE)"
+	exit 1
+    fi
+}
+
 if [ $# -le 0 ]; then
     usage
 fi
 
 file=$(basename "$1") 
-key=$2
-suffix=$3
+suffix=$2
 
-if [ ! -n "$suffix" ] && [ ! -n "$key" ]; then
+if [ -n "$suffix" ]; then
 	if [ -f "$file" ]; then
 		proof_of_freshness
-		gpg --default-key D21FCEB2 --armor --output $file.sig.miczyg --sign --detach-sign $file
-		gpg --verify $file.sig.miczyg $file
-		gpg --default-key 67AA9E4C --armor --output $file.sig.piotr-krol --sign --detach-sign $file
-		gpg --verify $file.sig.piotr-krol $file
+		sign_canary
+		commit_changes
 	else
 		echo "$file not found."
 		exit 1
 	fi
 else
-	if [ -f "$file" ]; then
-		proof_of_freshness
-		gpg --default-key $key --armor --output $file.sig.$suffix --sign --detach-sign $file
-		gpg --verify $file.sig.$suffix $file
-	else
-		echo "$file not found."
-		exit 1
-	fi
+	echo "Please provide suffix"
+	usage
+	exit 1
 fi
 
 
