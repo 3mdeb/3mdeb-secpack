@@ -71,28 +71,28 @@ Proof of freshness
 
 $ date -R -u
 
-{date}
+Wed, 18 Sep 2019 15:26:38 +0000
 
 $ feedstail -1 -n5 -f '{title}' -u https://www.spiegel.de/international/index.rss
 
-{freshness1}
+Football Leaks Lawyer: 'In Germany, Pinto Never Would Have Been Sent to Jail' 'Special Advisers': Investigators Target Illicit Trade in Diplomatic Passports Interview with Edward Snowden: 'If I Happen to Fall out of a Window, You Can Be Sure I Was Pushed' Return to Gadhafi Era in Libya: A Warlord Rebuilds Benghazi in His Own Image Alternative for Democracy: The AfD's Ongoing Slide toward Right-Wing Extremism
 
 $ feedstail -1 -n5 -f '{title}' -u https://rss.nytimes.com/services/xml/rss/nyt/World.xml
 
-{freshness2}
+Hard-Liners in Iran See No Drawback to Bellicose Strategy Duterte Says He Ordered a Politician Killed; a Spokesman Says He Misspoke After Tight Israeli Election, Netanyahu’s Tenure Appears Perilous Spain Heads to 4th Election in 4 Years After Failure to Form Government Nobel Peace Laureate Could Face Prosecution Over Myanmar Military’s Actions
 
 $ feedstail -1 -n5 -f '{title}' -u https://feeds.bbci.co.uk/news/world/rss.xml
 
-{freshness3}
+Saudi Arabia presents 'oil attacks evidence' Israel election: Netanyahu and rival Gantz headed for deadlock Liberia school fire leaves many children dead near Monrovia Robert O'Brien: Trump names new national security adviser Afghanistan war: Taliban tell Trump their 'doors are open'
 
 $ feedstail -1 -n5 -f '{title}' -u http://feeds.reuters.com/reuters/worldnews
 
-{freshness4}
+Trump orders more Iran curbs, Saudi shows attack evidence Israel's Netanyahu fails to win majority in close election Hong Kong horse races, fireworks called off amid protest threat U.S. Asia official welcomes news of Hong Kong dialogue Russia frees jailed protester as teachers, priests demand end to crackdown
 
 $ curl -s 'https://blockchain.info/blocks/?format=json' |\
   python3 -c 'import sys, json; print(json.load(sys.stdin)['\''blocks'\''][10]['\''hash'\''])'
 
-{blockchain_hash}
+0000000000000000000bbd092c8f5839db97dbcc388a5060feef5064dae11d99
 
 Footnotes
 ----------
