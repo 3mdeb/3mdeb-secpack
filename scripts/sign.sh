@@ -47,17 +47,21 @@ function commit_changes {
 	git add $file
 	git commit -m "Canary #$number"
 	git add $file.sig.miczyg
-	git commit -m "Canary #$number: sign"
+	git commit -S6B5BA214D21FCEB2 -m "Canary #$number: sign"
 	git_hash=$(git log --pretty=format:'%h' -n 1)
 	full_hash=$(git log --pretty=format:'%H' -n 1)
-	git tag -s -a miczyg_sec_${git_hash} -m "Tag for commit $full_hash" -u 6B5BA214D21FCEB2
-	git tag -v miczyg_sec_${git_hash} -u 6B5BA214D21FCEB2
+	git tag -a -s -u 6B5BA214D21FCEB2 -m "Tag for commit $full_hash" miczyg_sec_${git_hash}
+	git tag -v miczyg_sec_${git_hash}
 	git add $file.sig.piotr-krol
-	git commit --author="Piotr Król <piotr.krol@3mdeb.com>" -m "Canary #$number: sign"
+	git config user.name "Piotr Król"
+	git config user.email "piotr.krol@3mdeb.com"
+	git commit -SB2EE71E967AA9E4C -m "Canary #$number: sign"
 	git_hash=$(git log --pretty=format:'%h' -n 1)
 	full_hash=$(git log --pretty=format:'%H' -n 1)
-	git tag -s -a piotr-krol_sec_${git_hash} -m "Tag for commit $full_hash" -u B2EE71E967AA9E4C
-	git tag -v piotr-krol_sec_${git_hash} -u B2EE71E967AA9E4C
+	git tag -a -s -u B2EE71E967AA9E4C -m "Tag for commit $full_hash" piotr-krol_sec_${git_hash}
+	git tag -v piotr-krol_sec_${git_hash}
+	git config user.name "Michał Żygowski"
+	git config user.email "michal.zygowski@3mdeb.com"
 }
 
 function error_check {
