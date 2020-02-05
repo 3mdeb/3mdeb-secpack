@@ -1,0 +1,104 @@
+                ---===[ PC Engines Canary #3 ]===---
+
+
+Statements
+-----------
+
+The 3mdeb firmware developers who have digitally signed this file [1]
+state the following:
+
+1. The date of issue of this canary is February 5, 2020.
+
+2. The 3mdeb Master Signing Key fingerprint is:
+
+    F78F 1CBC 2193 38BB 0340  08D7 BCBD 680B 6634 6D19
+
+3. PC Engines Open Source Firmware Release 4.11 Signing Key is signed
+by 3mdeb Open Source Firmware Master Key, which is signed by 3mdeb
+Master Key.
+
+4. No warrants have ever been served to us with regard to the PC Engines
+firmware (e.g. to hand out the private signing keys or to introduce
+backdoors).
+
+5. We plan to publish the next of these canary statements in the first
+two weeks of July 2020. Special note should be taken if no new canary
+is published by that time or if the list of statements changes without
+plausible explanation.
+
+6. Due to new coreboot 4.11 release the PC Engines firmware binaries are
+going to be signed with PC Engines Open Source Firmware Release 4.11
+Signing Key with following fingerprint:
+
+    0A8E 0CDC 16E1 EDC8 C8E2  09D1 15B7 A4BC 249E 3AD6
+
+7. The PC Engines firmware versions beginning from v4.0.30 and v4.11.0.1
+are being signed with PC Engines Open Source Firmware Release 4.11 Signing
+Key unless a new official coreboot release is announced. New coreboot
+release should follow a new key generation, which public signature should
+be available on 3mdeb-secpack repository.
+
+
+Disclaimers and notes
+----------------------
+
+We would like to remind you that PC Engines firmware is being released
+under the assumption that all relevant infrastructure is permanently
+compromised.  This means that we assume NO trust in any of the servers
+or services which host or provide any PC Engines firmware-related data,
+in particular, firmware updates, source code repositories, and firmware
+downloads.
+
+This canary scheme is not infallible. Although signing the declaration
+makes it very difficult for a third party to produce arbitrary
+declarations, it does not prevent them from using force or other
+means, like blackmail or compromising the signers' laptops, to coerce
+us to produce false declarations.
+
+The news feeds quoted below (Proof of freshness) serves to demonstrate
+that this canary could not have been created prior to the date stated.
+It shows that a series of canaries was not created in advance.
+
+This declaration is merely a best effort and is provided without any
+guarantee or warranty. It is not legally binding in any way to
+anybody. None of the signers should be ever held legally responsible
+for any of the statements made here.
+
+Proof of freshness
+-------------------
+
+$ date -R -u
+
+{date}
+
+$ feedstail -1 -n5 -f '{title}' -u https://www.spiegel.de/international/index.rss
+
+{freshness1}
+
+$ feedstail -1 -n5 -f '{title}' -u https://rss.nytimes.com/services/xml/rss/nyt/World.xml
+
+{freshness2}
+
+$ feedstail -1 -n5 -f '{title}' -u https://feeds.bbci.co.uk/news/world/rss.xml
+
+{freshness3}
+
+$ feedstail -1 -n5 -f '{title}' -u http://feeds.reuters.com/reuters/worldnews
+
+{freshness4}
+
+$ curl -s 'https://blockchain.info/blocks/?format=json' |\
+  python3 -c 'import sys, json; print(json.load(sys.stdin)['\''blocks'\''][10]['\''hash'\''])'
+
+{blockchain_hash}
+
+Footnotes
+----------
+
+[1] This file should be signed in two ways: (1) via detached PGP
+signatures by each of the signers, distributed together with this
+canary in the 3mdeb-secpack.git repo, and (2) via digital signatures
+on the corresponding 3mdeb-secpack.git repo tags. [2]
+
+[2] Don't just trust the contents of this file blindly! Verify the
+digital signatures!
