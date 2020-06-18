@@ -1,4 +1,4 @@
-                ---===[ PC Engines Canary #3 ]===---
+                ---===[ PC Engines Canary #4 ]===---
 
 
 Statements
@@ -11,7 +11,7 @@ state the following:
 
 2. The reason of the early canary release is the mistake replicated in each
 previous canary. The 3mdeb Master Signing Key fingerprint was mistaken with 
-PC Engines Open Source Firmware Release 4.9 fingerprint.
+PC Engines Open Source Firmware Release 4.9 Signing Key fingerprint.
 
 2. The 3mdeb Master Signing Key fingerprint is:
 
