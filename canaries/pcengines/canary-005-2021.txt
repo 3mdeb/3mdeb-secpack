@@ -1,0 +1,107 @@
+                ---===[ PC Engines Canary #5 ]===---
+
+
+Statements
+-----------
+
+The 3mdeb firmware developers who have digitally signed this file [1]
+state the following:
+
+1. The date of issue of this canary is January 13, 2021.
+
+2. The 3mdeb Master Signing Key fingerprint is:
+
+    1B57 85C2 965D 84CF 85D1  652B 4AFD 81D9 7BD3 7C54
+
+3. The 3mdeb Open Source Firmware Master Key fingerprint is:
+
+    EA61 CBAD DA1C 094A 2540  E596 028A 7527 64CB 97EC
+
+4. PC Engines Open Source Firmware Release 4.13 Signing Key is signed
+by 3mdeb Open Source Firmware Master Key, which is signed by 3mdeb
+Master Key.
+
+5. No warrants have ever been served to us with regard to the PC Engines
+firmware (e.g. to hand out the private signing keys or to introduce
+backdoors).
+
+6. We plan to publish the next of these canary statements in the first
+two weeks of June 2021. Special note should be taken if no new canary
+is published by that time or if the list of statements changes without
+plausible explanation.
+
+7. Due to new coreboot 4.13 release the PC Engines firmware binaries are
+going to be signed with PC Engines Open Source Firmware Release 4.13
+Signing Key with following fingerprint:
+
+    8907 D4F7 8D43 8F89 A5B2  1A73 6BF2 3D00 985C 9999
+
+7. The PC Engines firmware versions beginning from v4.0.34 and v4.13.0.1
+are being signed with PC Engines Open Source Firmware Release 4.13 Signing
+Key unless a new official coreboot release is announced. New coreboot
+release should follow a new key generation, which public signature should
+be available on 3mdeb-secpack repository.
+
+8. This canary was supposed to be published in the first two weeks of
+Novemeber. However, the pandemic lockdown and huge virtual conference
+efforts in the company caused the significant delay.
+
+Disclaimers and notes
+----------------------
+
+We would like to remind you that PC Engines firmware is being released
+under the assumption that all relevant infrastructure is permanently
+compromised.  This means that we assume NO trust in any of the servers
+or services which host or provide any PC Engines firmware-related data,
+in particular, firmware updates, source code repositories, and firmware
+downloads.
+
+This canary scheme is not infallible. Although signing the declaration
+makes it very difficult for a third party to produce arbitrary
+declarations, it does not prevent them from using force or other
+means, like blackmail or compromising the signers' laptops, to coerce
+us to produce false declarations.
+
+The news feeds quoted below (Proof of freshness) serves to demonstrate
+that this canary could not have been created prior to the date stated.
+It shows that a series of canaries was not created in advance.
+
+This declaration is merely a best effort and is provided without any
+guarantee or warranty. It is not legally binding in any way to
+anybody. None of the signers should be ever held legally responsible
+for any of the statements made here.
+
+Proof of freshness
+-------------------
+
+$ date -R -u
+
+Wed, 13 Jan 2021 12:59:55 +0000
+
+$ feedstail -1 -n5 -f '{title}' -u https://www.spiegel.de/international/index.rss
+
+Donald Trump's Army and the Attack on America: The Dimming Light of Democracy Tourists and Refugees Cross Paths on Gran Canaria: "It Ruins the Vacation Feeling" German-Russian Relations at a New Low Mob in the U.S. Capitol: Trumpism Distilled to Its Purest Form - Opinion DER SPIEGEL's Trump Covers - Photo Gallery
+
+$ feedstail -1 -n5 -f '{title}' -u https://rss.nytimes.com/services/xml/rss/nyt/World.xml
+
+‘I Could Just Vanish’: In Kabul, Pocket Notes to Prevent Anonymous Death Aleksei Navalny Says He’ll Return to Russia on Sunday Uganda Blocks Facebook Ahead of Contentious Election South Korean Church Leader Acquitted of Blocking Efforts to Fight Coronavirus ​Kim Jong-un Uses Party ​Congress to Double Down on Nuclear Program
+
+$ feedstail -1 -n5 -f '{title}' -u https://feeds.bbci.co.uk/news/world/rss.xml
+
+Trump impeachment: Several Republicans to join Democrats in House vote Lisa Montgomery: US executes only woman on federal death row Sinovac: Brazil results show Chinese vaccine 50.4% effective Italy 'Ndrangheta group: Biggest mafia trial in decades opens Syria war: Suspected Israeli strikes on Iran-linked targets 'kill dozens'
+
+$ curl -s 'https://blockchain.info/blocks/?format=json' |\
+  python3 -c 'import sys, json; print(json.load(sys.stdin)['\''blocks'\''][10]['\''hash'\''])'
+
+000000000000000000021114cc5012bbb7850334bf71f09db39bf90fc7a24176
+
+Footnotes
+----------
+
+[1] This file should be signed in two ways: (1) via detached PGP
+signatures by each of the signers, distributed together with this
+canary in the 3mdeb-secpack.git repo, and (2) via digital signatures
+on the corresponding 3mdeb-secpack.git repo tags. [2]
+
+[2] Don't just trust the contents of this file blindly! Verify the
+digital signatures!
