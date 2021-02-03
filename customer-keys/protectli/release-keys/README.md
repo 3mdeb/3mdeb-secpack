@@ -129,7 +129,7 @@ gpg: 3 good signatures
 3. Backup key to offline storage
 
 ```
-gpg --export-secret-keys D7D346428D4F52A7D754A6BD20CD80EBAC884E03 > /path/to/stoarge/protectli-dasharo-firewall-release-1.0-priv-key.asc
+gpg --export-secret-keys D7D346428D4F52A7D754A6BD20CD80EBAC884E03 > /path/to/storage/protectli-dasharo-firewall-release-1.0-priv-key.asc
 ```
 
 4. Move key to Yubikey
