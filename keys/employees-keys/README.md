@@ -174,8 +174,9 @@ Following information is for 3mdeb Team Leaders or Management.
   through 5 channels that he/she is the only person in control of channels.
 
 We recommend to create [Keybase account](https://keybase.io) to simplify
-process of proving multiple identities and tying those to give GPG key pair.
-
+process of social proof multiple identities and tying those to give GPG key
+pair. Please note that Keybase is not fully open source so we should never rely
+only this single way of verification.
 
 ### Key signing
 
