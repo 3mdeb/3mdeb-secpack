@@ -12,6 +12,9 @@ keys.
 5. [Git configuration](#git-configuration)
 6. [Create Pull Request with signed key](#create-pull-request-with-key)
 
+If you have questions please check [FAQ](#FAQ) section, maybe the answer is
+already there, if not feel free to submit issue to repository.
+
 ### How to create a new GPG key
 
 The following assumes that you have `gpg` installed.  The interaction is broken
@@ -289,3 +292,20 @@ and [Gitlab](https://docs.gitlab.com/ee/user/project/repository/gpg_signed_commi
 
 After everything is set up please issue pull request to this repo with signed
 `your-name-key-signed.asc`.
+
+### FAQ
+
+#### What to do when this key expires?
+
+There are 2 possible situations either it just expires or it is
+lost/compromised. In first case you should simply extend the validity time as
+described [here](https://unix.stackexchange.com/a/177310) before key expires.
+Please not you should republish key for which expiry was changed. In second
+case you should revoke the key. Procedure is
+[here](https://superuser.com/a/1526287).
+
+#### If we extend expiry every time why not to set "key does not expire"? 
+
+Because people forget about keys or stop using them for many reasons. If
+someone extends expiry time it means someone cares and the key is still in use.
+
