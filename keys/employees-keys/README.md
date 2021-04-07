@@ -152,7 +152,7 @@ Armored public key should be sent to
 
 Please send fingerprint to 3mdeb Team Leaders or Management using different
 channel then 3mdeb chat e.g. https://keybase.io, LinkedIn, email, etc.
-Fingerprint should be sent to person who is work with you on signing your keys.
+Fingerprints should be sent to the person who works with you on signing your keys.
 
 ### Identity confirmation
 
