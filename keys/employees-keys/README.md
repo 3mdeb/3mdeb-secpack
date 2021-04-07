@@ -141,7 +141,7 @@ Generate ASCII armor public key file:
 gpg --armor --output your-name-key.asc --export "YOUR KEY ID HERE"
 ```
 
-Obtain fingerprint of you key:
+Obtain fingerprint of your key:
 
 ```
 gpg -n -q --import --import-options import-show your-name-key.asc
@@ -289,4 +289,3 @@ and [Gitlab](https://docs.gitlab.com/ee/user/project/repository/gpg_signed_commi
 
 After everything is set up please issue pull request to this repo with signed
 `your-name-key-signed.asc`.
-
