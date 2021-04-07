@@ -1,4 +1,18 @@
-## How to create a new GPG key
+# 3mdeb GPG employee keys
+
+This directory keeps 3mdeb employees keys and explain procedure for adding new
+keys.
+
+## Adding key to repository
+
+1. [Create new GPG key](#how-to-create-a-new-gpg-key)
+2. [Send key for signing](#sending-key-for-signing)
+3. [Identity confirmation](#identity-confirmation)
+4. [Key signing](#key-signing)
+5. [Git configuration](#git-configuration)
+6. [Create Pull Request with signed key](#create-pull-request-with-key)
+
+### How to create a new GPG key
 
 The following assumes that you have `gpg` installed.  The interaction is broken
 into sections that correspond to user queries.
@@ -6,6 +20,9 @@ into sections that correspond to user queries.
 ```
 $ gpg --gen-key
 ```
+
+For GPG version 2 you should use `gpg --full-generate-key`. Please note that
+depending on version of GPG you use your output may look different.
 
 This is what you'll see if `gpg` is configured for the first time:
 
@@ -40,7 +57,7 @@ RSA keys may be between 1024 and 4096 bits long.
 Requested keysize is 4096 bits
 ```
 
-Use a non-expiring key and then confirm your choice:
+Use a 2 years expiry key and then confirm your choice:
 
 ```
 Please specify how long the key should be valid.
@@ -49,9 +66,9 @@ Please specify how long the key should be valid.
       <n>w = key expires in n weeks
       <n>m = key expires in n months
       <n>y = key expires in n years
-@Key is valid for? (0) 0
-Key does not expire at all
-@Is this correct? (y/N) y
+Key is valid for? (0) 2y
+Key expires at Fri 07 Apr 2023 11:40:33 AM CEST
+Is this correct? (y/N) y
 ```
 
 Enter your real name:
@@ -116,10 +133,160 @@ sub   4096R/CC8BE1D5 2021-04-02
 
 The key ID in this case is `7429663E`.
 
-## How to export your key
+### Sending key for signing
+
+Generate ASCII armor public key file:
 
 ```
 gpg --armor --output your-name-key.asc --export "YOUR KEY ID HERE"
 ```
 
-Share `your-name-key.asc` textual file as the public portion of your key.
+Obtain fingerprint of you key:
+
+```
+gpg -n -q --import --import-options import-show your-name-key.asc
+```
+
+Armored public key should be sent to
+[3mdeb chat web-of-trust channel](https://chat.3mdeb.com/team-3mdeb/channels/web-of-trust).
+
+Please send fingerprint to 3mdeb Team Leaders or Management using different
+channel then 3mdeb chat e.g. https://keybase.io, LinkedIn, email, etc.
+Fingerprint should be sent to person who is work with you on signing your keys.
+
+### Identity confirmation
+
+Following information is for 3mdeb Team Leaders or Management.
+
+* If official contract between employee and 3mdeb was signed, then national id
+  verification was involved. In that case Team Leader or Manager, based on
+  previous video call or live discussion during recruitment process, can confirm
+  that employee sending keys is the same person who were hired. Also new employee
+  should be the only one who has access to `@3mdeb.com` emails address based on
+  secure credential passing procedure performed by IT.
+* If we establish keys for freelancer, who's identity cannot be confirmed by
+  national id, video call or face to face discussion, we rely on multiple
+  Internet identities e.g. reddit, mailing list, Slack, Wire, Google email,
+  keybase, cryptocurrency address etc. Freelancer have to confirm at least
+  through 5 channels that he/she is the only person in control of channels.
+
+We recommend to create [Keybase account](https://keybase.io) to simplify
+process of proving multiple identities and tying those to give GPG key pair.
+
+
+### Key signing
+
+3mdeb Team Leaders and Management should carefully confirm identity, if any
+concern arise it should be reported to higher management.
+
+Check received key fingerprint:
+
+```shell
+gpg -n -q --import --import-options import-show your-name-key.asc
+```
+
+If it match fingerprint received by other channel and identity was confirmed
+you can proceed with signing. First import key:
+
+```shell
+gpg --import your-name-key.asc
+```
+
+Check signatures before signing:
+
+```shell
+$ gpg --check-sigs your.name@3mdeb.com
+gpg: checking the trustdb
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: depth: 0  valid:   7  signed:   6  trust: 0-, 0q, 0n, 0m, 0f, 7u
+gpg: depth: 1  valid:   6  signed:   1  trust: 6-, 0q, 0n, 0m, 0f, 0u
+gpg: next trustdb check due at 2021-11-23
+pub   rsa4096 2021-04-07 [SC] [expires: 2023-04-07]
+      D9DEEABFF447B80F7EC03A4BBAA0A4837C891E29
+uid           [ultimate] Your Name <your.name@3mdeb.com>
+sig!3        BAA0A4837C891E29 2021-04-07  Your Name <your.name@3mdeb.com>
+sub   rsa4096 2021-04-07 [E] [expires: 2023-04-07]
+sig!         BAA0A4837C891E29 2021-04-07  Your Name <your.name@3mdeb.com>
+
+gpg: 2 good signatures
+```
+
+Signing should look as follows. If fingerprint match then confirm with `y`.
+
+```shell
+$ gpg -u piotr.krol@3mdeb.com --sign-key your.name@3mdeb.com
+
+sec  rsa4096/BAA0A4837C891E29
+     created: 2021-04-07  expires: 2023-04-07  usage: SC  
+     trust: ultimate      validity: ultimate
+ssb  rsa4096/4F81AE572F9EFECA
+     created: 2021-04-07  expires: 2023-04-07  usage: E   
+[ultimate] (1). Your Name <your.name@3mdeb.com>
+
+
+sec  rsa4096/BAA0A4837C891E29
+     created: 2021-04-07  expires: 2023-04-07  usage: SC  
+     trust: ultimate      validity: ultimate
+ Primary key fingerprint: D9DE EABF F447 B80F 7EC0  3A4B BAA0 A483 7C89 1E29
+
+     Your Name <your.name@3mdeb.com>
+
+This key is due to expire on 2023-04-07.
+Are you sure that you want to sign this key with your
+key "Piotr Król <piotr.krol@3mdeb.com>" (B2EE71E967AA9E4C)
+
+Really sign? (y/N) y
+```
+
+Check signatures after signing:
+
+```shell
+$ gpg --check-sigs your.name@3mdeb.com
+gpg: checking the trustdb
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: depth: 0  valid:   7  signed:   6  trust: 0-, 0q, 0n, 0m, 0f, 7u
+gpg: depth: 1  valid:   6  signed:   1  trust: 6-, 0q, 0n, 0m, 0f, 0u
+gpg: next trustdb check due at 2021-11-23
+pub   rsa4096 2021-04-07 [SC] [expires: 2023-04-07]
+      D9DEEABFF447B80F7EC03A4BBAA0A4837C891E29
+uid           [ultimate] Your Name <your.name@3mdeb.com>
+sig!3        BAA0A4837C891E29 2021-04-07  Your Name <your.name@3mdeb.com>
+sig!         B2EE71E967AA9E4C 2021-04-07  Piotr Król <piotr.krol@3mdeb.com>
+sub   rsa4096 2021-04-07 [E] [expires: 2023-04-07]
+sig!         BAA0A4837C891E29 2021-04-07  Your Name <your.name@3mdeb.com>
+
+gpg: 3 good signatures
+```
+
+Please send received key in encrypted email to your.name@3mdeb.com.
+
+```shell
+gpg --armor --output your-name-key-signed.asc --export "YOUR KEY ID HERE"
+```
+
+### Git configuration
+
+Generated key should be used for signing every commit you push on behalf of
+3mdeb. Detailed instruction for git configuration can be found
+[here](https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work). In short
+you need following in `~/.gitconfig`:
+
+```bash
+[alias]
+        ci = commit -s -S
+[user]
+        name = Your Name
+        email = your.name@3mdeb.com
+        signingkey = 48579AA47429663E
+```
+
+Make sure your
+[Github](https://docs.github.com/en/github/authenticating-to-github/telling-git-about-your-signing-key#telling-git-about-your-gpg-key-2)
+and [Gitlab](https://docs.gitlab.com/ee/user/project/repository/gpg_signed_commits/index.html#adding-a-gpg-key-to-your-account) is set up correctly to provide GPG commit verification.
+
+
+### Create pull request with key
+
+After everything is set up please issue pull request to this repo with signed
+`your-name-key-signed.asc`.
+
