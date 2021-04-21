@@ -1,9 +1,9 @@
 # 3mdeb GPG employee keys
 
-This directory keeps 3mdeb employees keys and explain procedure for adding new
-keys.
+This directory keeps 3mdeb employees keys and explains the procedure for adding
+new keys.
 
-## Adding key to repository
+## Adding key to the repository
 
 1. [Create new GPG key](#how-to-create-a-new-gpg-key)
 2. [Send key for signing](#sending-key-for-signing)
@@ -12,8 +12,8 @@ keys.
 5. [Git configuration](#git-configuration)
 6. [Create Pull Request with signed key](#create-pull-request-with-key)
 
-If you have questions please check [FAQ](#FAQ) section, maybe the answer is
-already there, if not feel free to submit issue to repository.
+If you have questions, please check [FAQ](#FAQ) section. Maybe the answer is
+already there. If not, feel free to submit an issue to the repository.
 
 ### How to create a new GPG key
 
@@ -24,8 +24,8 @@ into sections that correspond to user queries.
 $ gpg --gen-key
 ```
 
-For GPG version 2 you should use `gpg --full-generate-key`. Please note that
-depending on version of GPG you use your output may look different.
+For GPG version 2, you should use `gpg --full-generate-key`. Please note that
+depending on the version of GPG you use, your output may look different.
 
 This is what you'll see if `gpg` is configured for the first time:
 
@@ -121,8 +121,8 @@ gpg: key 7429663E marked as ultimately trusted
 public and secret key created and signed.
 ```
 
-This is how it ends successfully (you might see message about entropy multiple
-times):
+This is how it ends successfully (you might see a message about entropy
+multiple times):
 
 ```
 gpg: checking the trustdb
@@ -134,7 +134,7 @@ uid       [ultimate] Your Name <your.name@3mdeb.com>
 sub   4096R/CC8BE1D5 2021-04-02
 ```
 
-The key ID in this case is `7429663E`.
+The key ID, in this case, is `7429663E`.
 
 ### Sending key for signing
 
@@ -144,44 +144,45 @@ Generate ASCII armor public key file:
 gpg --armor --output your-name-key.asc --export "YOUR KEY ID HERE"
 ```
 
-Obtain fingerprint of your key:
+Obtain the fingerprint of your key:
 
 ```
 gpg -n -q --import --import-options import-show your-name-key.asc
 ```
 
-Armored public key should be sent to
+The armored public key should be sent to
 [3mdeb chat web-of-trust channel](https://chat.3mdeb.com/team-3mdeb/channels/web-of-trust).
 
-Please send fingerprint to 3mdeb Team Leaders or Management using different
-channel then 3mdeb chat e.g. https://keybase.io, LinkedIn, email, etc.
-Fingerprints should be sent to the person who works with you on signing your keys.
+Please send fingerprint to 3mdeb Team Leaders or Management using a different
+channel than 3mdeb chat, e.g., https://keybase.io, LinkedIn, email, etc.
+Fingerprints should be sent to the person who works with you on signing your
+keys.
 
 ### Identity confirmation
 
-Following information is for 3mdeb Team Leaders or Management.
+The following information is for 3mdeb Team Leaders or Management.
 
-* If official contract between employee and 3mdeb was signed, then national id
-  verification was involved. In that case Team Leader or Manager, based on
-  previous video call or live discussion during recruitment process, can confirm
-  that employee sending keys is the same person who were hired. Also new employee
-  should be the only one who has access to `@3mdeb.com` emails address based on
-  secure credential passing procedure performed by IT.
+* If the official contract between employee and 3mdeb was signed, then national
+  id verification was involved. In that case, Team Leader or Manager, based on
+  a previous video call or live discussion during the recruitment process, can
+  confirm that the employee sending keys is the same person who was hired. Also,
+  a new employee should be the only one who has access to `@3mdeb.com` email
+  address based on the secure credential passing procedure.
 * If we establish keys for freelancer, who's identity cannot be confirmed by
-  national id, video call or face to face discussion, we rely on multiple
-  Internet identities e.g. reddit, mailing list, Slack, Wire, Google email,
-  keybase, cryptocurrency address etc. Freelancer have to confirm at least
-  through 5 channels that he/she is the only person in control of channels.
+  national id, video call, or face to face discussion, we rely on multiple
+  Internet identities, e.g., Reddit, mailing list, Slack, Wire, Google email,
+  Keybase, cryptocurrency address, etc. Freelancer has to confirm at least
+  through 5 channels that he/she is the only person in control of.
 
-We recommend to create [Keybase account](https://keybase.io) to simplify
+We recommend creating [Keybase account](https://keybase.io) to simplify the
 process of social proof multiple identities and tying those to give GPG key
-pair. Please note that Keybase is not fully open source so we should never rely
-only this single way of verification.
+pair. Please note that Keybase is not entirely open-source, so we should never
+rely on only this single verification method.
 
 ### Key signing
 
-3mdeb Team Leaders and Management should carefully confirm identity, if any
-concern arise it should be reported to higher management.
+3mdeb Team Leaders and Management should carefully confirm identity if any
+the concern arises, it should be reported to higher management.
 
 Check received key fingerprint:
 
@@ -189,8 +190,8 @@ Check received key fingerprint:
 gpg -n -q --import --import-options import-show your-name-key.asc
 ```
 
-If it match fingerprint received by other channel and identity was confirmed
-you can proceed with signing. First import key:
+If it matches the fingerprint received by another channel and the identity was
+confirmed, you can proceed with signing. First import key:
 
 ```shell
 gpg --import your-name-key.asc
@@ -215,7 +216,7 @@ sig!         BAA0A4837C891E29 2021-04-07  Your Name <your.name@3mdeb.com>
 gpg: 2 good signatures
 ```
 
-Signing should look as follows. If fingerprint match then confirm with `y`.
+Signing should look as follows. If fingerprint match, then confirm with `y'.
 
 ```shell
 $ gpg -u piotr.krol@3mdeb.com --sign-key your.name@3mdeb.com
@@ -262,7 +263,7 @@ sig!         BAA0A4837C891E29 2021-04-07  Your Name <your.name@3mdeb.com>
 gpg: 3 good signatures
 ```
 
-Please send received key in encrypted email to your.name@3mdeb.com.
+Please send the received key in an encrypted email to your.name@3mdeb.com.
 
 ```shell
 gpg --armor --output your-name-key-signed.asc --export "YOUR KEY ID HERE"
@@ -270,10 +271,10 @@ gpg --armor --output your-name-key-signed.asc --export "YOUR KEY ID HERE"
 
 ### Git configuration
 
-Generated key should be used for signing every commit you push on behalf of
+The generated key should be used for signing every commit you push on behalf of
 3mdeb. Detailed instruction for git configuration can be found
 [here](https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work). In short
-you need following in `~/.gitconfig`:
+you need the following in `~/.gitconfig`:
 
 ```bash
 [alias]
@@ -289,24 +290,25 @@ Make sure your
 and [Gitlab](https://docs.gitlab.com/ee/user/project/repository/gpg_signed_commits/index.html#adding-a-gpg-key-to-your-account) is set up correctly to provide GPG commit verification.
 
 
-### Create pull request with key
+### Create a pull request with key
 
-After everything is set up please issue pull request to this repo with signed
+After everything is set up, please issue a pull request to this repo with signed
 `your-name-key-signed.asc`.
 
 ### FAQ
 
 #### What to do when this key expires?
 
-There are 2 possible situations either it just expires or it is
-lost/compromised. In first case you should simply extend the validity time as
-described [here](https://unix.stackexchange.com/a/177310) before key expires.
-Please not you should republish key for which expiry was changed. In second
-case you should revoke the key. Procedure is
+There are 2 possible situations either it just expires, or it is
+lost/compromised. In the first case, you should simply extend the validity time
+as described [here](https://unix.stackexchange.com/a/177310) before the key
+expires. Please note you should republish the key for which expiry was changed.
+In the second case, you should revoke the key. The procedure is
 [here](https://superuser.com/a/1526287).
 
-#### If we extend expiry every time why not to set "key does not expire"? 
+#### If we extend expiry every time, why not set "key does not expire"? 
 
 Because people forget about keys or stop using them for many reasons. If
-someone extends expiry time it means someone cares and the key is still in use.
+someone extends expiry time, it means someone cares, and the key is still in
+use.
 
