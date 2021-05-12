@@ -5,12 +5,21 @@ new keys.
 
 ## Adding key to the repository
 
+To add new key to this repository you should:
+
 1. [Create new GPG key](#how-to-create-a-new-gpg-key)
 2. [Send key for signing](#sending-key-for-signing)
-3. [Identity confirmation](#identity-confirmation)
-4. [Key signing](#key-signing)
-5. [Git configuration](#git-configuration)
-6. [Create Pull Request with signed key](#create-pull-request-with-key)
+
+Then 3mdeb Team Leader or Management should
+
+1. [3mdeb Team Leader/Management: Identity confirmation](#identity-confirmation)
+2. [3mdeb Team Leader/Management: Key signing](#key-signing)
+
+Finally you should configure your git and provide signed key through pull
+request:
+
+1. [Git configuration](#git-configuration)
+2. [Create Pull Request with signed key](#create-pull-request-with-key)
 
 If you have questions, please check [FAQ](#FAQ) section. Maybe the answer is
 already there. If not, feel free to submit an issue to the repository.
