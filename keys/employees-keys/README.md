@@ -19,7 +19,7 @@ Finally you should configure your git and provide signed key through pull
 request:
 
 1. [Git configuration](#git-configuration)
-2. [Create Pull Request with signed key](#create-pull-request-with-key)
+2. [Create Pull Request with signed key](#create-a-pull-request-with-key)
 
 If you have questions, please check [FAQ](#FAQ) section. Maybe the answer is
 already there. If not, feel free to submit an issue to the repository.
@@ -320,4 +320,3 @@ In the second case, you should revoke the key. The procedure is
 Because people forget about keys or stop using them for many reasons. If
 someone extends expiry time, it means someone cares, and the key is still in
 use.
-
