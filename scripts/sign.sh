@@ -8,6 +8,9 @@ function usage {
 }
 
 function proof_of_freshness {
+	issue_date=`date  '+%B %-d, %Y'`
+	sed -i "s/{issue_date}/$issue_date/g"  $file
+
 	sed -i "s/{date}/$(date -R -u)/g"  $file
 
 	STRING=$(feedstail -1 -n5 -f '{title}' -u https://www.spiegel.de/international/index.rss)
@@ -40,8 +43,6 @@ function sign_canary {
 function commit_changes {
 	getnumber=(${file//-/ })
 	number=${getnumber[1]##+(0)}
-	issue_date=`date  '+%B %-d, %Y'`
-	sed -i "s/{issue_date}/$issue_date/g"  $file
 	git add $file
 	git commit -m "Canary #$number"
 	git add $file.sig.miczyg
