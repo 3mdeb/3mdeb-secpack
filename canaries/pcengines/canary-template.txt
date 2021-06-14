@@ -7,32 +7,36 @@ Statements
 The 3mdeb firmware developers who have digitally signed this file [1]
 state the following:
 
-1. The date of issue of this canary is February 5, 2020.
+1. The date of issue of this canary is {issue_date}.
 
 2. The 3mdeb Master Signing Key fingerprint is:
 
-    F78F 1CBC 2193 38BB 0340  08D7 BCBD 680B 6634 6D19
+    1B57 85C2 965D 84CF 85D1  652B 4AFD 81D9 7BD3 7C54
 
-3. PC Engines Open Source Firmware Release 4.11 Signing Key is signed
+3. The 3mdeb Open Source Firmware Master Key fingerprint is:
+
+    EA61 CBAD DA1C 094A 2540  E596 028A 7527 64CB 97EC
+
+4. PC Engines Open Source Firmware Release 4.11 Signing Key is signed
 by 3mdeb Open Source Firmware Master Key, which is signed by 3mdeb
 Master Key.
 
-4. No warrants have ever been served to us with regard to the PC Engines
+5. No warrants have ever been served to us with regard to the PC Engines
 firmware (e.g. to hand out the private signing keys or to introduce
 backdoors).
 
-5. We plan to publish the next of these canary statements in the first
+6. We plan to publish the next of these canary statements in the first
 two weeks of July 2020. Special note should be taken if no new canary
 is published by that time or if the list of statements changes without
 plausible explanation.
 
-6. Due to new coreboot 4.11 release the PC Engines firmware binaries are
+7. Due to new coreboot 4.11 release the PC Engines firmware binaries are
 going to be signed with PC Engines Open Source Firmware Release 4.11
 Signing Key with following fingerprint:
 
     0A8E 0CDC 16E1 EDC8 C8E2  09D1 15B7 A4BC 249E 3AD6
 
-7. The PC Engines firmware versions beginning from v4.0.30 and v4.11.0.1
+8. The PC Engines firmware versions beginning from v4.0.30 and v4.11.0.1
 are being signed with PC Engines Open Source Firmware Release 4.11 Signing
 Key unless a new official coreboot release is announced. New coreboot
 release should follow a new key generation, which public signature should
