@@ -22,10 +22,6 @@ function proof_of_freshness {
 	STRING=`echo ${STRING} | tr '\n' "\\n"` 
 	sed -i "s/{freshness3}/$STRING/g"  $file
 
-	STRING=$(feedstail -1 -n5 -f '{title}' -u http://feeds.reuters.com/reuters/worldnews)
-	STRING=`echo ${STRING} | tr '\n' "\\n"` 
-	sed -i "s/{freshness4}/$STRING/g"  $file
-
 	sed -i "s/{blockchain_hash}/$(curl -s 'https://blockchain.info/blocks/?format=json' |\
   python3 -c 'import sys, json; print(json.load(sys.stdin)['\''blocks'\''][10]['\''hash'\''])')/g"  $file
 }
