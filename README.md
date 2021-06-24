@@ -4,9 +4,25 @@
 This git repository was inspired  by [Qubes Security Pack](https://github.com/QubesOS/qubes-secpack) and is a central place for all security-related information
 about the 3mdeb projects. It includes the following:
 
- * 3mdeb PGP keys (`keys/`)
  * 3mdeb customers PGP keys (`customer-keys/`) - keys managed by 3mdeb on
    behalf of our customers, typically we use those keys for binaries signing
+ * Dasharo keys (`dasharo/`) - Dasharo Master Key used to sign Dasharo keys
+   related to market segments (Secure Firewall, Workstation), as well as
+   Dasharo market segment firmware release signing keys, to read more about
+   Dasharo visit [website](https://dasharo.com/) and
+   [documentation](https://docs.dasharo.com/)
+ * 3mdeb PGP keys (`keys/`)
+   - `employees-keys` -  3mdeb employees keys signed according to org chart,
+     chain of signatures end with `owner-key` signature
+   - `master-key` - 3mdeb Master Key signs all keys dedicated to given purpose
+     e.g. Open Source Software Release Signing Key, Open Source Firmware
+     Release Signing Key and others
+   - `owner-key` - 3mdeb Owner Key
+ * 3mdeb Open Source Firmware Master Key (`open-source-firmware/`) - key used
+   to sign firmware releases produced by 3mdeb
+ * 3mdeb Open Source Software Master Key (`open-source-software/`) - key used
+   to sign software releases produced by 3mdeb
+ * Supporting scripts (`scripts/`)
 
 The files contained in this repository can be verified in two ways:
 
