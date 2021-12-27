@@ -2,7 +2,7 @@
 
 function usage {
     echo -e "Usage:"
-    echo -e "$0 FILE TAG_PREFIX"
+    echo -e "$0 FILE"
     echo -e "\tFILE - file name and path to be signed"
     exit 1
 }
@@ -25,8 +25,9 @@ function proof_of_freshness {
 	STRING=`echo ${STRING} | tr '\n' "\\n"` 
 	sed -i "s/{freshness3}/$STRING/g"  $file
 
-	sed -i "s/{blockchain_hash}/$(curl -s 'https://blockchain.info/blocks/?format=json' |\
-  python3 -c 'import sys, json; print(json.load(sys.stdin)['\''blocks'\''][10]['\''hash'\''])')/g"  $file
+	sed -i "s/{blockchain_hash}/$(COUNT=`curl -s https://blockchain.info/q/getblockcount` && \
+		curl -s https://blockchain.info/block-height/$((COUNT - 10))?format=json |\
+		python3 -c 'import sys, json; print(json.load(sys.stdin)['\''blocks'\''][0]['\''hash'\''])')/g"  $file
 }
 
 function sign_canary {
