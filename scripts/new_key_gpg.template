@@ -1,0 +1,5 @@
+Key-Type: RSA
+Key-Length: 4096
+Name-Real: {customer_name} open-source firmware release {version} signing key
+Expire-Date: 1y
+%no-protection
