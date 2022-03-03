@@ -24,6 +24,7 @@ case $subcmd in
 	;;
     fw)
 	real_name="${customer_name} open-source firmware release ${version} signing key"
+	# 3mdeb Dasharo Master Key
 	signing_kid=0D5F6F1DA800329EB7C597A2ABE1D0BC66278008
 	;;
     *)
