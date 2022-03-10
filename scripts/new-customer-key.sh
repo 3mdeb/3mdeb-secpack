@@ -1,10 +1,17 @@
 #!/bin/bash
 
 function usage {
-    echo "Usage: $0 [sw|fw] customer_name version"
-    echo -e "\t [sw|fw] - either fw or sw is mandatory, parameter place 'open-source software' or 'open-source firmware' in gpg key real name."
+    echo "Usage: $0 [sw|fw|pce] customer_name version"
+    echo -e "\t [sw|fw|pce] - determine signin key and real name format."
+    echo -e "\t \t sw - real name 'open-source software', signed with 3mdeb Open Source Software Master Key <contact@3mdeb.com>"
+    echo -e "\t \t fw - real name 'open-source firmware', signed with 3mdeb Dasharo Master Key"
+    echo -e "\t \t pce - real name 'PC Engines open-source firmware', signed with 3mdeb Open Source Firmware Master Key <contact@3mdeb.com>"
     echo -e "\t customer_name - customer name in quotes e.g. \"PC Engines\", if customer_name directory does not exist it would be created"
     echo -e "\t version - version e.g. \"4.16\", \"1.x\", if version exist error would be returned"
+    echo -e "\t Examples:"
+    echo -e "\t \t $0 sw \"FooBar\" \"0.1\""
+    echo -e "\t \t $0 fw \"FooBar\" \"4.2\""
+    echo -e "\t \t $0 pce \"PC Engines\" \"4.16\""
     exit 1
 }
 
@@ -27,6 +34,11 @@ case $subcmd in
 	# 3mdeb Dasharo Master Key
 	signing_kid=0D5F6F1DA800329EB7C597A2ABE1D0BC66278008
 	;;
+    pce)
+	real_name="PC Engines open-source firmware release ${version} signing key"
+	# 3mdeb Open Source Firmware Master Key <contact@3mdeb.com>
+	signing_kid=EA61CBADDA1C094A2540E596028A752764CB97EC
+	;;
     *)
 	echo "ERROR: $subcmd is not a known subcommand."
 	usage
@@ -43,7 +55,7 @@ fi
 
 sed -e "s/{customer_name}/${customer_name}/g" -e "s/{version}/${version}/g" ./scripts/new_key_gpg.template > /tmp/gpg_batch
 gpg --batch --gen-key /tmp/gpg_batch
-new_kid=$(gpg --with-colons --list-key "${real_name}"|awk -F: '$1 == "fpr" {print $10;}')
+new_kid=$(gpg --with-colons --list-key "${real_name}"|awk -F: '$1 == "fpr" {print $10;}'|head -1)
 tmp=${real_name// /-}
 keyname=${tmp,,}
 if [ -f ${keyname}-priv.asc ]; then
