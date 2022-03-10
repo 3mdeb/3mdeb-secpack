@@ -11,7 +11,7 @@ function usage {
     echo -e "\t Examples:"
     echo -e "\t \t $0 sw \"FooBar\" \"0.1\""
     echo -e "\t \t $0 fw \"FooBar\" \"4.2\""
-    echo -e "\t \t $0 pce \"DoesNotMatter\" \"4.16\""
+    echo -e "\t \t $0 pce \"PC Engines\" \"4.16\""
     exit 1
 }
 
@@ -36,8 +36,8 @@ case $subcmd in
 	;;
     pce)
 	real_name="PC Engines open-source firmware release ${version} signing key"
-	# 3mdeb Open Source Software Master Key <contact@3mdeb.com>
-	signing_kid=6058A306EF96BCBF56567B8C80693E028589B763
+	# 3mdeb Open Source Firmware Master Key <contact@3mdeb.com>
+	signing_kid=EA61CBADDA1C094A2540E596028A752764CB97EC
 	;;
     *)
 	echo "ERROR: $subcmd is not a known subcommand."
@@ -55,7 +55,7 @@ fi
 
 sed -e "s/{customer_name}/${customer_name}/g" -e "s/{version}/${version}/g" ./scripts/new_key_gpg.template > /tmp/gpg_batch
 gpg --batch --gen-key /tmp/gpg_batch
-new_kid=$(gpg --with-colons --list-key "${real_name}"|awk -F: '$1 == "fpr" {print $10;}')
+new_kid=$(gpg --with-colons --list-key "${real_name}"|awk -F: '$1 == "fpr" {print $10;}'|head -1)
 tmp=${real_name// /-}
 keyname=${tmp,,}
 if [ -f ${keyname}-priv.asc ]; then
