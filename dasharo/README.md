@@ -2,7 +2,8 @@
 
 ## Generate key with correct name
 
-For details about Dasharo keys naming please read [documentation]().
+For details about Dasharo keys naming please read
+[documentation](https://docs.dasharo.com/dev-proc/versioning/#signing-keys).
 
 ```
 $ gpg --expert --full-gen-key --allow-freeform-uid
