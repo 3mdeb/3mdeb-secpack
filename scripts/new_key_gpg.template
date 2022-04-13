@@ -1,7 +1,7 @@
 Key-Type: RSA
 Key-Length: 4096
 Key-Usage: sign auth
-Name-Real: {customer_name} open-source firmware release {version} signing key
+Name-Real: {real_name}
 Expire-Date: 1y
 %no-protection
 Subkey-Type: RSA
