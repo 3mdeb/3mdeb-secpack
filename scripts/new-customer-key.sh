@@ -1,8 +1,8 @@
 #!/bin/bash
 
 function usage {
-    echo "Usage: $0 [sw|fw|pce] name version"
-    echo -e "\t [sw|fw|pce] - determine signin key and real name format."
+    echo "Usage: $0 [sw|fw|pce|dasharo] name version"
+    echo -e "\t [sw|fw|pce|dasharo] - determine signing key and real name format."
     echo -e "\t \t sw - real name '<name> open-source software release <version>', signed with 3mdeb Open Source Software Master Key <contact@3mdeb.com>"
     echo -e "\t \t fw - real name '<name> open-source firmware release <version>', signed with 3mdeb Dasharo Master Key"
     echo -e "\t \t pce - real name 'PC Engines open-source firmware', signed with 3mdeb Open Source Firmware Master Key <contact@3mdeb.com>"
