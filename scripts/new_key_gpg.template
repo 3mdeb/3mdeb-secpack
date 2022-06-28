@@ -1,0 +1,9 @@
+Key-Type: RSA
+Key-Length: 4096
+Key-Usage: sign auth
+Name-Real: {real_name}
+Expire-Date: 1y
+%no-protection
+Subkey-Type: RSA
+Subkey-Length: 4096
+Subkey-Usage: encrypt
