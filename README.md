@@ -39,6 +39,38 @@ obtain the key fingerprint via some other channel, as you can be sure
 that if you were getting a falsified 3mdeb Security Pack it would contain a
 falsified owner key as well.
 
+# git-secrets setup
+
+Below configuration would prevent you from accidentaly commiting private keys
+into the repository.
+
+* Install [git-secrets](https://github.com/awslabs/git-secrets) via one of the
+  supported installation options
+
+* Add pre-commit hooks to this repo:
+
+```
+$ git secrets --install
+$ git secrets --add 'PRIVATE[[:space:]]KEY'
+```
+
+* Trying to commit private key would result in following message:
+
+```
+FILE_NAME:1:-----BEGIN PGP PRIVATE KEY BLOCK-----
+FILE_NAME:118:-----END PGP PRIVATE KEY BLOCK-----
+
+[ERROR] Matched one or more prohibited patterns
+
+Possible mitigations:
+- Mark false positives as allowed using: git config --add secrets.allowed ...
+- Mark false positives as allowed by adding regular expressions to .gitallowed at repository's root directory
+- List your configured patterns: git config --get-all secrets.patterns
+- List your configured allowed patterns: git config --get-all secrets.allowed
+- List your configured allowed patterns in .gitallowed at repository's root directory
+- Use --no-verify if this is a one-time false positive
+```
+
 # Adding new Master Key
 
 ```
