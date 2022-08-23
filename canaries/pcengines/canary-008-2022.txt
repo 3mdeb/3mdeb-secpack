@@ -1,0 +1,117 @@
+                ---===[ PC Engines Canary #3 ]===---
+
+
+Statements
+-----------
+
+The 3mdeb firmware developers who have digitally signed this file [1]
+state the following:
+
+1. The date of issue of this canary is August 23, 2021.
+
+2. The 3mdeb Master Signing Key fingerprint is:
+
+    1B57 85C2 965D 84CF 85D1  652B 4AFD 81D9 7BD3 7C54
+
+3. The 3mdeb Open Source Firmware Master Key fingerprint is:
+
+    EA61 CBAD DA1C 094A 2540  E596 028A 7527 64CB 97EC
+
+4. PC Engines Open Source Firmware Release 4.16 Signing Key is signed
+by 3mdeb Open Source Firmware Master Key, which is signed by 3mdeb
+Master Key.
+
+5. No warrants have ever been served to us with regard to the PC Engines
+firmware (e.g. to hand out the private signing keys or to introduce
+backdoors).
+
+6. We plan to publish the next of these canary statements in the first
+two weeks of December 2022. Special note should be taken if no new canary
+is published by that time or if the list of statements changes without
+plausible explanation.
+
+7. Due to new coreboot 4.16 release the PC Engines firmware binaries are
+going to be signed with PC Engines Open Source Firmware Release 4.16
+Signing Key with following fingerprint:
+
+    B3B8 A33E 0BF2 E589 DBAB  9966 0EAA 9DB8 49F6 4233
+
+8. The PC Engines firmware versions beginning from v4.16.0.1 to v4.16.0.4
+are being signed with PC Engines Open Source Firmware Release 4.16 Signing
+Key unless a new official coreboot release is announced. New coreboot
+release should follow a new key generation, which public signature should
+be available on 3mdeb-secpack repository.
+
+9. Due to the change of release intervals in coreboot project, the new releases
+are announced quarterly. Since the last published canary coreboot has released
+version 4.17 which follows the usage of the new PC Engines Open Source Firmware
+Release 4.17 Signing Key with following fingerprint:
+
+    EFAD 577C 9304 616D DC95  CB7F 2AB2 A20D 9535 DAEF
+
+10. The PC Engines firmware versions beginning from v4.17.0.1 are being signed
+with PC Engines Open Source Firmware Release 4.17 Signing Key unless a new
+official coreboot release is announced. New coreboot release should follow a
+new key generation, which public signature should be available on 3mdeb-secpack
+repository.
+
+Disclaimers and notes
+----------------------
+
+We would like to remind you that PC Engines firmware is being released
+under the assumption that all relevant infrastructure is permanently
+compromised.  This means that we assume NO trust in any of the servers
+or services which host or provide any PC Engines firmware-related data,
+in particular, firmware updates, source code repositories, and firmware
+downloads.
+
+This canary scheme is not infallible. Although signing the declaration
+makes it very difficult for a third party to produce arbitrary
+declarations, it does not prevent them from using force or other
+means, like blackmail or compromising the signers' laptops, to coerce
+us to produce false declarations.
+
+The news feeds quoted below (Proof of freshness) serves to demonstrate
+that this canary could not have been created prior to the date stated.
+It shows that a series of canaries was not created in advance.
+
+This declaration is merely a best effort and is provided without any
+guarantee or warranty. It is not legally binding in any way to
+anybody. None of the signers should be ever held legally responsible
+for any of the statements made here.
+
+Proof of freshness
+-------------------
+
+$ date -R -u
+
+{date}
+
+$ feedstail -1 -n5 -f '{title}' -u https://www.spiegel.de/international/index.rss
+
+{freshness1}
+
+$ feedstail -1 -n5 -f '{title}' -u https://rss.nytimes.com/services/xml/rss/nyt/World.xml
+
+{freshness2}
+
+$ feedstail -1 -n5 -f '{title}' -u https://feeds.bbci.co.uk/news/world/rss.xml
+
+{freshness3}
+
+$ COUNT=`curl -s https://blockchain.info/q/getblockcount` && \
+  curl -s https://blockchain.info/block-height/$((COUNT - 10))?format=json |\
+  python3 -c 'import sys, json; print(json.load(sys.stdin)['\''blocks'\''][0]['\''hash'\''])'
+
+{blockchain_hash}
+
+Footnotes
+----------
+
+[1] This file should be signed in two ways: (1) via detached PGP
+signatures by each of the signers, distributed together with this
+canary in the 3mdeb-secpack.git repo, and (2) via digital signatures
+on the corresponding 3mdeb-secpack.git repo tags. [2]
+
+[2] Don't just trust the contents of this file blindly! Verify the
+digital signatures!
