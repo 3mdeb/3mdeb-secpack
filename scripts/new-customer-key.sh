@@ -1,18 +1,20 @@
 #!/bin/bash
 
 function usage {
-    echo "Usage: $0 [sw|fw|pce|dasharo] name version"
-    echo -e "\t [sw|fw|pce|dasharo] - determine signing key and real name format."
+    echo "Usage: $0 [sw|fw|dsw|pce|dasharo] name version"
+    echo -e "\t [sw|fw|dsw|pce|dasharo] - determine signing key and real name format."
     echo -e "\t \t sw - real name '<name> open-source software release <version>', signed with 3mdeb Open Source Software Master Key <contact@3mdeb.com>"
     echo -e "\t \t fw - real name '<name> open-source firmware release <version>', signed with 3mdeb Dasharo Master Key"
+    echo -e "\t \t dsw - real name '<name> open-source software release <version>', signed with 3mdeb Dasharo Master Key"
     echo -e "\t \t pce - real name 'PC Engines open-source firmware', signed with 3mdeb Open Source Firmware Master Key <contact@3mdeb.com>"
-    echo -e "\t \t dasharo - real name 'Dasharo release <version> comaptible with <name>', signed with 3mdeb Dasharo Master Key"
+    echo -e "\t \t dasharo - real name 'Dasharo release <version> compatible with <name>', signed with 3mdeb Dasharo Master Key"
     echo -e "\t name - customer name in quotes e.g. \"PC Engines\", if name directory does not exist it would be created"
     echo -e "\t \t \tor platform name in case of Dasharo firmware produced by 3mdeb."
     echo -e "\t version - version e.g. \"4.16\", \"1.x\", if version exist error would be returned"
     echo -e "\t Examples:"
     echo -e "\t \t $0 sw \"FooBar\" \"0.1\""
     echo -e "\t \t $0 fw \"FooBar\" \"4.2\""
+    echo -e "\t \t $0 dsw \"Dasharo Tools Suite\" \"1.0.x\""
     echo -e "\t \t $0 pce \"PC Engines\" \"4.16\""
     echo -e "\t \t $0 dasharo \"MSI MS-7D25\" \"0.x\""
     exit 1
@@ -37,6 +39,11 @@ case $subcmd in
 	# 3mdeb Dasharo Master Key
 	signing_kid=0D5F6F1DA800329EB7C597A2ABE1D0BC66278008
 	;;
+    dsw)
+	real_name="${name} open-source software release ${version} signing key"
+	# 3mdeb Dasharo Master Key
+	signing_kid=0D5F6F1DA800329EB7C597A2ABE1D0BC66278008
+	;;
     dasharo)
 	real_name="Dasharo release ${version} compatible with ${name} signing key"
 	# 3mdeb Dasharo Master Key
@@ -55,7 +62,7 @@ case $subcmd in
 esac
 
 # chek if such key already exist
-gpg --with-colons --list-key "${real_name}" 
+gpg --with-colons --list-key "${real_name}" 2> /dev/null
 if [ $? -eq 0 ]; then
     echo "ERROR: Key ${real_name} already exist."
     exit 1
