@@ -76,9 +76,10 @@ Three types of operations can be done with generated key. We can:
 
 ### Exporting public key
 
-After receiving the new key, signed with the public part of the key that you
-have access to, please follow these steps to share the public part of new
-release key by adding it to this, 3mdeb-secpack, repository.
+After receiving the new key, typically encrypted with your employee key which
+should be already present in 3mdeb-secpack repository `keys/employees-keys`
+directory, please follow these steps to share the public part of new release key
+by adding it to 3mdeb-secpack repository.
 
 * Decrypt new key
 
