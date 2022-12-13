@@ -39,15 +39,9 @@ depending on the version of GPG you use, your output may look different.
 This is what you'll see if `gpg` is configured for the first time:
 
 ```
-gpg (GnuPG) 2.0.31; Copyright (C) 2015 Free Software Foundation, Inc.
+gpg (GnuPG) 2.2.27; Copyright (C) 2021 Free Software Foundation, Inc.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
-
-gpg: directory `/home/emdeb/.gnupg' created
-gpg: new configuration file `/home/emdeb/.gnupg/gpg.conf' created
-gpg: WARNING: options in `/home/emdeb/.gnupg/gpg.conf' are not yet active during this run
-gpg: keyring `/home/emdeb/.gnupg/secring.gpg' created
-gpg: keyring `/home/emdeb/.gnupg/pubring.gpg' created
 ```
 
 Pick "RSA and RSA" key:
@@ -125,8 +119,9 @@ We need to generate a lot of random bytes. It is a good idea to perform
 some other action (type on the keyboard, move the mouse, utilize the
 disks) during the prime generation; this gives the random number
 generator a better chance to gain enough entropy.
-/home/emdeb/.gnupg/trustdb.gpg: trustdb created
-gpg: key 7429663E marked as ultimately trusted
+gpg: key *D458BD99F75CFACB* marked as ultimately trusted
+gpg: directory '/home/user/.gnupg/openpgp-revocs.d' created
+gpg: revocation certificate stored as '/home/user/.gnupg/openpgp-revocs.d/EB32D0276A3DBF45FC7621A2D458BD99F75CFACB.rev'
 public and secret key created and signed.
 ```
 
@@ -134,16 +129,29 @@ This is how it ends successfully (you might see a message about entropy
 multiple times):
 
 ```
-gpg: checking the trustdb
-gpg: 3 marginal(s) needed, 1 complete(s) needed, PGP trust model
-gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
-pub   4096R/7429663E 2021-04-02
-      Key fingerprint = 924C 1CD7 C19D 95FE 7A57  7D28 4857 9AA4 7429 663E
-uid       [ultimate] Your Name <your.name@3mdeb.com>
-sub   4096R/CC8BE1D5 2021-04-02
+pub   rsa4096 2022-12-13 [SC] [expires: 2024-12-12]
+      EB32D0276A3DBF45FC7621A2D458BD99F75CFACB
+uid                      VM User (GPG Identity test creation) <vm_user@exampledomain.com>
+sub   rsa4096 2022-12-13 [E] [expires: 2024-12-12]
 ```
 
-The key ID, in this case, is `7429663E`.
+The key ID, in this case, is `D458BD99F75CFACB`.
+
+You can check generated keys by issue command:
+
+```
+user@user-OST-VM:~$ gpg --list-keys
+gpg: checking the trustdb
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+gpg: next trustdb check due at 2024-12-12
+/home/user/.gnupg/pubring.kbx
+-----------------------------
+pub   rsa4096 2022-12-13 [SC] [expires: 2024-12-12]
+      EB32D0276A3DBF45FC7621A2D458BD99F75CFACB
+uid           [ultimate] VM User (GPG Identity test creation) <vm_user@exampledomain.com>
+sub   rsa4096 2022-12-13 [E] [expires: 2024-12-12]
+```
 
 ### Sending key for signing
 
