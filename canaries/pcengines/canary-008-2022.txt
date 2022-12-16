@@ -7,7 +7,7 @@ Statements
 The 3mdeb firmware developers who have digitally signed this file [1]
 state the following:
 
-1. The date of issue of this canary is August 23, 2021.
+1. The date of issue of this canary is August 23, 2022.
 
 2. The 3mdeb Master Signing Key fingerprint is:
 
