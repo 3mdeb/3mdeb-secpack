@@ -36,10 +36,13 @@ open-source firmware release 4.19 signing key, which public signature should be
 available on 3mdeb-secpack repository.
 
 8. PC Engines firmware version v4.19.0.1 will be the last PC Engines firmware
-release made by 3mdeb on behalf of PC Engines.
+release made by 3mdeb on behalf of PC Engines. For further information please
+check: https://docs.dasharo.com/variants/pcengines_apu2/announcement/
 
 9. PC Engines support for open-source firmware on apu1 and apu2 series
 platforms has ended in August 2022. The support is not expected to be resumed.
+Any commercial inquiries regarding PC Engines firmware please direct to:
+contact@dasharo.com
 
 10. The canary was planned to be published in the first two weeks of July 2020.
 Due to the termination of open-source firmware support, the release of the
