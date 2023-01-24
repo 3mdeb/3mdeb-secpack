@@ -17,7 +17,7 @@ state the following:
 
     EA61 CBAD DA1C 094A 2540  E596 028A 7527 64CB 97EC
 
-4. PC Engines Open Source Firmware Release 4.19 Signing Key is signed
+4. PC Engines open-source firmware release 4.19 signing key is signed
 by 3mdeb Open Source Firmware Master Key, which is signed by 3mdeb
 Master Key.
 
@@ -26,13 +26,13 @@ firmware (e.g. to hand out the private signing keys or to introduce
 backdoors).
 
 6. Due to new coreboot 4.19 release the PC Engines firmware binaries are
-going to be signed with PC Engines Open Source Firmware Release 4.19
+going to be signed with PC Engines open-source firmware release 4.19
 Signing Key with following fingerprint:
 
     05CF 36F1 66C3 D676 A08A  B70F 30A5 3DE2 F5A6 D89A
 
-7. The PC Engines firmware version v4.19.0.1 is signed with PC Engines Open
-Source Firmware Release 4.19 Signing Key, which public signature should be
+7. The PC Engines firmware version v4.19.0.1 is signed with PC Engines 
+open-source firmware release 4.19 signing key, which public signature should be
 available on 3mdeb-secpack repository.
 
 8. PC Engines firmware version v4.19.0.1 will be the last PC Engines firmware
@@ -45,7 +45,7 @@ platforms has ended in August 2022. The support is not expected to be resumed.
 Due to the termination of open-source firmware support, the release of the
 canary has been delayed.
 
-11. There will be no more canaries published fo rPC Engines open-source firmware
+11. There will be no more canaries published for PC Engines open-source firmware
 project. PC Engines Canary #9 is the last one.
 
 Disclaimers and notes
