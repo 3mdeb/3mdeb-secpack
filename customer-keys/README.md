@@ -22,3 +22,20 @@ Example:
 ```shell
 ./scripts/new-customer-key.sh pce "PC Engines" "4.16"
 ```
+
+## How to extend key validity
+
+By default, we generate keys with 1 year expire date. To extend key validity,
+you must own the private key, of course.
+
+* Set a new expiry date to one year (starting from the current date):
+
+```shell
+gpg --quick-set-expire KEY_ID 1y
+```
+
+* Export public key and push it to repository:
+
+```shell
+gpg --armor --export KEY_ID > CUSTOMER_NAME/KEY_NAME
+```

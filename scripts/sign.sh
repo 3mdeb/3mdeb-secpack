@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function usage {
     echo -e "Usage:"
@@ -14,15 +14,15 @@ function proof_of_freshness {
 	sed -i "s/{date}/$(date -R -u)/g"  $file
 
 	STRING=$(feedstail -1 -n5 -f '{title}' -u https://www.spiegel.de/international/index.rss)
-	STRING=`echo ${STRING} | tr '\n' "\\n"` 
+	STRING=`echo ${STRING} | tr '\n' "\\n"`
 	sed -i "s/{freshness1}/$STRING/g"  $file
 
 	STRING=$(feedstail -1 -n5 -f '{title}' -u https://rss.nytimes.com/services/xml/rss/nyt/World.xml)
-	STRING=`echo ${STRING} | tr '\n' "\\n"` 
+	STRING=`echo ${STRING} | tr '\n' "\\n"`
 	sed -i "s/{freshness2}/$STRING/g"  $file
 
 	STRING=$(feedstail -1 -n5 -f '{title}' -u https://feeds.bbci.co.uk/news/world/rss.xml)
-	STRING=`echo ${STRING} | tr '\n' "\\n"` 
+	STRING=`echo ${STRING} | tr '\n' "\\n"`
 	sed -i "s/{freshness3}/$STRING/g"  $file
 
 	sed -i "s/{blockchain_hash}/$(COUNT=`curl -s https://blockchain.info/q/getblockcount` && \
@@ -76,7 +76,7 @@ if [ $# -le 0 ]; then
     usage
 fi
 
-file=$(basename "$1") 
+file=$(basename "$1")
 
 if [ -f "$file" ]; then
 	proof_of_freshness
