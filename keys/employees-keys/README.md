@@ -217,7 +217,12 @@ gpg --import your-name-key.asc
 Check signatures before signing:
 
 ```shell
-$ gpg --check-sigs your.name@3mdeb.com
+gpg --check-sigs your.name@3mdeb.com
+```
+
+Output:
+
+```shell
 gpg: checking the trustdb
 gpg: marginals needed: 3  completes needed: 1  trust model: pgp
 gpg: depth: 0  valid:   7  signed:   6  trust: 0-, 0q, 0n, 0m, 0f, 7u
@@ -236,7 +241,12 @@ gpg: 2 good signatures
 Signing should look as follows. If fingerprint match, then confirm with `y'.
 
 ```shell
-$ gpg -u piotr.krol@3mdeb.com --sign-key your.name@3mdeb.com
+gpg -u piotr.krol@3mdeb.com --sign-key your.name@3mdeb.com
+```
+
+Output:
+
+```shell
 
 sec  rsa4096/BAA0A4837C891E29
      created: 2021-04-07  expires: 2023-04-07  usage: SC  
@@ -319,7 +329,9 @@ After everything is set up, please issue a pull request to this repo with signed
 There are 2 possible situations either it just expires, or it is
 lost/compromised. In the first case, you should simply extend the validity time
 as described [here](https://unix.stackexchange.com/a/177310) before the key
-expires. Please note you should republish the key for which expiry was changed.
+expires. Please note you should republish the key for which expiry was changed,
+but before you can do that your key with new expiry date have to be
+[signed](#sending-key-for-signing) by Team Leader or someone from Management.
 In the second case, you should revoke the key. The procedure is
 [here](https://superuser.com/a/1526287).
 
