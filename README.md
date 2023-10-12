@@ -1,33 +1,34 @@
-3mdeb Security Pack
-===================
+# 3mdeb Security Pack
 
-This git repository was inspired  by [Qubes Security Pack](https://github.com/QubesOS/qubes-secpack) and is a central place for all security-related information
-about the 3mdeb projects. It includes the following:
+This git repository was inspired  by the
+[Qubes Security Pack](https://github.com/QubesOS/qubes-secpack) and is a central
+place for all security-related information about the 3mdeb projects. It includes
+the following:
 
- * 3mdeb customers PGP keys (`customer-keys/`) - keys managed by 3mdeb on
+* 3mdeb customers PGP keys (`customer-keys/`) - keys managed by 3mdeb on
    behalf of our customers, typically we use those keys for binaries signing
- * Dasharo keys (`dasharo/`) - Dasharo Master Key used to sign Dasharo keys
+* Dasharo keys (`dasharo/`) - Dasharo Master Key used to sign Dasharo keys
    related to market segments (Secure Firewall, Workstation), as well as
    Dasharo market segment firmware release signing keys, to read more about
    Dasharo visit [website](https://dasharo.com/) and
    [documentation](https://docs.dasharo.com/)
- * 3mdeb PGP keys (`keys/`)
-   - `employees-keys` -  3mdeb employees keys signed according to org chart,
+* 3mdeb PGP keys (`keys/`)
+    - `employees-keys` -  3mdeb employees keys signed according to org chart,
      chain of signatures end with `owner-key` signature
-   - `master-key` - 3mdeb Master Key signs all keys dedicated to given purpose
+    - `master-key` - 3mdeb Master Key signs all keys dedicated to given purpose
      e.g. Open Source Software Release Signing Key, Open Source Firmware
      Release Signing Key and others
-   - `owner-key` - 3mdeb Owner Key
- * 3mdeb Open Source Firmware Master Key (`open-source-firmware/`) - key used
+    - `owner-key` - 3mdeb Owner Key
+* 3mdeb Open Source Firmware Master Key (`open-source-firmware/`) - key used
    to sign firmware releases produced by 3mdeb
- * 3mdeb Open Source Software Master Key (`open-source-software/`) - key used
+* 3mdeb Open Source Software Master Key (`open-source-software/`) - key used
    to sign software releases produced by 3mdeb
- * Supporting scripts (`scripts/`)
+* Supporting scripts (`scripts/`)
 
 The files contained in this repository can be verified in two ways:
 
- * By verifying the git commit tags (`git tag -v`)
- * By verifying the detached PGP signatures, which are provided for the majority
+* By verifying the git commit tags (`git tag -v`)
+* By verifying the detached PGP signatures, which are provided for the majority
    of files included here
 
 All the keys used by the 3mdeb projects, including the keys used to sign files
@@ -39,7 +40,7 @@ obtain the key fingerprint via some other channel, as you can be sure
 that if you were getting a falsified 3mdeb Security Pack it would contain a
 falsified owner key as well.
 
-# git-secrets setup
+## git-secrets setup
 
 Below configuration would prevent you from accidentaly commiting private keys
 into the repository.
@@ -49,14 +50,14 @@ into the repository.
 
 * Add pre-commit hooks to this repo:
 
-```
+```shell
 $ git secrets --install
 $ git secrets --add 'PRIVATE[[:space:]]KEY'
 ```
 
 * Trying to commit private key would result in following message:
 
-```
+```shell
 FILE_NAME:1:-----BEGIN PGP PRIVATE KEY BLOCK-----
 FILE_NAME:118:-----END PGP PRIVATE KEY BLOCK-----
 
@@ -73,7 +74,7 @@ Possible mitigations:
 
 # Adding new Master Key
 
-```
+```shell
 user@vault ~ % gpg --expert --full-gen-key --allow-freeform-uid
 gpg (GnuPG) 2.1.18; Copyright (C) 2017 Free Software Foundation, Inc.
 This is free software: you are free to change and redistribute it.

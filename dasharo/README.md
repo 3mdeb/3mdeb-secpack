@@ -5,7 +5,7 @@
 For details about Dasharo keys naming please read
 [documentation](https://docs.dasharo.com/dev-proc/versioning/#signing-keys).
 
-```
+```shell
 $ gpg --expert --full-gen-key --allow-freeform-uid
 gpg (GnuPG) 2.2.12; Copyright (C) 2018 Free Software Foundation, Inc.
 This is free software: you are free to change and redistribute it.
@@ -83,7 +83,7 @@ by adding it to 3mdeb-secpack repository.
 
 * Decrypt new key
 
-```
+```shell
 $ gpg --output <new-release-key-name>-priv.asc --decrypt <new-release-key-name>-priv.asc.gpg
 gpg: encrypted with RSA key, ID 4AFAF0F5030D9986
 gpg: encrypted with 4096-bit RSA key, ID 9CCACA8E3F071202, created 2021-09-07
@@ -92,7 +92,7 @@ gpg: encrypted with 4096-bit RSA key, ID 9CCACA8E3F071202, created 2021-09-07
 
 * Import private key locally
 
-```
+```shell
 $ gpg --import <new-release-key-name>-priv.asc
 gpg: key 9CEA8904377B8F3D: 1 signature not checked due to a missing key
 gpg: key 9CEA8904377B8F3D: public key "<public-key-name>" imported
@@ -106,7 +106,7 @@ gpg: no ultimately trusted keys found
 
 * Export public key
 
-```
+```shell
 $ gpg --output <new-release-key-name>-pub.asc --export -a "<public-key-name>"
 $ cat <new-release-key-name>-pub.asc
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -131,7 +131,7 @@ shown in previous [section](#exporting-public-key).
 
 * Create hash of release image
 
-```
+```shell
 $ sha256sum <release-image> <release-image>.sha256
 $ cat <release-image>.sha256
 7c50c01a7402a6c6c911061faf9bba5161edae27577168ea94969c0159b2e77f    <release-image>
@@ -140,7 +140,7 @@ $ cat <release-image>.sha256
 * Create signature, use public key exported in previous
   [section](#exporting-public-key).
 
-```
+```shell
 $ gpg --local-user "<public-key-name>" --output <release-image>.sha256.sig --armor --detach-sig <release-image>.sha256
 ```
 
@@ -157,21 +157,22 @@ with public part of new key, release image with signature and hash.
 
 * Place release image, signature and hash in one directory
 
-```
+```shell
 $ ls <release-image>*
 <release-image>  <release-image>.sha256  <release-image>.sha256.sig
 ```
 
 * Verify hash
 
-```<public-key-name>
+```shell
+<public-key-name>
 $ sha256sum -c <release-image>.sha256
 <release-image>: OK
 ```
 
 * Fetch public keys
 
-```
+```shell
 $ gpg --fetch-keys https://raw.githubusercontent.com/3mdeb/3mdeb-secpack/master/keys/master-key/3mdeb-master-key.asc
 gpg: requesting key from 'https://raw.githubusercontent.com/3mdeb/3mdeb-secpack/master/keys/master-key/3mdeb-master-key.asc'
 gpg: key 4AFD81D97BD37C54: public key "3mdeb Master Key <contact@3mdeb.com>" imported
@@ -191,7 +192,7 @@ gpg:               imported: 1
 
 * Verify signature
 
-```
+```shell
 $ gpg -v --verify <release-image>.sha256.sig
 gpg: assuming signed data in '<release-image>.sha256'
 gpg: Signature made pią, 2 wrz 2022, 08:56:07 CEST

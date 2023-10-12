@@ -7,12 +7,11 @@ new keys.
 
 * [Adding key to the repository](#adding-key-to-the-repository)
 * [FAQ](#faq)
-  - [What to do when this key expires?](#what-to-do-when-this-key-expires)
-  - [If we extend expiry every time, why not set "key does not
+    - [What to do when this key expires?](#what-to-do-when-this-key-expires)
+    - [If we extend expiry every time, why not set "key does not
     expire"?](#if-we-extend-expiry-every-time-why-not-set-key-does-not-expire)
-  - [What to do when primary/master private key was lost, compromised or will
-    no longer be
-    used?](#what-to-do-when-primarymaster-private-key-was-lost-compromised-or-will-no-longer-be-used)
+    - [What to do when private key was lost or
+    compromised?](#what-to-do-when-private-key was-lost-or-compromised)
 
 ## Adding key to the repository
 
@@ -64,7 +63,7 @@ Generate key:
 
 Please note your key id printed at the end:
 
-```
+```shell
 (...)
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
@@ -145,7 +144,7 @@ your.name@3mdeb.com.rev.gpg ${HOME}/.gnupg/openpgp-revocs.d/*KEY_ID.rev
 
 Output should look as follows:
 
-```
+```shell
 gpg: 4AFAF0F5030D9986: There is no assurance this key belongs to the named user
 
 sub  rsa4096/4AFAF0F5030D9986 2020-01-24 Your TL/MGR <your.tl-or-mgr-name@3mdeb.com>
@@ -166,7 +165,7 @@ certificate (`your.name@3mdeb.com.rev.gpg`) should be sent to [3mdeb chat
 web-of-trust channel](https://chat.3mdeb.com/team-3mdeb/channels/web-of-trust).
 
 Please send fingerprint to 3mdeb Team Leaders or Management using a different
-channel than 3mdeb chat, e.g., https://keybase.io, LinkedIn, email, etc.
+channel than 3mdeb chat, e.g., <https://keybase.io>, LinkedIn, email, etc.
 Fingerprints should be sent to the person who works with you on signing your
 keys.
 
@@ -290,7 +289,7 @@ sig!         BAA0A4837C891E29 2021-04-07  Your Name <your.name@3mdeb.com>
 gpg: 3 good signatures
 ```
 
-Please send the received key in an encrypted email to your.name@3mdeb.com.
+Please send the received key in an encrypted email to <your.name@3mdeb.com>.
 
 ```shell
 gpg --armor --output your-name-key-signed.asc --export "YOUR KEY ID HERE"
@@ -321,7 +320,6 @@ and
 [Gitlab](https://docs.gitlab.com/ee/user/project/repository/gpg_signed_commits/index.html#adding-a-gpg-key-to-your-account)
 is set up correctly to provide GPG commit verification.
 
-
 ### Create a pull request with key
 
 After everything is set up, please issue a pull request to this repo with
@@ -329,17 +327,17 @@ signed `your-name-key-signed.asc`.
 
 ### Upload to keys.opengpg.org
 
-* Go to https://keys.openpgp.org.
+* Go to <https://keys.openpgp.org>.
 * Upload Your Key:
-  * On the main page, you'll see an "Upload" section.
-  * Click on the "Choose File" button and select the your.name@3mdeb.com.asc
+    - On the main page, you'll see an "Upload" section.
+    - Click on the "Choose File" button and select the <your.name@3mdeb.com.asc>
     file you just created.
-  * Click on the "Upload" button.
+    - Click on the "Upload" button.
 * Verify Your Email Address:
-  * https://keys.openpgp.org will send you an email to verify that the email
+    - <https://keys.openpgp.org> will send you an email to verify that the email
     address associated with the key is valid.
-  * Open the email and click on the verification link.
-  * Once verified, your key will be added to the keys.openpgp.org keyserver.
+    - Open the email and click on the verification link.
+    - Once verified, your key will be added to the keys.openpgp.org keyserver.
 * After uploading and verifying, you can search for your key on the keyserver
   using your email address to ensure it's been uploaded correctly.
 
@@ -369,7 +367,7 @@ Because people forget about keys or stop using them for many reasons. If
 someone extends expiry time, it means someone cares, and the key is still in
 use.
 
-### What to do when primary/master private key was lost, compromised or will no longer be used? 
+### What to do when primary/master private key was lost, compromised or will no longer be used?
 
 Following guide was made for:
 - recovery in case of loosing access to you main/primary/master private key,
@@ -378,12 +376,12 @@ Following guide was made for:
   sign 3mdeb related development work.
 
 Guide is made with assumption, that you still have access to:
-- private key or at least previously generated revocation certificate - please
-  note that gpg saves revocation certificate automatically on machine you
+* private key or at least previously generated revocation certificate - please
+  note that gpg save revocation certificate automatically on machine you
   generated key in `/home/USERNAME/.gnupg/openpgp-revocs.d/KEYID.rev`
-- list of servers to which your key was uploaded - in theory servers should
+* list of servers to which your key was uploaded - in theory servers should
   sync between each other,
-- list of keys you signed - check below how to obtain it,
+* list of keys you signed - check below how to obtain it,
 
 Correct key management would require use of subkeys and private part of your
 master key should never be lost because it should be stored in a safe location.
@@ -595,7 +593,7 @@ procedure](#adding-key-to-repository).
 #### Revoke key in Thunderbird
 
 * Import revocation certificate into Thunderbrid
-  * Tools > OpenPGP Key Manger > File > Import Revocation(s) From File
+    - Tools > OpenPGP Key Manager > File > Import Revocation(s) From File
 * If your new key was uploaded to keys.opengpg.org use Keyserver > Discover
   Keys Online
 * Replace key in Settings > Account Settings, choose your account End-To-End

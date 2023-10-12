@@ -1,9 +1,8 @@
-Keys creation procedure
------------------------
+# Keys creation procedure
 
 1. Create new key
 
-```
+```shell
 $ gpg --expert --full-gen-key
 gpg (GnuPG) 2.2.17; Copyright (C) 2019 Free Software Foundation, Inc.
 This is free software: you are free to change and redistribute it.
@@ -63,9 +62,10 @@ pub   rsa4096 2019-09-18 [SC] [expires: 2020-09-17]
 uid                      PC Engines Open Source Firmware Release 4.10 Signing Key
 sub   rsa4096 2019-09-18 [E] [expires: 2020-09-17]
 ```
-2. Import keys from offline storage
 
-```
+1. Import keys from offline storage
+
+```shell
 $ gpg --import /media/pietrushnic/backup/3mdeb-open-source-firmware-master-priv-key.asc
 gpg: key 028A752764CB97EC: 1 signature not checked due to a missing key
 gpg: key 028A752764CB97EC: public key "3mdeb Open Source Firmware Master Key <contact@3mdeb.com>" imported
@@ -109,9 +109,9 @@ sec   rsa4096 2019-02-12 [SC]
 uid           [  full  ] 3mdeb Master Key <contact@3mdeb.com>
 ```
 
-3. Sign new release key with "3mdeb Open Source Firmware Master Key":
+1. Sign new release key with "3mdeb Open Source Firmware Master Key":
 
-```
+```shell
 $ gpg -u EA61CBADDA1C094A2540E596028A752764CB97EC --sign-key 3B710228A4774C4FCB315876233D0487B3A7A83C
 $ gpg --check-signatures 3B710228A4774C4FCB315876233D0487B3A7A83C
 pub   rsa4096 2019-09-18 [SC] [expires: 2020-09-17]
@@ -125,15 +125,15 @@ sig!         233D0487B3A7A83C 2019-09-18  PC Engines Open Source Firmware Releas
 gpg: 3 good signatures
 ```
 
-3. Backup key to offline storage
+1. Backup key to offline storage
 
-```
+```shell
 gpg --export-secret-keys 3B710228A4774C4FCB315876233D0487B3A7A83C > /path/to/stoarge/pcengines-open-source-firmware-release-4.10-priv-key.asc
 ```
 
-4. Move key to Yubikey
+1. Move key to Yubikey
 
-```
+```shell
 [15:46:11] pietrushnic:~ $ gpg --edit-key 3B710228A4774C4FCB315876233D0487B3A7A83C
 gpg (GnuPG) 2.2.17; Copyright (C) 2019 Free Software Foundation, Inc.
 This is free software: you are free to change and redistribute it.
@@ -195,4 +195,4 @@ ssb* rsa4096/3B1FB40EAB542983
 gpg> quit
 ```
 
-5. Add public key to repo
+1. Add public key to repo
