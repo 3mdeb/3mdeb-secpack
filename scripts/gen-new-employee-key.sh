@@ -11,7 +11,6 @@ KEY_NAME="$1"
 KEY_EMAIL="$2"
 KEY_COMMENT="Employee Cert Key"
 KEY_FILE="$KEY_EMAIL.asc"
-REVOCATION_FILE="$KEY_EMAIL-revocation.asc"
 
 # Batch file content for key generation
 BATCH_FILE_CONTENT=$(cat <<EOF
