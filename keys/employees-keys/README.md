@@ -76,7 +76,7 @@ Your KEY_ID: D9E4EB63705C3897
 Import 3mdeb Founder key:
 
 ```shell
-gpg --import key/owner-key/piotr-krol-key.asc
+gpg --import keys/owner-key/piotr-krol-key.asc
 ```
 
 Import your 3mdeb Team Leader or Manager key:
