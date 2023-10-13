@@ -361,7 +361,7 @@ gpg --import your.name@3mdeb.com.rev
 
 #### Upload revoked key to the servers
 
-Following set of commands assume that machine on which you applied revocation
+Following this set of commands assumes that the machine on which you applied revocation
 and machine which you publish revoked key are different. If it is not the case
 you can skip export step.
 
