@@ -301,8 +301,15 @@ as described [here](https://unix.stackexchange.com/a/177310) before the key
 expires. Please note you should republish the key for which expiry was changed,
 but before you can do that your key with new expiry date have to be
 [signed](#sending-key-for-signing) by Team Leader or someone from Management.
-In the second case, you should revoke the key. The procedure is
-[here](https://superuser.com/a/1526287).
+
+Republishing should happen for all cloud git servers you use and would like to
+have `verified` marking, so it probably means GitHub, GitLab and 3mdeb Gitea.
+In most cases it means removing old GPG key and uploading update one, this is
+because expired and new key have the same fingerprint and you cannot have two
+keys with the same fingerprint.
+
+In the second case please follow [this
+guide](#what-to-do-when-primarymaster-private-key-was-lost-compromised-or-will-no-longer-be-used).
 
 ### If we extend expiry every time, why not set "key does not expire"? 
 
