@@ -34,19 +34,32 @@ EOF
 # Write the batch file content to a temporary file
 echo "$BATCH_FILE_CONTENT" > temp_batch_file.txt
 
-# Retrieve the KEY_ID of the recently generated key
-KEY_ID=$(gpg --batch --generate-key temp_batch_file.txt 2>&1 | grep "gpg: key" | awk '{print $3}')
+# List existing key IDs before generating the new key
+gpg --list-keys --keyid-format LONG | grep 'pub' | awk '{print $2}' | cut -d'/' -f2 > keys_before.txt
 
-# Check if KEY_ID was retrieved
-if [ -z "$KEY_ID" ]; then
-    echo "Error: Could not retrieve KEY_ID."
-    exit 1
+# Generate the key
+gpg --batch --generate-key temp_batch_file.txt
+
+# List key IDs after generating the new key
+gpg --list-keys --keyid-format LONG | grep 'pub' | awk '{print $2}' | cut -d'/' -f2 > keys_after.txt
+
+# Find the new key ID
+KEY_ID=$(comm -13 keys_before.txt keys_after.txt)
+
+# Clean up temporary files
+rm keys_before.txt keys_after.txt
+
+# Check if the key exists using the fingerprint command
+if gpg --fingerprint $KEY_ID > /dev/null 2>&1; then
+    echo "Key with ID $KEY_ID generated successfully."
 else
-    echo "Modifying key: $KEY_ID"
+    echo 'Error: Could not retrieve KEY_ID or key was not generated.'
+    exit 1
 fi
 
 # Change expire date for KEY_ID signing subkey
-# Debugging: gpg --command-fd 0 --status-fd 2 --edit-key "$KEY_ID" <<EOF
+# Debugging:
+# gpg --command-fd 0 --status-fd 2 --edit-key "$KEY_ID" <<EOF
 gpg --command-fd 0 --edit-key "$KEY_ID" <<EOF
 key 1
 expire
