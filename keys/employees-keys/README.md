@@ -315,7 +315,7 @@ use.
 Following guide was made for:
 - recovery in case of loosing access to you primary/master private key,
 - evidence of primary/master key compromise,
-- event when employee of 3mdeb finished his/her cooperation and should no loger
+- event when employee of 3mdeb finished his/her cooperation and should no longer
   sign 3mdeb related development work.
 
 Guide is made with assumption, that you still have access to:
