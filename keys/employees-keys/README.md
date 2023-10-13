@@ -370,9 +370,9 @@ use.
 ### What to do when primary/master private key was lost, compromised or will no longer be used?
 
 Following guide was made for:
-- recovery in case of loosing access to you main/primary/master private key,
-- evidence of primary/master key compromise,
-- event when employee of 3mdeb finished his/her cooperation and should no longer
+* recovery in case of losing access to you primary/master private key,
+* evidence of primary/master key compromise,
+* event when employee of 3mdeb finished his/her cooperation and should no longer
   sign 3mdeb related development work.
 
 Guide is made with assumption, that you still have access to:
@@ -615,7 +615,7 @@ Commits should looks as follows:
 #### Obtain list of keys you signed
 
 Following procedure looks through keyring, so it should be prepared in
-evironment which is used to signing operations. For Qubes OS it would be vault
+environment which is used to signing operations. For Qubes OS it would be vault
 VM.
 
 ```shell

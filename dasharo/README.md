@@ -141,7 +141,7 @@ $ cat <release-image>.sha256
   [section](#exporting-public-key).
 
 ```shell
-$ gpg --local-user "<public-key-name>" --output <release-image>.sha256.sig --armor --detach-sig <release-image>.sha256
+gpg --local-user "<public-key-name>" --output <release-image>.sha256.sig --armor --detach-sig <release-image>.sha256
 ```
 
 ### Verifying release image

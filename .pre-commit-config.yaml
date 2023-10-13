@@ -17,6 +17,7 @@ repos:
       - id: check-merge-conflict
       - id: check-symlinks
       - id: detect-private-key
+        exclude: ^README.md$
       - id: end-of-file-fixer
       - id: trailing-whitespace
       - id: mixed-line-ending
@@ -32,6 +33,7 @@ repos:
     rev: v2.2.6
     hooks:
       - id: codespell
+        exclude: ^.*\.(asc|sig).*$
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.37.0

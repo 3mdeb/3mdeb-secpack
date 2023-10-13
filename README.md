@@ -42,7 +42,7 @@ falsified owner key as well.
 
 ## git-secrets setup
 
-Below configuration would prevent you from accidentaly commiting private keys
+Below configuration would prevent you from accidentally committing private keys
 into the repository.
 
 * Install [git-secrets](https://github.com/awslabs/git-secrets) via one of the
@@ -51,8 +51,8 @@ into the repository.
 * Add pre-commit hooks to this repo:
 
 ```shell
-$ git secrets --install
-$ git secrets --add 'PRIVATE[[:space:]]KEY'
+git secrets --install
+git secrets --add 'PRIVATE[[:space:]]KEY'
 ```
 
 * Trying to commit private key would result in following message:
