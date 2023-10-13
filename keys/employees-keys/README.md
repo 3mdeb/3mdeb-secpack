@@ -94,7 +94,7 @@ your.name@3mdeb.com.rev.gpg ${HOME}/.gnupg/openpgp-revocs.d/*KEY_ID.rev
 
 ```
 
-Output shouold look as follows:
+Output should look as follows:
 
 ```
 gpg: 4AFAF0F5030D9986: There is no assurance this key belongs to the named user
