@@ -84,7 +84,7 @@ MD013:
 # MD014/commands-show-output - Dollar signs used before commands without showing output
 # TODO: set false for now but we should consider enabling it
 # https://cirosantilli.com/markdown-style-guide#dollar-signs-in-shell-code
-MD014: false
+MD014: true
 
 # MD018/no-missing-space-atx - No space after hash on atx style heading
 MD018: true
