@@ -327,7 +327,7 @@ Guide is made with assumption, that you still have access to:
 - list of keys you signed - check below how to obtain it,
 
 Correct key management would require use of subkeys and private part of your
-master key should never be lost because it should stored in safe location.
+master key should never be lost because it should be stored in a safe location.
 
 #### Inform your Team Leader or Manager
 
