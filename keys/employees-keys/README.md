@@ -419,7 +419,7 @@ for i in $(gpg --list-keys --with-colons | awk -F: '/^fpr/ {print $10}'|xargs);d
 done
 ```
 
-List of keys have to be signed by new key.
+It produces a list of keys that have to be signed by a new key.
 
 #### Visit cards
 
