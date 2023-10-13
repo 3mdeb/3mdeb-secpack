@@ -224,7 +224,7 @@ gpg --check-sigs your.name@3mdeb.com
 
 Output:
 
-```shell
+```text
 gpg: checking the trustdb
 gpg: marginals needed: 3  completes needed: 1  trust model: pgp
 gpg: depth: 0  valid:   7  signed:   6  trust: 0-, 0q, 0n, 0m, 0f, 7u
