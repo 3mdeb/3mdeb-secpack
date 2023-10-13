@@ -76,13 +76,16 @@ Your KEY_ID: D9E4EB63705C3897
 Import 3mdeb Founder key:
 
 ```shell
-gpg --import keys/owner-key/piotr-krol-key.asc
+gpg --search-keys piotr.krol@3mdeb.com
 ```
+
+If there are multiple keys choose one which is not expired and contain separate
+subkeys for signing and encrypting.
 
 Import your 3mdeb Team Leader or Manager key:
 
 ```shell
-gpg --import keys/employees-keys/your.tl-or-mgr-name@3mdeb.com
+gpg --search-keys keys/employees-keys/your.tl-or-mgr-name@3mdeb.com
 ```
 
 Encrypt your revocation certificate (please use your KEY_ID from previous
