@@ -320,7 +320,7 @@ Following guide was made for:
 
 Guide is made with assumption, that you still have access to:
 - private key or at least previously generated revocation certificate - please
-  note that gpg save revocation certificate automatically on machine you
+  note that gpg saves revocation certificate automatically on machine you
   generated key in `/home/USERNAME/.gnupg/openpgp-revocs.d/KEYID.rev`
 - list of servers to which your key was uploaded - in theory servers should
   sync between each other,
