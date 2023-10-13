@@ -356,7 +356,7 @@ Where `KEYID` is the id of the key which you would like to revoke.
 #### Revoke your key
 
 ```shell
-gpg --import revoke.asc
+gpg --import your.name@3mdeb.com.rev
 ```
 
 #### Upload revoked key to the servers
