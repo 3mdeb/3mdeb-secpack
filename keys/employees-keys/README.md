@@ -71,6 +71,52 @@ Please note your key id printed at the end:
 Your KEY_ID: D9E4EB63705C3897
 ```
 
+#### Key hierarchy
+
+Let's learn about key hierarch that above script created for us. Let's use following key as example:
+
+```
+vault% gpg --edit-key A23A22E7ECF08AE4
+(...)
+
+Secret key is available.
+
+sec  rsa4096/A23A22E7ECF08AE4
+     created: 2023-10-17  expires: never       usage: C   
+     trust: ultimate      validity: ultimate
+ssb  rsa4096/EF24B10EB949136C
+     created: 2023-10-17  expires: 2024-10-16  usage: S   
+ssb  rsa4096/F6B7D64D8E32E5CB
+     created: 2023-10-17  expires: 2024-10-16  usage: E   
+[ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
+```
+
+We see three keys:
+* `A23A22E7ECF08AE4` - Main/Master/Primary Key (`usage: C` - Certifying Key)
+  * `EF24B10EB949136C` - Signing Subkey (`usage: S`)
+  * `F6B7D64D8E32E5CB` - Encryption Subkey (`usage: E` )
+
+There is also possible `A` authentication key.
+
+The Main/Master/Primary Key is the cornerstone of a public key infrastructure,
+representing a user's core digital identity. Its main role is to certify other
+keys (including subkeys), ensuring their authenticity. Due to its critical
+importance, it's often securely stored, sometimes offline, to prevent
+compromises. While it typically has a longer lifespan than subkeys, its
+compromise can lead to the revocation of associated subkeys, underlining its
+central position in the trust hierarchy.
+
+Subkeys are extensions of the master key in a public key infrastructure,
+designed for specific cryptographic tasks like signing, encryption, or
+authentication. They allow users to separate routine operations from the
+primary identity represented by the master key. Subkeys inherit trust from
+their master key, meaning if someone trusts the master key, they inherently
+trust its subkeys. This structure provides flexibility: subkeys can be rotated
+or revoked individually without affecting the master key, enabling enhanced
+security and adaptability in cryptographic operations. In practice, users might
+use subkeys for daily tasks, keeping them more accessible, while the master key
+remains securely stored.
+
 ### Encrypt revocation cert
 
 Import 3mdeb Founder key:
@@ -265,6 +311,9 @@ you need the following in `~/.gitconfig`:
         email = your.name@3mdeb.com
         signingkey = 48579AA47429663E
 ```
+
+Please note that `signingkey` should contain Fingerprints of the key with
+`usage: S` as explained in section [key hierarchy](#key-hierarchy).
 
 Make sure your
 [Github](https://docs.github.com/en/github/authenticating-to-github/telling-git-about-your-signing-key#telling-git-about-your-gpg-key-2)
