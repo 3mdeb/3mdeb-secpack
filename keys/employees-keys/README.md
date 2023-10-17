@@ -423,8 +423,9 @@ for future we have to change system time before we can proceed. Let's assume
 our last safe date is 2023-10-06 07:08:03 PM.
 
 ```shell
-sudo date 1005190823.03
+sudo date -s "2023-10-05 07:08:03 PM"
 ```
+
 
 Now let's expire our main and associated subkeys:
 
