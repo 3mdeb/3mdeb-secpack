@@ -372,7 +372,7 @@ use.
 ### What to do when primary/master private key was lost, compromised or will no longer be used? 
 
 Following guide was made for:
-- recovery in case of loosing access to you primary/master private key,
+- recovery in case of loosing access to you main/primary/master private key,
 - evidence of primary/master key compromise,
 - event when employee of 3mdeb finished his/her cooperation and should no longer
   sign 3mdeb related development work.
@@ -411,7 +411,134 @@ Where `KEYID` is the id of the key which you would like to revoke.
 gpg --import your.name@3mdeb.com.rev
 ```
 
-#### Upload revoked key to the servers
+#### Change expiration date
+
+In situations where there's a potential compromise of a GPG key, it might be
+necessary to change the expiration date of the key to the last known safe date.
+This ensures that the key is no longer valid after the potential compromise,
+adding an extra layer of securit.
+
+Because last known safe date is in the past and we can set expiration date only
+for future we have to change system time before we can proceed. Let's assume
+our last safe date is 2023-10-06 07:08:03 PM.
+
+```shell
+sudo date 1005190823.03
+```
+
+Now let's expire our main and associated subkeys:
+
+```shell
+gpg --edit-key KEYID
+```
+
+Procedure should look as follows:
+
+```
+gpg (GnuPG) 2.2.40; Copyright (C) 2022 g10 Code GmbH
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Secret key is available.
+
+sec  rsa4096/8895D29C1B822905
+     created: 2023-05-05  expires: never       usage: C   
+     trust: ultimate      validity: ultimate
+ssb  rsa4096/1B1C3210563730D9
+     created: 2023-05-05  expires: 2024-05-04  usage: S   
+ssb  rsa4096/1F97D67F4B465248
+     created: 2023-05-05  expires: 2024-05-04  usage: E   
+[ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
+
+gpg> expire
+Changing expiration time for the primary key.
+Please specify how long the key should be valid.
+         0 = key does not expire
+      <n>  = key expires in n days
+      <n>w = key expires in n weeks
+      <n>m = key expires in n months
+      <n>y = key expires in n years
+Key is valid for? (0) 1d
+Key expires at Fri 06 Oct 2023 07:08:05 PM CEST
+Is this correct? (y/N) y
+
+sec  rsa4096/8895D29C1B822905
+     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     trust: ultimate      validity: ultimate
+ssb  rsa4096/1B1C3210563730D9
+     created: 2023-05-05  expires: 2024-05-04  usage: S   
+ssb  rsa4096/1F97D67F4B465248
+     created: 2023-05-05  expires: 2024-05-04  usage: E   
+[ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
+
+gpg> key 1
+
+sec  rsa4096/8895D29C1B822905
+     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     trust: ultimate      validity: ultimate
+ssb* rsa4096/1B1C3210563730D9
+     created: 2023-05-05  expires: 2024-05-04  usage: S   
+ssb  rsa4096/1F97D67F4B465248
+     created: 2023-05-05  expires: 2024-05-04  usage: E   
+[ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
+
+gpg> expire
+Changing expiration time for a subkey.
+Please specify how long the key should be valid.
+         0 = key does not expire
+      <n>  = key expires in n days
+      <n>w = key expires in n weeks
+      <n>m = key expires in n months
+      <n>y = key expires in n years
+Key is valid for? (0) 1d
+Key expires at Fri 06 Oct 2023 07:08:20 PM CEST
+Is this correct? (y/N) y
+
+sec  rsa4096/8895D29C1B822905
+     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     trust: ultimate      validity: ultimate
+ssb* rsa4096/1B1C3210563730D9
+     created: 2023-05-05  expires: 2023-10-06  usage: S   
+ssb  rsa4096/1F97D67F4B465248
+     created: 2023-05-05  expires: 2024-05-04  usage: E   
+[ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
+
+gpg> key 2
+
+sec  rsa4096/8895D29C1B822905
+     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     trust: ultimate      validity: ultimate
+ssb* rsa4096/1B1C3210563730D9
+     created: 2023-05-05  expires: 2023-10-06  usage: S   
+ssb* rsa4096/1F97D67F4B465248
+     created: 2023-05-05  expires: 2024-05-04  usage: E   
+[ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
+
+gpg> expire
+Are you sure you want to change the expiration time for multiple subkeys? (y/N) y
+Please specify how long the key should be valid.
+         0 = key does not expire
+      <n>  = key expires in n days
+      <n>w = key expires in n weeks
+      <n>m = key expires in n months
+      <n>y = key expires in n years
+Key is valid for? (0) 1d
+Key expires at Fri 06 Oct 2023 07:08:35 PM CEST
+Is this correct? (y/N) y
+
+sec  rsa4096/8895D29C1B822905
+     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     trust: ultimate      validity: ultimate
+ssb* rsa4096/1B1C3210563730D9
+     created: 2023-05-05  expires: 2023-10-06  usage: S   
+ssb* rsa4096/1F97D67F4B465248
+     created: 2023-05-05  expires: 2023-10-06  usage: E   
+[ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
+
+gpg> save
+```
+
+#### Upload revoked and expired key to the servers
 
 Following this set of commands assumes that the machine on which you applied revocation
 and machine on which you publish revoked key are different. If it is not the case,
@@ -455,7 +582,15 @@ procedure](#adding-key-to-repository).
 
 #### Gitlab, Github and Gitea revocation
 
-Go to all wesbites, upload your new public key and delete old one.
+Go to all wesbites wher you used your GPG key. Delete key which you revoked and
+expired. After deleting upload key which contain revocation and expiration
+signature. On Github it should look as follows:
+
+![](/img/certify_key_revoked.png)
+
+Commits should looks as follows:
+
+![](/img/certify_key_revoked_commit.png)
 
 #### Obtain list of keys you signed
 
