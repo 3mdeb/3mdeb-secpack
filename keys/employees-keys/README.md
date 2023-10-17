@@ -424,6 +424,12 @@ our last safe date is 2023-10-06 07:08:03 PM. So we have to deliberately use
 one day before (5th October), because minimum expiration period to set in `gpg`
 is `1d` (one day).
 
+That change of system time is temporary most distributions synchronize time
+with network time servers, e.g. on Fedora there is about 10 minutes before it
+resets to current time, but on Ubuntu it works only for a fraction of second.
+In Qubes OS AppVMs are synchronized by Dom0 periodically every 6h, but sync can
+be triggered by `sudo qvm-sync-clock`.
+
 
 ```shell
 sudo date -s "2023-10-05 07:08:03 PM"
