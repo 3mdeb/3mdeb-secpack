@@ -430,6 +430,13 @@ resets to current time, but on Ubuntu it works only for a fraction of second.
 In Qubes OS AppVMs are synchronized by Dom0 periodically every 6h, but sync can
 be triggered by `sudo qvm-sync-clock`.
 
+Please choose mechanism of setting time of your system wisely or ask for help.
+Just in case before setting time let's stop system time synchronization
+service:
+
+```shell
+sudo service systemd-timesyncd stop
+```
 
 ```shell
 sudo date -s "2023-10-05 07:08:03 PM"
@@ -546,6 +553,12 @@ ssb* rsa4096/1F97D67F4B465248
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 gpg> save
+```
+
+Start system time synchronization again:
+
+```shell
+sudo service systemd-timesyncd stop
 ```
 
 #### Upload revoked and expired key to the servers
