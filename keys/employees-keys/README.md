@@ -421,8 +421,7 @@ adding an extra layer of securit.
 Because last known safe date is in the past and we can set expiration date only
 for future we have to change system time before we can proceed. Let's assume
 our last safe date is 2023-10-06 07:08:03 PM. So we have to deliberately use
-one day before (5th October), because minimum expiration period to set in `gpg`
-is `1d` (one day).
+one day before (5th October).
 
 That change of system time is temporary most distributions synchronize time
 with network time servers, e.g. on Fedora there is about 10 minutes before it
