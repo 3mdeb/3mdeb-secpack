@@ -72,28 +72,29 @@ Your KEY_ID: D9E4EB63705C3897
 
 #### Key hierarchy
 
-Let's learn about key hierarch that above script created for us. Let's use following key as example:
+Let's learn about key hierarch that above script created for us. Let's use
+following key as example:
 
-```
+```shell
 vault% gpg --edit-key A23A22E7ECF08AE4
 (...)
 
 Secret key is available.
 
 sec  rsa4096/A23A22E7ECF08AE4
-     created: 2023-10-17  expires: never       usage: C   
+     created: 2023-10-17  expires: never       usage: C
      trust: ultimate      validity: ultimate
 ssb  rsa4096/EF24B10EB949136C
-     created: 2023-10-17  expires: 2024-10-16  usage: S   
+     created: 2023-10-17  expires: 2024-10-16  usage: S
 ssb  rsa4096/F6B7D64D8E32E5CB
-     created: 2023-10-17  expires: 2024-10-16  usage: E   
+     created: 2023-10-17  expires: 2024-10-16  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 ```
 
 We see three keys:
 * `A23A22E7ECF08AE4` - Main/Master/Primary Key (`usage: C` - Certifying Key)
-  * `EF24B10EB949136C` - Signing Subkey (`usage: S`)
-  * `F6B7D64D8E32E5CB` - Encryption Subkey (`usage: E` )
+    - `EF24B10EB949136C` - Signing Subkey (`usage: S`)
+    - `F6B7D64D8E32E5CB` - Encryption Subkey (`usage: E` )
 
 There is also possible `A` authentication key.
 
@@ -439,7 +440,6 @@ sudo service systemd-timesyncd stop
 sudo date -s "2023-10-05 07:08:03 PM"
 ```
 
-
 Now let's expire our main and associated subkeys:
 
 ```shell
@@ -448,7 +448,7 @@ gpg --edit-key KEYID
 
 Procedure should look as follows:
 
-```
+```shell
 gpg (GnuPG) 2.2.40; Copyright (C) 2022 g10 Code GmbH
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
@@ -456,12 +456,12 @@ There is NO WARRANTY, to the extent permitted by law.
 Secret key is available.
 
 sec  rsa4096/8895D29C1B822905
-     created: 2023-05-05  expires: never       usage: C   
+     created: 2023-05-05  expires: never       usage: C
      trust: ultimate      validity: ultimate
 ssb  rsa4096/1B1C3210563730D9
-     created: 2023-05-05  expires: 2024-05-04  usage: S   
+     created: 2023-05-05  expires: 2024-05-04  usage: S
 ssb  rsa4096/1F97D67F4B465248
-     created: 2023-05-05  expires: 2024-05-04  usage: E   
+     created: 2023-05-05  expires: 2024-05-04  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 gpg> expire
@@ -477,23 +477,23 @@ Key expires at Fri 06 Oct 2023 07:08:05 PM CEST
 Is this correct? (y/N) y
 
 sec  rsa4096/8895D29C1B822905
-     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     created: 2023-05-05  expires: 2023-10-06  usage: C
      trust: ultimate      validity: ultimate
 ssb  rsa4096/1B1C3210563730D9
-     created: 2023-05-05  expires: 2024-05-04  usage: S   
+     created: 2023-05-05  expires: 2024-05-04  usage: S
 ssb  rsa4096/1F97D67F4B465248
-     created: 2023-05-05  expires: 2024-05-04  usage: E   
+     created: 2023-05-05  expires: 2024-05-04  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 gpg> key 1
 
 sec  rsa4096/8895D29C1B822905
-     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     created: 2023-05-05  expires: 2023-10-06  usage: C
      trust: ultimate      validity: ultimate
 ssb* rsa4096/1B1C3210563730D9
-     created: 2023-05-05  expires: 2024-05-04  usage: S   
+     created: 2023-05-05  expires: 2024-05-04  usage: S
 ssb  rsa4096/1F97D67F4B465248
-     created: 2023-05-05  expires: 2024-05-04  usage: E   
+     created: 2023-05-05  expires: 2024-05-04  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 gpg> expire
@@ -509,23 +509,23 @@ Key expires at Fri 06 Oct 2023 07:08:20 PM CEST
 Is this correct? (y/N) y
 
 sec  rsa4096/8895D29C1B822905
-     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     created: 2023-05-05  expires: 2023-10-06  usage: C
      trust: ultimate      validity: ultimate
 ssb* rsa4096/1B1C3210563730D9
-     created: 2023-05-05  expires: 2023-10-06  usage: S   
+     created: 2023-05-05  expires: 2023-10-06  usage: S
 ssb  rsa4096/1F97D67F4B465248
-     created: 2023-05-05  expires: 2024-05-04  usage: E   
+     created: 2023-05-05  expires: 2024-05-04  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 gpg> key 2
 
 sec  rsa4096/8895D29C1B822905
-     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     created: 2023-05-05  expires: 2023-10-06  usage: C
      trust: ultimate      validity: ultimate
 ssb* rsa4096/1B1C3210563730D9
-     created: 2023-05-05  expires: 2023-10-06  usage: S   
+     created: 2023-05-05  expires: 2023-10-06  usage: S
 ssb* rsa4096/1F97D67F4B465248
-     created: 2023-05-05  expires: 2024-05-04  usage: E   
+     created: 2023-05-05  expires: 2024-05-04  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 gpg> expire
@@ -541,12 +541,12 @@ Key expires at Fri 06 Oct 2023 07:08:35 PM CEST
 Is this correct? (y/N) y
 
 sec  rsa4096/8895D29C1B822905
-     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     created: 2023-05-05  expires: 2023-10-06  usage: C
      trust: ultimate      validity: ultimate
 ssb* rsa4096/1B1C3210563730D9
-     created: 2023-05-05  expires: 2023-10-06  usage: S   
+     created: 2023-05-05  expires: 2023-10-06  usage: S
 ssb* rsa4096/1F97D67F4B465248
-     created: 2023-05-05  expires: 2023-10-06  usage: E   
+     created: 2023-05-05  expires: 2023-10-06  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 gpg> save
@@ -602,8 +602,8 @@ procedure](#adding-key-to-repository).
 
 #### Gitlab, Github and Gitea revocation
 
-Go to all wesbites wher you used your GPG key. Delete key which you revoked and
-expired. After deleting upload key which contain revocation and expiration
+Go to all wesbites whhere you used your GPG key. Delete key which you revoked
+and expired. After deleting upload key which contain revocation and expiration
 signature. On Github it should look as follows:
 
 ![](/img/certify_key_revoked.png)
