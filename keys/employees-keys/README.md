@@ -139,7 +139,6 @@ point):
 ```shell
 gpg --encrypt -r piotr.krol@3mdeb.com -r your.tl-or-mgr-name@3mdeb.com -o \
 your.name@3mdeb.com.rev.gpg ${HOME}/.gnupg/openpgp-revocs.d/*KEY_ID.rev
-
 ```
 
 Output should look as follows:
@@ -243,15 +242,15 @@ Output:
 ```shell
 
 sec  rsa4096/BAA0A4837C891E29
-     created: 2021-04-07  expires: 2023-04-07  usage: SC  
+     created: 2021-04-07  expires: 2023-04-07  usage: SC
      trust: ultimate      validity: ultimate
 ssb  rsa4096/4F81AE572F9EFECA
-     created: 2021-04-07  expires: 2023-04-07  usage: E   
+     created: 2021-04-07  expires: 2023-04-07  usage: E
 [ultimate] (1). Your Name <your.name@3mdeb.com>
 
 
 sec  rsa4096/BAA0A4837C891E29
-     created: 2021-04-07  expires: 2023-04-07  usage: SC  
+     created: 2021-04-07  expires: 2023-04-07  usage: SC
      trust: ultimate      validity: ultimate
  Primary key fingerprint: D9DE EABF F447 B80F 7EC0  3A4B BAA0 A483 7C89 1E29
 
@@ -361,12 +360,13 @@ keys with the same fingerprint.
 In the second case please follow [this
 guide](#what-to-do-when-primarymaster-private-key-was-lost-compromised-or-will-no-longer-be-used).
 
-### If we extend expiry every time, why not set "key does not expire"? 
+### If we extend expiry every time, why not set "key does not expire"?
 
 Because people forget about keys or stop using them for many reasons. If
 someone extends expiry time, it means someone cares, and the key is still in
 use.
 
+<!-- markdownlint-disable-next-line -->
 ### What to do when primary/master private key was lost, compromised or will no longer be used?
 
 Following guide was made for:

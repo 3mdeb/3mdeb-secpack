@@ -39,8 +39,8 @@ Is this correct? (y/N) y
 GnuPG needs to construct a user ID to identify your key.
 
 Real name: PC Engines Open Source Firmware Release 4.10 Signing Key
-Email address: 
-Comment: 
+Email address:
+Comment:
 You selected this USER-ID:
     "PC Engines Open Source Firmware Release 4.10 Signing Key"
 
@@ -79,7 +79,7 @@ gpg: public key of ultimately trusted key 8A36B381A9C6508D not found
 gpg: marginals needed: 3  completes needed: 1  trust model: pgp
 gpg: depth: 0  valid:   4  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 4u
 gpg: next trustdb check due at 2020-09-17
-[15:18:10] pietrushnic:~ $ gpg --import /media/pietrushnic/backup/3mdeb-master-priv-key.asc 
+[15:18:10] pietrushnic:~ $ gpg --import /media/pietrushnic/backup/3mdeb-master-priv-key.asc
 gpg: key 4AFD81D97BD37C54: public key "3mdeb Master Key <contact@3mdeb.com>" imported
 gpg: key 4AFD81D97BD37C54: secret key imported
 gpg: Total number processed: 1

@@ -110,8 +110,8 @@ Is this correct? (y/N) y
 GnuPG needs to construct a user ID to identify your key.
 
 Real name: 3mdeb Dasharo Master Key
-Email address: 
-Comment: 
+Email address:
+Comment:
 You selected this USER-ID:
     "3mdeb Dasharo Master Key"
 
