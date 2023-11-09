@@ -1,0 +1,48 @@
+---
+default_stages: [pre-commit]
+
+default_install_hook_types: [pre-commit, commit-msg]
+
+ci:
+  autoupdate_commit_msg: 'pre-commit: autoupdate hooks'
+  autofix_prs: false
+
+exclude: ^canaries/.*$
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: detect-private-key
+        exclude: ^README.md$
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+
+  - repo: https://github.com/talos-systems/conform
+    rev: v0.1.0-alpha.27
+    hooks:
+      - id: conform
+        stages:
+          - commit-msg
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        exclude: ^.*\.(asc|sig).*$
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.37.0
+    hooks:
+      - id: markdownlint
+      - id: markdownlint-fix
+
+  - repo: https://github.com/koalaman/shellcheck-precommit
+    rev: v0.9.0
+    hooks:
+    -   id: shellcheck
+        args: ["--severity=warning"]

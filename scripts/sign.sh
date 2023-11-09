@@ -42,6 +42,7 @@ function sign_canary {
 }
 
 function commit_changes {
+	#shellcheck disable=SC2206
 	getnumber=(${file//-/ })
 	number=${getnumber[1]##+(0)}
 	git add $file

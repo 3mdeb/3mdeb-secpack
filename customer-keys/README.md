@@ -7,6 +7,7 @@
 ```
 
 Example:
+
 ```shell
 ./scripts/new-customer-key.sh fw "ACME" "4.16"
 ```
@@ -19,6 +20,7 @@ signed with `80693E028589B763 2021-06-23  3mdeb Open Source Software Master Key
 ## How to generate new PC Engines release singing key
 
 Example:
+
 ```shell
 ./scripts/new-customer-key.sh pce "PC Engines" "4.16"
 ```

@@ -7,12 +7,11 @@ new keys.
 
 * [Adding key to the repository](#adding-key-to-the-repository)
 * [FAQ](#faq)
-  - [What to do when this key expires?](#what-to-do-when-this-key-expires)
-  - [If we extend expiry every time, why not set "key does not
+    - [What to do when this key expires?](#what-to-do-when-this-key-expires)
+    - [If we extend expiry every time, why not set "key does not
     expire"?](#if-we-extend-expiry-every-time-why-not-set-key-does-not-expire)
-  - [What to do when primary/master private key was lost, compromised or will
-    no longer be
-    used?](#what-to-do-when-primarymaster-private-key-was-lost-compromised-or-will-no-longer-be-used)
+    - [What to do when private key was lost or
+    compromised?](#what-to-do-when-private-key was-lost-or-compromised)
 
 ## Adding key to the repository
 
@@ -64,7 +63,7 @@ Generate key:
 
 Please note your key id printed at the end:
 
-```
+```shell
 (...)
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
@@ -73,28 +72,29 @@ Your KEY_ID: D9E4EB63705C3897
 
 #### Key hierarchy
 
-Let's learn about key hierarch that above script created for us. Let's use following key as example:
+Let's learn about key hierarch that above script created for us. Let's use
+following key as example:
 
-```
+```shell
 vault% gpg --edit-key A23A22E7ECF08AE4
 (...)
 
 Secret key is available.
 
 sec  rsa4096/A23A22E7ECF08AE4
-     created: 2023-10-17  expires: never       usage: C   
+     created: 2023-10-17  expires: never       usage: C
      trust: ultimate      validity: ultimate
 ssb  rsa4096/EF24B10EB949136C
-     created: 2023-10-17  expires: 2024-10-16  usage: S   
+     created: 2023-10-17  expires: 2024-10-16  usage: S
 ssb  rsa4096/F6B7D64D8E32E5CB
-     created: 2023-10-17  expires: 2024-10-16  usage: E   
+     created: 2023-10-17  expires: 2024-10-16  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 ```
 
 We see three keys:
 * `A23A22E7ECF08AE4` - Main/Master/Primary Key (`usage: C` - Certifying Key)
-  * `EF24B10EB949136C` - Signing Subkey (`usage: S`)
-  * `F6B7D64D8E32E5CB` - Encryption Subkey (`usage: E` )
+    - `EF24B10EB949136C` - Signing Subkey (`usage: S`)
+    - `F6B7D64D8E32E5CB` - Encryption Subkey (`usage: E` )
 
 There is also possible `A` authentication key.
 
@@ -140,12 +140,11 @@ point):
 ```shell
 gpg --encrypt -r piotr.krol@3mdeb.com -r your.tl-or-mgr-name@3mdeb.com -o \
 your.name@3mdeb.com.rev.gpg ${HOME}/.gnupg/openpgp-revocs.d/*KEY_ID.rev
-
 ```
 
 Output should look as follows:
 
-```
+```shell
 gpg: 4AFAF0F5030D9986: There is no assurance this key belongs to the named user
 
 sub  rsa4096/4AFAF0F5030D9986 2020-01-24 Your TL/MGR <your.tl-or-mgr-name@3mdeb.com>
@@ -166,7 +165,7 @@ certificate (`your.name@3mdeb.com.rev.gpg`) should be sent to [3mdeb chat
 web-of-trust channel](https://chat.3mdeb.com/team-3mdeb/channels/web-of-trust).
 
 Please send fingerprint to 3mdeb Team Leaders or Management using a different
-channel than 3mdeb chat, e.g., https://keybase.io, LinkedIn, email, etc.
+channel than 3mdeb chat, e.g., <https://keybase.io>, LinkedIn, email, etc.
 Fingerprints should be sent to the person who works with you on signing your
 keys.
 
@@ -244,15 +243,15 @@ Output:
 ```shell
 
 sec  rsa4096/BAA0A4837C891E29
-     created: 2021-04-07  expires: 2023-04-07  usage: SC  
+     created: 2021-04-07  expires: 2023-04-07  usage: SC
      trust: ultimate      validity: ultimate
 ssb  rsa4096/4F81AE572F9EFECA
-     created: 2021-04-07  expires: 2023-04-07  usage: E   
+     created: 2021-04-07  expires: 2023-04-07  usage: E
 [ultimate] (1). Your Name <your.name@3mdeb.com>
 
 
 sec  rsa4096/BAA0A4837C891E29
-     created: 2021-04-07  expires: 2023-04-07  usage: SC  
+     created: 2021-04-07  expires: 2023-04-07  usage: SC
      trust: ultimate      validity: ultimate
  Primary key fingerprint: D9DE EABF F447 B80F 7EC0  3A4B BAA0 A483 7C89 1E29
 
@@ -290,7 +289,7 @@ sig!         BAA0A4837C891E29 2021-04-07  Your Name <your.name@3mdeb.com>
 gpg: 3 good signatures
 ```
 
-Please send the received key in an encrypted email to your.name@3mdeb.com.
+Please send the received key in an encrypted email to <your.name@3mdeb.com>.
 
 ```shell
 gpg --armor --output your-name-key-signed.asc --export "YOUR KEY ID HERE"
@@ -321,7 +320,6 @@ and
 [Gitlab](https://docs.gitlab.com/ee/user/project/repository/gpg_signed_commits/index.html#adding-a-gpg-key-to-your-account)
 is set up correctly to provide GPG commit verification.
 
-
 ### Create a pull request with key
 
 After everything is set up, please issue a pull request to this repo with
@@ -329,17 +327,17 @@ signed `your-name-key-signed.asc`.
 
 ### Upload to keys.opengpg.org
 
-* Go to https://keys.openpgp.org.
+* Go to <https://keys.openpgp.org>.
 * Upload Your Key:
-  * On the main page, you'll see an "Upload" section.
-  * Click on the "Choose File" button and select the your.name@3mdeb.com.asc
+    - On the main page, you'll see an "Upload" section.
+    - Click on the "Choose File" button and select the <your.name@3mdeb.com.asc>
     file you just created.
-  * Click on the "Upload" button.
+    - Click on the "Upload" button.
 * Verify Your Email Address:
-  * https://keys.openpgp.org will send you an email to verify that the email
+    - <https://keys.openpgp.org> will send you an email to verify that the email
     address associated with the key is valid.
-  * Open the email and click on the verification link.
-  * Once verified, your key will be added to the keys.openpgp.org keyserver.
+    - Open the email and click on the verification link.
+    - Once verified, your key will be added to the keys.openpgp.org keyserver.
 * After uploading and verifying, you can search for your key on the keyserver
   using your email address to ensure it's been uploaded correctly.
 
@@ -363,27 +361,28 @@ keys with the same fingerprint.
 In the second case please follow [this
 guide](#what-to-do-when-primarymaster-private-key-was-lost-compromised-or-will-no-longer-be-used).
 
-### If we extend expiry every time, why not set "key does not expire"? 
+### If we extend expiry every time, why not set "key does not expire"?
 
 Because people forget about keys or stop using them for many reasons. If
 someone extends expiry time, it means someone cares, and the key is still in
 use.
 
-### What to do when primary/master private key was lost, compromised or will no longer be used? 
+<!-- markdownlint-disable-next-line -->
+### What to do when primary/master private key was lost, compromised or will no longer be used?
 
 Following guide was made for:
-- recovery in case of loosing access to you main/primary/master private key,
-- evidence of primary/master key compromise,
-- event when employee of 3mdeb finished his/her cooperation and should no longer
+* recovery in case of losing access to you primary/master private key,
+* evidence of primary/master key compromise,
+* event when employee of 3mdeb finished his/her cooperation and should no longer
   sign 3mdeb related development work.
 
 Guide is made with assumption, that you still have access to:
-- private key or at least previously generated revocation certificate - please
-  note that gpg saves revocation certificate automatically on machine you
+* private key or at least previously generated revocation certificate - please
+  note that gpg save revocation certificate automatically on machine you
   generated key in `/home/USERNAME/.gnupg/openpgp-revocs.d/KEYID.rev`
-- list of servers to which your key was uploaded - in theory servers should
+* list of servers to which your key was uploaded - in theory servers should
   sync between each other,
-- list of keys you signed - check below how to obtain it,
+* list of keys you signed - check below how to obtain it,
 
 Correct key management would require use of subkeys and private part of your
 master key should never be lost because it should be stored in a safe location.
@@ -441,7 +440,6 @@ sudo service systemd-timesyncd stop
 sudo date -s "2023-10-05 07:08:03 PM"
 ```
 
-
 Now let's expire our main and associated subkeys:
 
 ```shell
@@ -450,7 +448,7 @@ gpg --edit-key KEYID
 
 Procedure should look as follows:
 
-```
+```shell
 gpg (GnuPG) 2.2.40; Copyright (C) 2022 g10 Code GmbH
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
@@ -458,12 +456,12 @@ There is NO WARRANTY, to the extent permitted by law.
 Secret key is available.
 
 sec  rsa4096/8895D29C1B822905
-     created: 2023-05-05  expires: never       usage: C   
+     created: 2023-05-05  expires: never       usage: C
      trust: ultimate      validity: ultimate
 ssb  rsa4096/1B1C3210563730D9
-     created: 2023-05-05  expires: 2024-05-04  usage: S   
+     created: 2023-05-05  expires: 2024-05-04  usage: S
 ssb  rsa4096/1F97D67F4B465248
-     created: 2023-05-05  expires: 2024-05-04  usage: E   
+     created: 2023-05-05  expires: 2024-05-04  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 gpg> expire
@@ -479,23 +477,23 @@ Key expires at Fri 06 Oct 2023 07:08:05 PM CEST
 Is this correct? (y/N) y
 
 sec  rsa4096/8895D29C1B822905
-     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     created: 2023-05-05  expires: 2023-10-06  usage: C
      trust: ultimate      validity: ultimate
 ssb  rsa4096/1B1C3210563730D9
-     created: 2023-05-05  expires: 2024-05-04  usage: S   
+     created: 2023-05-05  expires: 2024-05-04  usage: S
 ssb  rsa4096/1F97D67F4B465248
-     created: 2023-05-05  expires: 2024-05-04  usage: E   
+     created: 2023-05-05  expires: 2024-05-04  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 gpg> key 1
 
 sec  rsa4096/8895D29C1B822905
-     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     created: 2023-05-05  expires: 2023-10-06  usage: C
      trust: ultimate      validity: ultimate
 ssb* rsa4096/1B1C3210563730D9
-     created: 2023-05-05  expires: 2024-05-04  usage: S   
+     created: 2023-05-05  expires: 2024-05-04  usage: S
 ssb  rsa4096/1F97D67F4B465248
-     created: 2023-05-05  expires: 2024-05-04  usage: E   
+     created: 2023-05-05  expires: 2024-05-04  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 gpg> expire
@@ -511,23 +509,23 @@ Key expires at Fri 06 Oct 2023 07:08:20 PM CEST
 Is this correct? (y/N) y
 
 sec  rsa4096/8895D29C1B822905
-     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     created: 2023-05-05  expires: 2023-10-06  usage: C
      trust: ultimate      validity: ultimate
 ssb* rsa4096/1B1C3210563730D9
-     created: 2023-05-05  expires: 2023-10-06  usage: S   
+     created: 2023-05-05  expires: 2023-10-06  usage: S
 ssb  rsa4096/1F97D67F4B465248
-     created: 2023-05-05  expires: 2024-05-04  usage: E   
+     created: 2023-05-05  expires: 2024-05-04  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 gpg> key 2
 
 sec  rsa4096/8895D29C1B822905
-     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     created: 2023-05-05  expires: 2023-10-06  usage: C
      trust: ultimate      validity: ultimate
 ssb* rsa4096/1B1C3210563730D9
-     created: 2023-05-05  expires: 2023-10-06  usage: S   
+     created: 2023-05-05  expires: 2023-10-06  usage: S
 ssb* rsa4096/1F97D67F4B465248
-     created: 2023-05-05  expires: 2024-05-04  usage: E   
+     created: 2023-05-05  expires: 2024-05-04  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 gpg> expire
@@ -543,12 +541,12 @@ Key expires at Fri 06 Oct 2023 07:08:35 PM CEST
 Is this correct? (y/N) y
 
 sec  rsa4096/8895D29C1B822905
-     created: 2023-05-05  expires: 2023-10-06  usage: C   
+     created: 2023-05-05  expires: 2023-10-06  usage: C
      trust: ultimate      validity: ultimate
 ssb* rsa4096/1B1C3210563730D9
-     created: 2023-05-05  expires: 2023-10-06  usage: S   
+     created: 2023-05-05  expires: 2023-10-06  usage: S
 ssb* rsa4096/1F97D67F4B465248
-     created: 2023-05-05  expires: 2023-10-06  usage: E   
+     created: 2023-05-05  expires: 2023-10-06  usage: E
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 gpg> save
@@ -595,7 +593,7 @@ procedure](#adding-key-to-repository).
 #### Revoke key in Thunderbird
 
 * Import revocation certificate into Thunderbrid
-  * Tools > OpenPGP Key Manger > File > Import Revocation(s) From File
+    - Tools > OpenPGP Key Manager > File > Import Revocation(s) From File
 * If your new key was uploaded to keys.opengpg.org use Keyserver > Discover
   Keys Online
 * Replace key in Settings > Account Settings, choose your account End-To-End
@@ -604,8 +602,8 @@ procedure](#adding-key-to-repository).
 
 #### Gitlab, Github and Gitea revocation
 
-Go to all wesbites wher you used your GPG key. Delete key which you revoked and
-expired. After deleting upload key which contain revocation and expiration
+Go to all wesbites whhere you used your GPG key. Delete key which you revoked
+and expired. After deleting upload key which contain revocation and expiration
 signature. On Github it should look as follows:
 
 ![](/img/certify_key_revoked.png)
@@ -617,7 +615,7 @@ Commits should looks as follows:
 #### Obtain list of keys you signed
 
 Following procedure looks through keyring, so it should be prepared in
-evironment which is used to signing operations. For Qubes OS it would be vault
+environment which is used to signing operations. For Qubes OS it would be vault
 VM.
 
 ```shell
