@@ -1,9 +1,8 @@
-Keys creation procedure
------------------------
+# Keys creation procedure
 
 1. Create new key
 
-```
+```shell
 user@vault ~ % gpg --expert --full-gen-key
 gpg (GnuPG) 2.1.18; Copyright (C) 2017 Free Software Foundation, Inc.
 This is free software: you are free to change and redistribute it.
@@ -39,8 +38,8 @@ Is this correct? (y/N) y
 GnuPG needs to construct a user ID to identify your key.
 
 Real name: Protectli Dasharo Firewall Release 1.0 Signing Key
-Email address: 
-Comment: 
+Email address:
+Comment:
 You selected this USER-ID:
     "Protectli Dasharo Firewall Release 1.0 Signing Key"
 
@@ -63,9 +62,10 @@ pub   rsa4096 2021-02-03 [SC] [expires: 2022-02-03]
 uid                      Protectli Dasharo Firewall Release 1.0 Signing Key
 sub   rsa4096 2021-02-03 [E] [expires: 2022-02-03]
 ```
-2. Import keys from offline storage
 
-```
+1. Import keys from offline storage
+
+```shell
 $ gpg --import /media/pietrushnic/backup/3mdeb-open-source-firmware-master-priv-key.asc
 gpg: key 028A752764CB97EC: 1 signature not checked due to a missing key
 gpg: key 028A752764CB97EC: public key "3mdeb Open Source Firmware Master Key <contact@3mdeb.com>" imported
@@ -79,7 +79,7 @@ gpg: public key of ultimately trusted key 8A36B381A9C6508D not found
 gpg: marginals needed: 3  completes needed: 1  trust model: pgp
 gpg: depth: 0  valid:   4  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 4u
 gpg: next trustdb check due at 2020-09-17
-[15:18:10] pietrushnic:~ $ gpg --import /media/pietrushnic/backup/3mdeb-master-priv-key.asc 
+[15:18:10] pietrushnic:~ $ gpg --import /media/pietrushnic/backup/3mdeb-master-priv-key.asc
 gpg: key 4AFD81D97BD37C54: public key "3mdeb Master Key <contact@3mdeb.com>" imported
 gpg: key 4AFD81D97BD37C54: secret key imported
 gpg: Total number processed: 1
@@ -109,9 +109,9 @@ sec   rsa4096 2019-02-12 [SC]
 uid           [  full  ] 3mdeb Master Key <contact@3mdeb.com>
 ```
 
-3. Sign new release key with "3mdeb Open Source Firmware Master Key":
+1. Sign new release key with "3mdeb Open Source Firmware Master Key":
 
-```
+```shell
 $ gpg -u 0D5F6F1DA800329EB7C597A2ABE1D0BC66278008 --sign-key D7D346428D4F52A7D754A6BD20CD80EBAC884E03
 $ gpg --check-signatures D7D346428D4F52A7D754A6BD20CD80EBAC884E03
 pub   rsa4096 2021-02-03 [SC] [expires: 2022-02-03]
@@ -123,14 +123,13 @@ sub   rsa4096 2021-02-03 [E] [expires: 2022-02-03]
 sig!         20CD80EBAC884E03 2021-02-03  Protectli Dasharo Firewall Release 1.0 Signing Key
 
 gpg: 3 good signatures
-
 ```
 
-3. Backup key to offline storage
+1. Backup key to offline storage
 
-```
+```shell
 gpg --export-secret-keys D7D346428D4F52A7D754A6BD20CD80EBAC884E03 > /path/to/storage/protectli-dasharo-firewall-release-1.0-priv-key.asc
 ```
 
-4. Move key to Yubikey
-5. Add public key to repo
+1. Move key to Yubikey
+1. Add public key to repo

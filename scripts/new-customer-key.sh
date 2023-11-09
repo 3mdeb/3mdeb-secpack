@@ -68,7 +68,7 @@ case $subcmd in
 	;;
 esac
 
-# chek if such key already exist
+# check if such key already exist
 gpg --with-colons --list-key "${real_name}" 2> /dev/null
 if [ $? -eq 0 ]; then
     echo "ERROR: Key ${real_name} already exist."
