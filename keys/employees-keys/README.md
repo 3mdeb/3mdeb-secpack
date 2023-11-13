@@ -10,8 +10,7 @@ new keys.
     - [What to do when this key expires?](#what-to-do-when-this-key-expires)
     - [If we extend expiry every time, why not set "key does not
     expire"?](#if-we-extend-expiry-every-time-why-not-set-key-does-not-expire)
-    - [What to do when private key was lost or
-    compromised?](#what-to-do-when-private-key was-lost-or-compromised)
+    - [What to do when primary/master private key was lost, compromised or will no longer be used?](#what-to-do-when-primarymaster-private-key-was-lost-compromised-or-will-no-longer-be-used)
 
 ## Adding key to the repository
 
