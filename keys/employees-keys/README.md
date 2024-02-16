@@ -130,7 +130,7 @@ subkeys for signing and encrypting.
 Import your 3mdeb Team Leader or Manager key:
 
 ```shell
-gpg --search-keys keys/employees-keys/your.tl-or-mgr-name@3mdeb.com
+gpg --import keys/employees-keys/your.tl-or-mgr-name@3mdeb.com
 ```
 
 Encrypt your revocation certificate (please use your KEY_ID from previous
