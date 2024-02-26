@@ -1,2 +1,2 @@
 for i in $(gpg --list-keys --with-colons | awk -F: '/^fpr/ {print $10}'|xargs);do
-new_kid=$(gpg --with-colons --list-key "${real_name}"|awk -F: '$1 == "fpr" {print $10;}'|head -1)
+new_kid=$(gpg --with-colons --list-key "${key_name}" | awk -F: '$1 == "fpr" {print $10;}' | head -1)
