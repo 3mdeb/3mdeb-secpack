@@ -1,9 +1,13 @@
+%echo Generating a primary certification key and subkeys for signing
 Key-Type: RSA
 Key-Length: 4096
-Key-Usage: sign auth
-Name-Real: {real_name}
-Expire-Date: 1y
-%no-protection
+Key-Usage: cert
+Expire-Date: 0
 Subkey-Type: RSA
 Subkey-Length: 4096
-Subkey-Usage: encrypt
+Subkey-Usage: sign
+Name-Real: {key_name}
+Name-Email: {key_email}
+%no-protection
+%commit
+%echo Key generation complete
