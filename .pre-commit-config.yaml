@@ -13,7 +13,7 @@ exclude: ^canaries/.*$
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       - id: check-added-large-files
       - id: check-merge-conflict
@@ -25,7 +25,7 @@ repos:
       - id: mixed-line-ending
 
   - repo: https://github.com/talos-systems/conform
-    rev: v0.1.0-alpha.27
+    rev: v0.1.0-alpha.30
     hooks:
       - id: conform
         stages:
@@ -38,13 +38,13 @@ repos:
         exclude: ^.*\.(asc|sig).*$
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.38.0
+    rev: v0.40.0
     hooks:
       - id: markdownlint
       - id: markdownlint-fix
 
   - repo: https://github.com/koalaman/shellcheck-precommit
-    rev: v0.9.0
+    rev: v0.10.0
     hooks:
     -   id: shellcheck
         args: ["--severity=warning"]
