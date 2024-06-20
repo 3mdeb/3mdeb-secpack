@@ -321,12 +321,12 @@ is set up correctly to provide GPG commit verification.
 
 ### Thunderbird configuration
 
-Configuring Thunderbird to use your generated will allow to send and 
-receive secure end-to-end encrypted emails. Thunderbird, by default, uses 
-its own keyring. 
+Configuring Thunderbird to use your generated will allow to send and
+receive secure end-to-end encrypted emails. Thunderbird, by default, uses
+its own keyring.
 
-To make Thunderbird use gpg keyring go to: 
-`Settings -> General -> Config Editor...`, 
+To make Thunderbird use gpg keyring go to:
+`Settings -> General -> Config Editor...`,
 search for `mail.openpgp.allow_external_gnupg` and set it to `true`.
 
 ### Create a pull request with key
