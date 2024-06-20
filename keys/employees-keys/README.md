@@ -319,6 +319,16 @@ and
 [Gitlab](https://docs.gitlab.com/ee/user/project/repository/gpg_signed_commits/index.html#adding-a-gpg-key-to-your-account)
 is set up correctly to provide GPG commit verification.
 
+### Thunderbird configuration
+
+Configuring Thunderbird to use your generated will allow to send and 
+receive secure end-to-end encripted emails. Thunderbird, by default, uses 
+its own keyring. 
+
+To make Thunderbird use gpg keyring go to: 
+`Settings -> General -> Config Editor...`, 
+search for `mail.openpgp.allow_external_gnupg` and set it to `true`.
+
 ### Create a pull request with key
 
 After everything is set up, please issue a pull request to this repo with
