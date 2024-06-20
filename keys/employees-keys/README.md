@@ -322,7 +322,7 @@ is set up correctly to provide GPG commit verification.
 ### Thunderbird configuration
 
 Configuring Thunderbird to use your generated will allow to send and 
-receive secure end-to-end encripted emails. Thunderbird, by default, uses 
+receive secure end-to-end encrypted emails. Thunderbird, by default, uses 
 its own keyring. 
 
 To make Thunderbird use gpg keyring go to: 
