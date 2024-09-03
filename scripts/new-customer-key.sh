@@ -86,13 +86,14 @@ fi
 sed -e "s/{key_name}/${key_name}/g; s/{key_email}/${key_email}/g" ./scripts/new_key_gpg.template >/tmp/gpg_batch
 gpg --batch --gen-key /tmp/gpg_batch
 new_kid=$(gpg --with-colons --list-key "${key_name}" | awk -F: '$1 == "fpr" {print $10;}' | head -1)
-# Change expire date for KEY_ID signing subkey
+# As discussed in https://github.com/3mdeb/3mdeb-secpack/issues/160
+# Release signing keys should be valid indefinietly.
 # Debugging:
 # gpg --command-fd 0 --status-fd 2 --edit-key "$KEY_ID" <<EOF
 gpg --command-fd 0 --edit-key "${new_kid}" <<EOF
 key 1
 expire
-1y
+0
 save
 EOF
 tmp=${key_name// /-}
