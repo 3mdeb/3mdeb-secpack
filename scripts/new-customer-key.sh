@@ -20,7 +20,7 @@ function usage {
 	echo -e "\t \t $0 pce \"PC Engines\" \"4.16\""
 	echo -e "\t \t $0 compat \"MSI MS-7D25\" \"0.x\""
 	echo -e "\t \t $0 dasharo \"Protectli\" \"1.1.x\""
-	echo -e "\t \t $0 dasharo \"FooBar\" \"1.2.x\" \"joe.doe@3mdeb.com\"""
+	echo -e "\t \t $0 dasharo \"FooBar\" \"1.2.x\" \"joe.doe@3mdeb.com\""
 	exit 1
 }
 
