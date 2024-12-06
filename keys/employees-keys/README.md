@@ -16,7 +16,7 @@ new keys.
 
 To add new key to this repository you should:
 
-1. [Create new GPG key](#how-to-create-a-new-gpg-key)
+1. [Create new GPG key](#create-a-new-gpg-key)
 2. [Encrypt revocation cert](#encrypt-revocation-cert)
 3. [Send key for signing and revocation
    cert](#sending-key-for-signing-and-revocation-cert)
@@ -32,7 +32,7 @@ request:
 
 1. [Git configuration](#git-configuration)
 2. [Create Pull Request with signed key](#create-a-pull-request-with-key)
-3. [Upload to keys.opengpg.org](#upload-to-keys-openpgp-org)
+3. [Upload to keys.opengpg.org](#upload-to-keysopengpgorg)
 
 If you have questions, please check [FAQ](#FAQ) section. Maybe the answer is
 already there. If not, feel free to submit an issue to the repository.
