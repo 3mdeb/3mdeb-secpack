@@ -44,7 +44,7 @@ gpg --batch --generate-key temp_batch_file.txt
 gpg --list-keys --keyid-format LONG | grep 'pub' | awk '{print $2}' | cut -d'/' -f2 > keys_after.txt
 
 # Find the new key ID
-KEY_ID=$(comm -13 keys_before.txt keys_after.txt)
+KEY_ID=$(comm -13 keys_before.txt keys_after.txt | awk 'NF')
 
 # Clean up temporary files
 rm keys_before.txt keys_after.txt
