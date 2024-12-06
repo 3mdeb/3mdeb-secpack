@@ -121,16 +121,13 @@ remains securely stored.
 Import 3mdeb Founder key:
 
 ```shell
-gpg --search-keys piotr.krol@3mdeb.com
+gpg --import  keys/owner-key/piotr-krol-key.asc
 ```
-
-If there are multiple keys choose one which is not expired and contain separate
-subkeys for signing and encrypting.
 
 Import your 3mdeb Team Leader or Manager key:
 
 ```shell
-gpg --import keys/employees-keys/your.tl-or-mgr-name@3mdeb.com
+gpg --import keys/employees-keys/your-tl-or-mgr-name-key-signed.asc
 ```
 
 Encrypt your revocation certificate (please use your KEY_ID from previous
