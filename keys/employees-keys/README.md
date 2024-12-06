@@ -16,7 +16,7 @@ new keys.
 
 To add new key to this repository you should:
 
-1. [Create new GPG key](#how-to-create-a-new-gpg-key)
+1. [Create new GPG key](#create-a-new-gpg-key)
 2. [Encrypt revocation cert](#encrypt-revocation-cert)
 3. [Send key for signing and revocation
    cert](#sending-key-for-signing-and-revocation-cert)
@@ -32,7 +32,7 @@ request:
 
 1. [Git configuration](#git-configuration)
 2. [Create Pull Request with signed key](#create-a-pull-request-with-key)
-3. [Upload to keys.opengpg.org](#upload-to-keys-openpgp-org)
+3. [Upload to keys.opengpg.org](#upload-to-keysopengpgorg)
 
 If you have questions, please check [FAQ](#FAQ) section. Maybe the answer is
 already there. If not, feel free to submit an issue to the repository.
@@ -67,6 +67,40 @@ Please note your key id printed at the end:
 [ultimate] (1). Your Name (Employee Cert Key) <your.name@3mdeb.com>
 
 Your KEY_ID: D9E4EB63705C3897
+```
+
+#### Key identification
+
+GPG key is identified by it's fingerprint we can see it using the
+following command.
+
+```shell
+gpg --list-keys your.name@3mdeb.com
+```
+
+Output will look as follows:
+
+```shell
+pub   rsa4096 2024-11-19 [C]
+      EF0E14600FE8F480A91D2C9C234A47C68C319635
+uid           [ultimate] Your Name (Employee Cert Key) <your.name@3mdeb.com>
+sub   rsa4096 2024-11-19 [S] [expires: 2025-11-19]
+sub   rsa4096 2024-11-19 [E] [expires: 2025-11-19]
+```
+
+In this case`EF0E14600FE8F480A91D2C9C234A47C68C319635` is the fingerprint of the
+primary key. This is a hexadecimal number.
+
+There are another two identifiers of GPG keys derived from the fingerprint:
+* Long key id - lower 16 digits of the fingerprint in our example `234A47C68C319635`
+* Short key id - lower 8 digits of the fingerprint in our example `8C319635`
+
+Please be aware that every GPG key has it's unique fingerprint.
+By default `gpg --list-keys` displays only the master key fingerprint.
+To see fingerprints of all keys we should use:
+
+```shell
+gpg --list-keys --with-subkey-fingerprints your.name@3mdeb.com
 ```
 
 #### Key hierarchy
@@ -121,16 +155,13 @@ remains securely stored.
 Import 3mdeb Founder key:
 
 ```shell
-gpg --search-keys piotr.krol@3mdeb.com
+gpg --import  keys/owner-key/piotr-krol-key.asc
 ```
-
-If there are multiple keys choose one which is not expired and contain separate
-subkeys for signing and encrypting.
 
 Import your 3mdeb Team Leader or Manager key:
 
 ```shell
-gpg --import keys/employees-keys/your.tl-or-mgr-name@3mdeb.com
+gpg --import keys/employees-keys/your-tl-or-mgr-name-key-signed.asc
 ```
 
 Encrypt your revocation certificate (please use your KEY_ID from previous
@@ -163,10 +194,10 @@ The armored public key (`your.name@3mdeb.com.asc`) and encrypted revocation
 certificate (`your.name@3mdeb.com.rev.gpg`) should be sent to [3mdeb chat
 web-of-trust channel](https://chat.3mdeb.com/team-3mdeb/channels/web-of-trust).
 
-Please send fingerprint to 3mdeb Team Leaders or Management using a different
-channel than 3mdeb chat, e.g., <https://keybase.io>, LinkedIn, email, etc.
-Fingerprints should be sent to the person who works with you on signing your
-keys.
+Please send [fingerprint](#key-identification)to 3mdeb Team Leaders or
+Management using a different channel than 3mdeb chat, e.g.,
+<https://keybase.io>, LinkedIn, email, etc. Fingerprints should be sent
+to the person who works with you on signing your keys.
 
 ### Identity confirmation
 

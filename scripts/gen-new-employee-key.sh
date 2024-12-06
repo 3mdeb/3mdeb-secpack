@@ -12,6 +12,14 @@ KEY_EMAIL="$2"
 KEY_COMMENT="Employee Cert Key"
 KEY_FILE="$KEY_EMAIL.asc"
 
+#Check if there is already a key for a given email on the system
+KEYS_FOR_EMAIL=$(gpg --list-keys --keyid-format LONG | grep $KEY_EMAIL)
+if [ -n "SKEYS_FOR_EMAIL" ]; then
+   echo "Error: Key for email address $KEY_EMAIL already exists on this system"
+   echo "If you want to generate a new key delete the old one first"
+   exit 1
+fi
+
 # Batch file content for key generation
 BATCH_FILE_CONTENT=$(cat <<EOF
 %echo Generating a primary certification key and subkeys for signing and encryption
@@ -31,6 +39,9 @@ Name-Email: $KEY_EMAIL
 EOF
 )
 
+#Point GPG to read user input (eg. passphrases) from current TTY
+export GPG_TTY=$(tty)
+
 # Write the batch file content to a temporary file
 echo "$BATCH_FILE_CONTENT" > temp_batch_file.txt
 
@@ -44,7 +55,7 @@ gpg --batch --generate-key temp_batch_file.txt
 gpg --list-keys --keyid-format LONG | grep 'pub' | awk '{print $2}' | cut -d'/' -f2 > keys_after.txt
 
 # Find the new key ID
-KEY_ID=$(comm -13 keys_before.txt keys_after.txt)
+KEY_ID=$(comm -13 keys_before.txt keys_after.txt | awk 'NF')
 
 # Clean up temporary files
 rm keys_before.txt keys_after.txt
