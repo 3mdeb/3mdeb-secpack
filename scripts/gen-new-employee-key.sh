@@ -31,6 +31,9 @@ Name-Email: $KEY_EMAIL
 EOF
 )
 
+#Point GPG to read user input (eg. passphrases) from current TTY
+export GPG_TTY=$(tty)
+
 # Write the batch file content to a temporary file
 echo "$BATCH_FILE_CONTENT" > temp_batch_file.txt
 
