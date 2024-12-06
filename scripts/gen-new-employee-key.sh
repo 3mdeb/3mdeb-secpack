@@ -12,6 +12,14 @@ KEY_EMAIL="$2"
 KEY_COMMENT="Employee Cert Key"
 KEY_FILE="$KEY_EMAIL.asc"
 
+#Check if there is already a key for a given email on the system
+KEYS_FOR_EMAIL=$(gpg --list-keys --keyid-format LONG | grep $KEY_EMAIL)
+if [ -n "SKEYS_FOR_EMAIL" ]; then
+   echo "Error: Key for email adress $KEY_EMAIL already exists on this system"
+   echo "If you want to generate a new key delete the old one first"
+   exit 1
+fi
+
 # Batch file content for key generation
 BATCH_FILE_CONTENT=$(cat <<EOF
 %echo Generating a primary certification key and subkeys for signing and encryption
