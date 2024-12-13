@@ -14,7 +14,7 @@ KEY_FILE="$KEY_EMAIL.asc"
 
 #Check if there is already a key for a given email on the system
 KEYS_FOR_EMAIL=$(gpg --list-keys --keyid-format LONG | grep $KEY_EMAIL)
-if [ -n "SKEYS_FOR_EMAIL" ]; then
+if [ -n "$KEYS_FOR_EMAIL" ]; then
    echo "Error: Key for email address $KEY_EMAIL already exists on this system"
    echo "If you want to generate a new key delete the old one first"
    exit 1
@@ -40,7 +40,8 @@ EOF
 )
 
 #Point GPG to read user input (eg. passphrases) from current TTY
-export GPG_TTY=$(tty)
+GPG_TTY=$(tty)
+export GPG_TTY
 
 # Write the batch file content to a temporary file
 echo "$BATCH_FILE_CONTENT" > temp_batch_file.txt
