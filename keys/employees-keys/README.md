@@ -194,7 +194,7 @@ The armored public key (`your.name@3mdeb.com.asc`) and encrypted revocation
 certificate (`your.name@3mdeb.com.rev.gpg`) should be sent to [3mdeb chat
 web-of-trust channel](https://chat.3mdeb.com/team-3mdeb/channels/web-of-trust).
 
-Please send [fingerprint](#key-identification)to 3mdeb Team Leaders or
+Please send [fingerprint](#key-identification) to 3mdeb Team Leaders or
 Management using a different channel than 3mdeb chat, e.g.,
 <https://keybase.io>, LinkedIn, email, etc. Fingerprints should be sent
 to the person who works with you on signing your keys.
@@ -362,7 +362,26 @@ decrypted given it was encrypted with your public key.
 ### Create a pull request with key
 
 After everything is set up, please issue a pull request to this repo with
-signed `your-name-key-signed.asc`.
+signed `your-name-key-signed.asc`. Before you create a pull request
+please verify if the commit with your key is correct:
+
+* At the end of your commit message there should be a line saying
+`Signed-off by Your Name <your.name@3mdeb.com>`. If you configure git
+as shown [here](#git-configuration) and use `git ci` alias to commit
+this will happen automatically.
+* Name of the commit should follow `<scope>: <type> <description>` style
+* The commit status on Github should be `Verified`. You can check that by
+navigating to `github.com/3mdeb/3mdeb-secpack/commit/your-commit-id`:
+    - Verified commit look like [this](https://github.com/3mdeb/3mdeb-secpack/commit/9930a5d7009d8abc77544dc081ded77276710cf3)
+   note the green field saying Verified to the left of the screen.
+    - Non verified commit will look like [this](https://github.com/3mdeb/3mdeb-secpack/commit/c8219a1e0a3531c854c73eab5c886817e7323a08)
+   the field that was green is now yellow and says Unverified.
+    - If your commit is not verified this means that you either did
+    not sign it correctly `-S` flag in `git commit` or your GPG key on
+    Github was not added correctly.
+
+After you verified that all those things are correct you can create a
+pull request.
 
 ### Upload to keys.opengpg.org
 
