@@ -215,11 +215,6 @@ The following information is for 3mdeb Team Leaders or Management.
   Keybase, cryptocurrency address, etc. Freelancer has to confirm at least
   through 5 channels that he/she is the only person in control of.
 
-We recommend creating [Keybase account](https://keybase.io) to simplify the
-process of social proof multiple identities and tying those to give GPG key
-pair. Please note that Keybase is not entirely open-source, so we should never
-rely on only this single verification method.
-
 ### Key signing
 
 3mdeb Team Leaders and Management should carefully confirm identity if any
