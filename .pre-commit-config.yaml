@@ -13,7 +13,7 @@ exclude: ^canaries/.*$
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v6.0.0
     hooks:
       - id: check-added-large-files
       - id: check-merge-conflict
@@ -32,19 +32,19 @@ repos:
           - commit-msg
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.4.1
     hooks:
       - id: codespell
         exclude: ^.*\.(asc|sig).*$
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.40.0
+    rev: v0.45.0
     hooks:
       - id: markdownlint
       - id: markdownlint-fix
 
   - repo: https://github.com/koalaman/shellcheck-precommit
-    rev: v0.10.0
+    rev: v0.11.0
     hooks:
     -   id: shellcheck
         args: ["--severity=warning"]

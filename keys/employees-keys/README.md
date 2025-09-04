@@ -473,7 +473,7 @@ gpg --import your.name@3mdeb.com.rev
 In situations where there's a potential compromise of a GPG key, it might be
 necessary to change the expiration date of the key to the last known safe date.
 This ensures that the key is no longer valid after the potential compromise,
-adding an extra layer of securit.
+adding an extra layer of security.
 
 Because last known safe date is in the past and we can set expiration date only
 for future we have to change system time before we can proceed. Let's assume
@@ -660,7 +660,7 @@ procedure](#adding-key-to-repository).
 
 #### Gitlab, Github and Gitea revocation
 
-Go to all wesbites whhere you used your GPG key. Delete key which you revoked
+Go to all websites where you used your GPG key. Delete key which you revoked
 and expired. After deleting upload key which contain revocation and expiration
 signature. On Github it should look as follows:
 
@@ -688,5 +688,5 @@ It produces a list of keys that have to be signed by a new key.
 
 #### Visit cards
 
-If you use 3mdeb visit cards, then secation with key become useless. Make sure
+If you use 3mdeb visit cards, then section with key become useless. Make sure
 to wipe key with black marker or request creation of new visit cards.
