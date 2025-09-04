@@ -273,17 +273,17 @@ gpg: depth: 0  valid:  12  signed:   6  trust: 0-, 0q, 0n, 0m, 0f, 12u
 gpg: depth: 1  valid:   6  signed:  17  trust: 6-, 0q, 0n, 0m, 0f, 0u
 gpg: next trustdb check due at 2025-06-06
 pub  rsa4096/6B5BA214D21FCEB2
-     created: 2017-10-31  expires: 2026-03-26  usage: SC  
+     created: 2017-10-31  expires: 2026-03-26  usage: SC
      trust: unknown       validity: unknown
 sub  rsa4096/3B7D01F9092DB189
-     created: 2017-10-31  expires: 2026-03-26  usage: E   
+     created: 2017-10-31  expires: 2026-03-26  usage: E
 sub  rsa4096/29A63FE152E1ADF9
-     created: 2021-06-27  expires: 2026-03-26  usage: A   
+     created: 2021-06-27  expires: 2026-03-26  usage: A
 [ unknown] (1). Your Name <your.name@3mdeb.com>
 
 
 pub  rsa4096/6B5BA214D21FCEB2
-     created: 2017-10-31  expires: 2026-03-26  usage: SC  
+     created: 2017-10-31  expires: 2026-03-26  usage: SC
      trust: unknown       validity: unknown
  Primary key fingerprint: 00B8 8FB2 5FD6 375B C5FF  195D 6B5B A214 D21F CEB2
 
@@ -350,7 +350,7 @@ gpg --armor --output your-name-key-signed.asc --export "YOUR KEY ID HERE"
 
 Expired signature would look as follows in the output:
 
-```
+```text
 gpg: checking the trustdb
 gpg: marginals needed: 3  completes needed: 1  trust model: pgp
 gpg: depth: 0  valid:  13  signed:   7  trust: 0-, 0q, 0n, 0m, 0f, 13u
@@ -449,7 +449,8 @@ lost/compromised. In the first case, you should simply extend the validity time
 as described [here](https://unix.stackexchange.com/a/177310) before the key
 expires. Please note you should republish the key for which expiry was changed,
 but before you can do that your key with new expiry date have to be
-[signed](#sending-key-for-signing-and-revocation-cert) by Team Leader or someone from Management.
+[signed](#sending-key-for-signing-and-revocation-cert) by Team Leader or
+someone from Management.
 
 Republishing should happen for all cloud git servers you use and would like to
 have `verified` marking, so it probably means GitHub, GitLab and 3mdeb Gitea.
