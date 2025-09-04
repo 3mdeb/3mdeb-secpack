@@ -215,11 +215,6 @@ The following information is for 3mdeb Team Leaders or Management.
   Keybase, cryptocurrency address, etc. Freelancer has to confirm at least
   through 5 channels that he/she is the only person in control of.
 
-We recommend creating [Keybase account](https://keybase.io) to simplify the
-process of social proof multiple identities and tying those to give GPG key
-pair. Please note that Keybase is not entirely open-source, so we should never
-rely on only this single verification method.
-
 ### Key signing
 
 3mdeb Team Leaders and Management should carefully confirm identity if any
@@ -265,31 +260,59 @@ gpg: 2 good signatures
 Signing should look as follows. If fingerprint match, then confirm with `y'.
 
 ```shell
-gpg -u piotr.krol@3mdeb.com --sign-key your.name@3mdeb.com
+gpg -u piotr.krol@3mdeb.com --ask-cert-level --ask-cert-expire --sign-key your.name@3mdeb.com
 ```
 
 Output:
 
 ```shell
 
-sec  rsa4096/BAA0A4837C891E29
-     created: 2021-04-07  expires: 2023-04-07  usage: SC
-     trust: ultimate      validity: ultimate
-ssb  rsa4096/4F81AE572F9EFECA
-     created: 2021-04-07  expires: 2023-04-07  usage: E
-[ultimate] (1). Your Name <your.name@3mdeb.com>
+gpg: checking the trustdb
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: depth: 0  valid:  12  signed:   6  trust: 0-, 0q, 0n, 0m, 0f, 12u
+gpg: depth: 1  valid:   6  signed:  17  trust: 6-, 0q, 0n, 0m, 0f, 0u
+gpg: next trustdb check due at 2025-06-06
+pub  rsa4096/6B5BA214D21FCEB2
+     created: 2017-10-31  expires: 2026-03-26  usage: SC
+     trust: unknown       validity: unknown
+sub  rsa4096/3B7D01F9092DB189
+     created: 2017-10-31  expires: 2026-03-26  usage: E
+sub  rsa4096/29A63FE152E1ADF9
+     created: 2021-06-27  expires: 2026-03-26  usage: A
+[ unknown] (1). Your Name <your.name@3mdeb.com>
 
 
-sec  rsa4096/BAA0A4837C891E29
-     created: 2021-04-07  expires: 2023-04-07  usage: SC
-     trust: ultimate      validity: ultimate
- Primary key fingerprint: D9DE EABF F447 B80F 7EC0  3A4B BAA0 A483 7C89 1E29
+pub  rsa4096/6B5BA214D21FCEB2
+     created: 2017-10-31  expires: 2026-03-26  usage: SC
+     trust: unknown       validity: unknown
+ Primary key fingerprint: 00B8 8FB2 5FD6 375B C5FF  195D 6B5B A214 D21F CEB2
 
      Your Name <your.name@3mdeb.com>
 
-This key is due to expire on 2023-04-07.
+This key is due to expire on 2026-03-26.
+Do you want your signature to expire at the same time? (Y/n) n
+Please specify how long the signature should be valid.
+         0 = signature does not expire
+      <n>  = signature expires in n days
+      <n>w = signature expires in n weeks
+      <n>m = signature expires in n months
+      <n>y = signature expires in n years
+Signature is valid for? (0) 351
+Signature expires at Thu 26 Mar 2026 11:09:34 PM CET
+Is this correct? (y/N) y
+How carefully have you verified the key you are about to sign actually belongs
+to the person named above?  If you don't know what to answer, enter "0".
+
+   (0) I will not answer. (default)
+   (1) I have not checked at all.
+   (2) I have done casual checking.
+   (3) I have done very careful checking.
+
+Your selection? (enter '?' for more information): 3
 Are you sure that you want to sign this key with your
-key "Piotr Król <piotr.krol@3mdeb.com>" (B2EE71E967AA9E4C)
+key "Piotr Król (Employee Cert Key) <piotr.krol@3mdeb.com>" (67D4F3E372CBC3A9)
+
+I have checked this key very carefully.
 
 Really sign? (y/N) y
 ```
@@ -323,6 +346,24 @@ Please send the received key in an encrypted email to <your.name@3mdeb.com>.
 
 ```shell
 gpg --armor --output your-name-key-signed.asc --export "YOUR KEY ID HERE"
+```
+
+Expired signature would look as follows in the output:
+
+```text
+gpg: checking the trustdb
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: depth: 0  valid:  13  signed:   7  trust: 0-, 0q, 0n, 0m, 0f, 13u
+gpg: depth: 1  valid:   7  signed:  17  trust: 7-, 0q, 0n, 0m, 0f, 0u
+gpg: next trustdb check due at 2025-06-06
+pub   rsa3072/8E5047CD480AAE7C 2023-10-03 [SC]
+      Key fingerprint = F673 50A9 A484 D2D3 0987  0C81 8E50 47CD 480A AE7C
+uid                 [ultimate] SigExpireTest
+sig 3        8E5047CD480AAE7C 2023-10-03  SigExpireTest
+sig 1     X  40BABCE7542B0B4A 2023-10-03  Piotr Król Signature After Expiration Date (Employee Cert Key) <piotr.krol@3mdeb.com>
+sub   rsa3072/9D6E6BCE09664EE1 2023-10-03 [E]
+      Key fingerprint = 23DE CB8C 3E63 D7A0 4FE4  C9C5 9D6E 6BCE 0966 4EE1
+sig          8E5047CD480AAE7C 2023-10-03  SigExpireTest
 ```
 
 ### Git configuration
@@ -408,7 +449,8 @@ lost/compromised. In the first case, you should simply extend the validity time
 as described [here](https://unix.stackexchange.com/a/177310) before the key
 expires. Please note you should republish the key for which expiry was changed,
 but before you can do that your key with new expiry date have to be
-[signed](#sending-key-for-signing) by Team Leader or someone from Management.
+[signed](#sending-key-for-signing-and-revocation-cert) by Team Leader or
+someone from Management.
 
 Republishing should happen for all cloud git servers you use and would like to
 have `verified` marking, so it probably means GitHub, GitLab and 3mdeb Gitea.
