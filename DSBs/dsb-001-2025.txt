@@ -1,0 +1,110 @@
+                 ---===[ Dasharo Security Bulletin 001 ]===---
+
+            Wrong Intel Boot Guard fusing prevents further updates
+
+Version
+-------
+
+* Bulletin: DSB-001
+* Published: 2025-12-22
+* Updated: 2025-12-22
+* Version: 1
+
+Affected configurations
+-----------------------
+
+NovaCustom V540TU and V560TU devices that have undergone the additional Dasharo
+TrustRoot fusing process (either manually, or via Dasharo Tools Suite) between
+2025-10-24 and 2025-12-05.
+
+This process is not something that is automatically triggered during regular
+firmware updates. It requires opt-in user interaction with several warnings [1].
+If you are not sure whether you have done it - you most likely have not. You may
+follow this document further to learn how to verify this.
+
+Devices that have not undergone the fusing procedure, are not affected.
+
+User action
+-----------
+
+* Verify the Intel Boot Guard key on your fused laptop, using Dasharo Tools
+  Suite [2]
+* Contact Dasharo support at support[at]dasharo.com if you have fused the
+  device by yourself, presenting output from the above tool stating
+  that fused key does not match to the expected one.
+* If your device is affected, ensure that any data protected by the TPM is
+  recoverable before proceeding with mainboard replacement. Further details are
+  provided in the Impact section.
+
+Workarounds
+-----------
+
+No workarounds are available.
+
+Details
+-------
+
+During the release of Dasharo v1.0.0 (coreboot+UEFI) for NovaCustom Meteor Lake
+iGPU laptops (models V540TU [3] and V560TU [4]), a human error in the artifact
+publication process resulted in publishing firmware binaries being signed with
+a developer key instead of the correct client production key. This caused an
+irreversible change of fuses inside the SoC, locking the firmware with a key
+that we cannot reproduce for future updates.
+
+Affected binaries were immediately removed from the public distribution to
+prevent any further devices from being impacted. The ability for users to
+perform Dasharo TrustRoot fusing by themselves on these models has been
+temporarily suspended.
+
+Impact
+------
+
+We have conducted a thorough technical analysis. Unfortunately, for the devices
+that have already been fused with these incorrect binaries, the situation is
+irreversible via software. Because the hardware is now locked to a
+non-production key, these units cannot accept any future firmware updates or
+security patches. This means that to restore full functionality,
+maintainability, and long-term security of these devices, the mainboards must be
+physically replaced.
+
+The replacement mainboard will include a new TPM (Trusted Platform Module).
+Consequently, any secrets previously stored in the TPM, such as disk encryption
+keys, will be lost during this process.
+
+Users must ensure that any data protected by TPM-backed encryption is
+recoverable before the mainboard replacement. In particular, recovery keys (for
+example, LUKS or BitLocker recovery keys) should be securely stored outside the
+system and verified prior to shipping the motherboard.
+
+Patching
+--------
+
+* No firmware binary modification can fix the problem.
+* 3mdeb and NovaCustom are coordinating mainboards replacement program for all
+  affected devices.
+* Reinforcing of existing automation protocols was applied to the 3mdeb internal
+  provisioning process. This should prevent future occurrences of publication of
+  incorrect firmware binary.
+* Public verification mechanisms updated: UEFI Capsule Update mechanism [5], [6]
+  and Dasharo Tools Suite utility since v2.7.2 [7], [8] now block updates if the
+  firmware is not signed with the correct Intel Boot Guard key.
+
+Credits
+-------
+
+Found internally by the Dasharo Team.
+
+References
+----------
+
+[1] https://docs.dasharo.com/guides/cpu-fusing
+[2] https://docs.dasharo.com/dasharo-tools-suite/documentation/features/#verify-intel-boot-guard-key
+[3] https://docs.dasharo.com/variants/novacustom_v540tu/releases/#v100-2025-09-18
+[4] https://docs.dasharo.com/variants/novacustom_v560tu/releases/#v100-2025-09-18
+[5] https://github.com/Dasharo/coreboot/pull/818
+[6] https://github.com/Dasharo/edk2/pull/285
+[7] https://github.com/Dasharo/dts-scripts/pull/128/files
+[8] https://github.com/Dasharo/meta-dts/releases/tag/v2.7.2
+
+The Dasharo Security Team
+https://docs.dasharo.com/security/
