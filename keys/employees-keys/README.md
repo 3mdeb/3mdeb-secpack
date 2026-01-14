@@ -448,7 +448,7 @@ There are 2 possible situations either it just expires, or it is
 lost/compromised. In the first case, you should simply extend the validity time
 as described [here](https://unix.stackexchange.com/a/177310). Please note you
 should republish the key for which expiry was changed, but before you can do
-that your key with new expiry date have to be
+that your key with new expiry date has to be
 [signed](#sending-key-for-signing-and-revocation-cert) by Team Leader or
 someone from Management.
 
