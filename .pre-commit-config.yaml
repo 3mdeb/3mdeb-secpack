@@ -25,20 +25,20 @@ repos:
       - id: mixed-line-ending
 
   - repo: https://github.com/talos-systems/conform
-    rev: v0.1.0-alpha.30
+    rev: v0.1.0-alpha.31
     hooks:
       - id: conform
         stages:
           - commit-msg
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.1
+    rev: v2.4.2
     hooks:
       - id: codespell
         exclude: ^.*\.(asc|sig).*$
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.45.0
+    rev: v0.48.0
     hooks:
       - id: markdownlint
       - id: markdownlint-fix
