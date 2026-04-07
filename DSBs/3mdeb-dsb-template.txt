@@ -1,0 +1,62 @@
+                 ---===[ Dasharo Security Bulletin NNN ]===---
+
+            Short title of the issue (one line)
+
+Version
+-------
+
+* Bulletin: DSB-NNN
+* Published: YYYY-MM-DD
+* Updated: YYYY-MM-DD
+* Version: 1
+
+Affected configurations
+-----------------------
+
+[Which specific devices, firmware versions, and configurations are affected.
+State clearly what is NOT affected to reduce unnecessary support load.]
+
+User action
+-----------
+
+[Ordered list of what an affected user must do. Be concrete.
+If no action is possible, say so explicitly.]
+
+Workarounds
+-----------
+
+[Any partial mitigations available before a full fix. "None available." is
+a valid answer.]
+
+Details
+-------
+
+[Technical description of the issue: what happened, how, and why. This is
+the section that can reference commits, PRs, and upstream advisories.]
+
+Impact
+------
+
+[What is the practical consequence to the user? Data loss risk? Loss of
+updateability? Security downgrade? What is NOT impacted?]
+
+Patching
+--------
+
+[How the issue is resolved or will be resolved. Reference specific firmware
+versions, PRs, or replacement procedures. If PCR values change as a result,
+note that disk encryption recovery keys may be needed.]
+
+Credits
+-------
+
+[Who found the issue and how (internal, responsible disclosure, public report).]
+
+References
+----------
+
+[1] https://...
+[2] https://...
+
+The Dasharo Security Team
+https://docs.dasharo.com/security/
