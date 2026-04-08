@@ -80,8 +80,7 @@ if [[ -z "${NUMBER}" ]]; then
             fi
         fi
     done
-    NEXT=$((HIGHEST + 1))
-    NUMBER="$(printf '%03d' "${NEXT}")"
+    NUMBER=$((HIGHEST + 1))
 fi
 
 # Zero-pad number if provided without padding
@@ -111,5 +110,6 @@ echo ""
 echo "Next steps:"
 echo "  1. Fill in all sections of ${OUTPUT}"
 echo "  2. Get internal review (EFT TL/EM for technical accuracy, PM for tone)"
-echo "  3. Sign with: ./scripts/sign.sh ${OUTPUT}"
-echo "  4. Merge DSBs/dsb-${NUMBER}-${DATE}.txt and .sig files to main"
+echo "  3. Navigate to DSBs directory: cd DSBs/"
+echo "  4. Sign with: ../scripts/sign.sh ${OUTPUT}"
+echo "  5. Merge DSBs/dsb-${NUMBER}-${DATE}.txt and .sig files to master"

@@ -20,7 +20,7 @@ User action
 -----------
 
 [Ordered list of what an affected user must do. Be concrete.
-If no action is possible, say so explicitly.]
+If no action is necessary, say so explicitly.]
 
 Workarounds
 -----------
