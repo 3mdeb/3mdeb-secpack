@@ -1,0 +1,110 @@
+                 ---===[ Dasharo Security Bulletin 002 ]===---
+
+      UEFI Capsule Update signature verification not enforced
+
+Version
+-------
+
+* Bulletin: DSB-002
+* Published: 2026-05-12
+* Updated: 2026-05-12
+* Version: 1
+
+Affected configurations
+-----------------------
+
+Affected configurations include releases with UEFI Capsule Update V1
+implementation. At the time of writing, this list is as follows:
+
+* NovaCustom V540TU:        v1.0.0, v1.0.1
+* NovaCustom V54xTNx:       v1.0.0
+* NovaCustom V560TU:        v1.0.0, v1.0.1
+* NovaCustom V560TNX:       v1.0.0
+* NovaCustom NV4x:          v1.8.0
+* NovaCustom NS5x/7x:       v1.8.0
+* NovaCustom NUX BOX:       v0.9.0
+* MSI PRO Z690-A:           v1.1.4 through v1.1.6
+* MSI PRO Z790-P:           v0.9.2 through v0.9.4
+* Hardkernel ODROID H4:     v0.9.1
+
+Earlier Dasharo releases on these platforms that did not implement capsule
+updates are not affected. Platforms not listed above are not affected.
+
+User action
+-----------
+
+* If your threat model considers unauthenticated UEFI Capsule Updates
+  significantly more risky than the prior flashrom-based update flow
+  (e.g., you boot untrusted live OSes, run untrusted code as root, consider
+  unauthorized root access likely), apply one of the workarounds below until a
+  fixed release is installed.
+
+Workarounds
+-----------
+
+* Keep Intel ME out of HAP-disabled state. Capsule updates are unavailable
+  unless Intel ME is HAP-disabled, so leaving ME in its default enabled
+  or soft-disabled state blocks capsule submission from any path.
+  HAP-disable ME only for the duration of an explicit, user-initiated update,
+  then revert.
+
+* (Only in case you are in full control of what the machine can boot. Trusting
+  Microsoft's or any other keys you don't control implies that you're not.) Run
+  an OS that does not provide the Linux `capsule_loader` module or an equivalent.
+  When booting untrusted executables before an OS is disallowed and the only OS
+  that can be started does not permit it, there is no way to submit a capsule
+  (hence this prevents capsule updates via `fwupd` as well).
+
+Details
+-------
+
+In the firmware as shipped on the affected configurations, the verification
+path is present in the capsule itself (not in the firmware), which provides only
+integrity check, not authentication. A capsule signed with any key - including
+a self-generated key with no relationship to the platform's expected root - is
+accepted, and applied on the next boot.
+
+This was reported publicly in Dasharo/dasharo-issues#1075 on 2024-10-02
+[1].
+
+Impact
+------
+
+An attacker with root privileges on any OS that boots on the device can install
+firmware of their choice, achieving firmware-level persistence. Recovery may
+require an external SPI programmer.
+
+Not impacted:
+
+* Integrity of the early boot path on platforms with Intel Boot Guard
+  active, which continues to prevent execution of untrusted code at the
+  earliest boot stages.
+
+Patching
+--------
+
+Capsule signature verification is being implemented as part of the
+"Advanced UEFI Capsule Update for coreboot with EDK II" effort (UEFI
+Capsule Update V2) tracked under the corresponding milestone [3], and
+is awaiting inclusion in the next coreboot- and EDK II-based releases
+for the affected configurations.
+
+Per-platform target versions and the corresponding pull requests will be
+tracked in Dasharo/dasharo-issues#1075 [1] and under the V2 milestone [3].
+
+Credits
+-------
+
+Reported and tracked publicly by the Dasharo development team in
+Dasharo/dasharo-issues#1075 since 2024-10-02. Brought to wider community
+attention by users on the NovaCustom forum (thread #960) [2].
+
+References
+----------
+
+[1] https://github.com/Dasharo/dasharo-issues/issues/1075
+[2] https://novacustom.com/forum/d/960-concerning-the-lack-of-signature-verification-for-capsule-updates
+[3] https://github.com/Dasharo/dasharo-issues/issues?q=milestone%3A%22Advanced%20UEFI%20Capsule%20Update%20for%20coreboot%20with%20EDK%20II%22
+
+The Dasharo Security Team
+https://docs.dasharo.com/security/
