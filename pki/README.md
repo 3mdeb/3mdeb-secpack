@@ -1,0 +1,7 @@
+# Resources
+
+http://www.plantuml.com/plantuml/png/hP7FIyCm583l-IkUyxA1Wu27EHbbCskX1vrqFGeZDczR83yWoHWY_kysJcL42mMzvV2-BozVvZvm5mvQaGk1MsaGM5xLPL6oHPr3exZtC9l1a5rT5iLaGka86BeWjxBX0I7BlhdoeSwh-tnPjk0cIb9wEerqQG8wZK96l4DLhLRrXYrI0QLHK5aRW2tYFDbBWT18roWalk4AuOPIE4eHzeISwC6r5lZyHGrQswSzo-2Ll2LZvzizcI6phNyjTqQQtIYoFnwPM9RSxxcp_-QfhLKUrWSPDR5MXCz-g0ChfDD7xaw1s_iV5GzRw_Ie0qyZZSVzWjn-d570tSklZZuv4ai_9Cgx6_tLs9KlsNMEHXoqUWS0
+
+* https://blog.thinkbox.dev/posts/0011-pki-with-openssl/
+* https://pki-tutorial.readthedocs.io/en/latest/expert/index.html
+* https://ipxe.org/crypto
