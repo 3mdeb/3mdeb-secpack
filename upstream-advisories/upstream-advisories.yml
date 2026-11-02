@@ -1,0 +1,20 @@
+---
+# Upstream advisories and whether they affect Dasharo.
+# Fields: see README.md. dsb is the file name under DSBs/ without .txt.
+# Newest first. All dates are UTC, YYYY-MM-DD.
+
+- advisory: GHSA-99cj-7hg9-mp4m
+  url: https://github.com/tianocore/edk2/security/advisories/GHSA-99cj-7hg9-mp4m
+  cve: CVE-2026-97631
+  upstream: EDK II
+  component: NetworkPkg/UefiPxeBcDxe
+  published: 2026-10-22
+  checked: 2026-11-02
+  current: no
+  earlier: yes
+  dsb: dsb-003-2026
+  why: >-
+    Current releases do not build the EDK II network stack. Some 2022
+    releases did. We found no way to reach the driver in them. DSB-003 lists
+    them and the version to use.
+  evidence: https://blog.3mdeb.com/2026/2026-10-29-dasharo-edk2-pxe-cve-2026-97631/

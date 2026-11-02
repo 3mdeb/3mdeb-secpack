@@ -23,6 +23,8 @@ the following:
    to sign firmware releases produced by 3mdeb
 * 3mdeb Open Source Software Master Key (`open-source-software/`) - key used
    to sign software releases produced by 3mdeb
+* Upstream advisories (`upstream-advisories/`) - security advisories of
+   upstream projects, such as EDK II, and whether they affect Dasharo
 * Supporting scripts (`scripts/`)
 
 The files contained in this repository can be verified in two ways:

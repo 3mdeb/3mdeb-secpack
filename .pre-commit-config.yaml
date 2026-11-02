@@ -48,3 +48,13 @@ repos:
     hooks:
     -   id: shellcheck
         args: ["--severity=warning"]
+
+  - repo: local
+    hooks:
+      - id: upstream-advisories
+        name: render upstream-advisories/README.md from YAML
+        entry: python3 scripts/upstream-advisories.py
+        language: python
+        additional_dependencies: [pyyaml==6.0.2]
+        files: ^(upstream-advisories/|scripts/upstream-advisories\.py$)
+        pass_filenames: false
