@@ -1,0 +1,119 @@
+                 ---===[ Dasharo Security Bulletin 003 ]===---
+
+    EDK II PXE driver vulnerable to CVE-2026-97631 in some 2022 releases
+
+Version
+-------
+
+* Bulletin: DSB-003
+* Published: YYYY-MM-DD
+* Updated: YYYY-MM-DD
+* Version: 1
+
+Affected configurations
+-----------------------
+
+The following releases include the vulnerable EDK II PXE Base Code driver
+(UefiPxeBcDxe). For each platform, use the version in the right-hand column
+or later:
+
+  Platform                         Affected releases          Use
+  -------------------------------  -------------------------  --------
+  NovaCustom NV4x 11th Gen         v1.2.0, v1.2.1, v1.3.0     v1.4.0
+  NovaCustom NS5x/7x 11th Gen      v1.3.0                     v1.4.0
+  NovaCustom NV4x 12th Gen         v1.4.0                     v1.6.0
+  NovaCustom NS5x/7x 12th Gen      v1.4.0                     v1.6.0
+  MSI PRO Z690-A (WIFI) (DDR4)     v1.0.0 and earlier         v1.1.0
+  Protectli VP4630/VP4650/VP4670   v1.0.13, v1.0.16, v1.0.17  v1.0.18
+  Protectli VP2410                 v1.0.15                    v1.1.0
+
+MSI PRO Z690-A releases earlier than v1.0.0 were not checked individually.
+Treat them as affected.
+
+Not affected:
+
+* Releases from the version in the "Use" column onwards on these platforms.
+  They do not include the EDK II network stack.
+* Platforms not listed above.
+
+User action
+-----------
+
+1. Check which Dasharo version you run.
+2. If it is listed above, update to the version in the "Use" column or later,
+   following the update procedure for your platform on docs.dasharo.com [3].
+
+Workarounds
+-----------
+
+None verified. Updating is the fix.
+
+Details
+-------
+
+GHSA-99cj-7hg9-mp4m (CVE-2026-97631) [1] describes incorrect bounds handling
+in the ICMP error handlers of the EDK II PXE Base Code driver
+(NetworkPkg/UefiPxeBcDxe). An attacker who can send ICMP error messages to a
+machine while it is PXE-booting can write past a fixed-size buffer in the
+driver's private data. The faulty code has been present since NetworkPkg was
+added to EDK II in 2010.
+
+A Dasharo/edk2 change [4] set NETWORK_ENABLE = TRUE in UefiPayloadPkg.dsc,
+which builds the EDK II network stack, UefiPxeBcDxe included. A later change
+[5] set it back to FALSE. Releases built from Dasharo/edk2 revisions between
+the two include the driver. Protectli VP4630/VP4650/VP4670 v1.0.13
+additionally enabled it in the board configuration.
+
+The affected releases were identified from the build configuration of each
+release tag in Dasharo/coreboot and confirmed on the published release
+images, by searching the UEFI payload for the driver's file GUID
+B95E9FDA-26DE-48D2-8807-1F9107AC5E3A. The same search on the first fixed
+release of each platform finds no such file. The procedure is described in
+[3].
+
+Impact
+------
+
+The vulnerable code is present in the affected releases, but we found no way
+to reach it in normal use. The driver runs only during a UEFI PXE boot. These
+releases do not include the EDK II SNP driver (SnpDxe), which connects the
+EDK II network stack to the network controller, and the Intel 2.5GbE (I225)
+driver included in some of these releases does not provide the Simple Network
+Protocol either. Without it the PXE driver does not start and no UEFI PXE boot
+option is created. The remaining case is an add-in network card whose own
+option ROM provides the Simple Network Protocol. This was not tested.
+
+If the driver does run, the advisory [1] describes denial of service and
+arbitrary code execution during DXE, before the operating system and its
+security controls start, by an unauthenticated attacker on the network
+during PXE boot.
+
+Not impacted:
+
+* Machines that do not boot from the network.
+
+Patching
+--------
+
+No new release is needed. The releases in the "Use" column and later do not
+include the EDK II network stack. The upstream fix for EDK II is tracked in
+tianocore/edk2 pull request #13302 [2].
+
+Credits
+-------
+
+The vulnerability in EDK II was found by Alex Matrosov (Anthropic) and Dan
+Holmes-Mitra (Google) [1]. The affected Dasharo releases were identified by
+the Dasharo team.
+
+References
+----------
+
+[1] https://github.com/tianocore/edk2/security/advisories/GHSA-99cj-7hg9-mp4m
+[2] https://github.com/tianocore/edk2/pull/13302
+[3] https://blog.3mdeb.com/2026/2026-10-29-dasharo-edk2-pxe-cve-2026-97631/
+[4] https://github.com/Dasharo/edk2/commit/0a1887584408ffc01b42eeca8a967e2408b58519
+[5] https://github.com/Dasharo/edk2/commit/2802f284501edcd05e44f303665cdcd5f07d86ab
+
+The Dasharo Security Team
+https://docs.dasharo.com/security/
