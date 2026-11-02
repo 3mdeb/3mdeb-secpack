@@ -16,6 +16,7 @@ Public keys for authorized signers are managed in the root of this repository.
 | ID      | Date       | Title                                                   |
 |---------|------------|---------------------------------------------------------|
 | DSB-001 | 2025-12-22 | Wrong Intel Boot Guard fusing prevents further updates  |
+| DSB-002 | 2026-05-12 | UEFI Capsule Update signature verification not enforced |
 
 ## Creating a new DSB
 
