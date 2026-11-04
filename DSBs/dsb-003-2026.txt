@@ -17,18 +17,15 @@ The following releases include the vulnerable EDK II PXE Base Code driver
 (UefiPxeBcDxe). For each platform, use the version in the right-hand column
 or later:
 
-  Platform                         Affected releases          Use
-  -------------------------------  -------------------------  --------
-  NovaCustom NV4x 11th Gen         v1.2.0, v1.2.1, v1.3.0     v1.4.0
-  NovaCustom NS5x/7x 11th Gen      v1.3.0                     v1.4.0
-  NovaCustom NV4x 12th Gen         v1.4.0                     v1.6.0
-  NovaCustom NS5x/7x 12th Gen      v1.4.0                     v1.6.0
-  MSI PRO Z690-A (WIFI) (DDR4)     v1.0.0 and earlier         v1.1.0
-  Protectli VP4630/VP4650/VP4670   v1.0.13, v1.0.16, v1.0.17  v1.0.18
-  Protectli VP2410                 v1.0.15                    v1.1.0
-
-MSI PRO Z690-A releases earlier than v1.0.0 were not checked individually.
-Treat them as affected.
+  Platform                         Affected releases                Use
+  -------------------------------  -------------------------------  --------
+  NovaCustom NV4x 11th Gen         v1.2.0, v1.2.1, v1.3.0           v1.4.0
+  NovaCustom NS5x/7x 11th Gen      v1.3.0                           v1.4.0
+  NovaCustom NV4x 12th Gen         v1.4.0                           v1.6.0
+  NovaCustom NS5x/7x 12th Gen      v1.4.0                           v1.6.0
+  MSI PRO Z690-A (WIFI) (DDR4)     v0.2.0, v0.3.0, v0.4.0, v1.0.0   v1.1.0
+  Protectli VP4630/VP4650/VP4670   v1.0.13, v1.0.16, v1.0.17        v1.0.18
+  Protectli VP2410                 v1.0.15                          v1.1.0
 
 Not affected:
 
